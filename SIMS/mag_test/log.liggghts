@@ -1,0 +1,118 @@
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2021-07-26-20:22:46 by aerospacenerd, git commit a201e612e992688a82b10c8926fd89a34f7d0602)
+atom_style	hybrid granular dipole
+boundary	f f f
+newton		off
+atom_modify	sort 10000 0
+
+communicate	single vel yes
+units		si
+processors	1 1 1
+
+variable reg_dim equal .1 #meters
+
+region		reg block -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} units box
+region		reg block -0.1 ${reg_dim} -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} units box
+region		reg block -0.1 0.1 -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} units box
+region		reg block -0.1 0.1 -0.1 ${reg_dim} -${reg_dim} ${reg_dim} units box
+region		reg block -0.1 0.1 -0.1 0.1 -${reg_dim} ${reg_dim} units box
+region		reg block -0.1 0.1 -0.1 0.1 -0.1 ${reg_dim} units box
+region		reg block -0.1 0.1 -0.1 0.1 -0.1 0.1 units box
+create_box	1 reg
+Created orthogonal box = (-0.1 -0.1 -0.1) to (0.1 0.1 0.1)
+  1 by 1 by 1 MPI processor grid
+neighbor	2 bin
+neigh_modify	delay 0 every 1
+
+hard_particles	yes
+
+
+fix 		m1 all property/global youngsModulus peratomtype 6e6
+fix 		m2 all property/global poissonsRatio peratomtype 0.278
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.4
+fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
+
+
+pair_style gran model hertz tangential history cohesion sjkr
+pair_coeff	* *
+
+timestep	1e-10 # seconds
+
+
+#fix	ptsc all particletemplate/sphere 15485863 atom_type 1 density constant 7750 radius constant $(v_mean) volume_limit 1e-17
+#fix     pts1 all particletemplate/sphere 49979687 atom_type 1 density constant 7750 radius constant $(v_mean+v_std) volume_limit 1e-17
+#fix     pts2 all particletemplate/sphere 15485867 atom_type 1 density constant 7750 radius constant $(v_mean+2*v_std) volume_limit 1e-17
+#fix     pts3 all particletemplate/sphere 32452843 atom_type 1 density constant 7750 radius constant $(v_mean+3*v_std) volume_limit 1e-17
+#fix     pts4 all particletemplate/sphere 32452867 atom_type 1 density constant 7750 radius constant $(v_mean+4*v_std) volume_limit 1e-17
+#fix     ptsm1 all particletemplate/sphere 49979693 atom_type 1 density constant 7750 radius constant $(v_mean-v_std) volume_limit 1e-17
+#fix     ptsm2 all particletemplate/sphere 67867967 atom_type 1 density constant 7750 radius constant $(v_mean-2*v_std) volume_limit 1e-17
+#fix     ptsm3 all particletemplate/sphere 67867979 atom_type 1 density constant 7750 radius constant $(v_mean-3*v_std) volume_limit 1e-17
+#fix     ptsm4 all particletemplate/sphere 86028121 atom_type 1 density constant 7750 radius constant $(v_mean-4*v_std) volume_limit 1e-17
+
+#fix	pdd all particledistribution/discrete 86028157 9 ptsc 0.22 pts1 0.175 ptsm1 0.175 pts2 0.121 ptsm2 0.121 pts3 0.066 ptsm3 0.066  pts4 0.028 ptsm4 0.028
+
+#region	rectangularrectangle block -0.00025 0.00025 -0.00025 0.00025 -0.000235 0.000235 units box
+#group   nve_group region rectangularrectangle
+#fix	ins nve_group insert/pack seed 179426369 distributiontemplate pdd #	insert_every once overlapcheck yes all_in yes volumefraction_region 0.05 region #	rectangularrectangle
+
+#index of simulations
+# variable a loop 10
+#radius of atoms
+variable atom_rad equal 1.4E-6 #meters
+#diameter of atoms
+variable atom_dia equal 2*${atom_rad}
+variable atom_dia equal 2*1.4e-06
+#separation between the atoms
+variable sep equal 2.2*${atom_rad}
+variable sep equal 2.2*1.4e-06
+
+create_atoms	1 single 0 0 0
+Created 1 atoms
+create_atoms	1 single 0 0 ${sep}
+create_atoms	1 single 0 0 3.08e-06
+Created 1 atoms
+
+set		atom 1 diameter ${atom_dia}
+set		atom 1 diameter 2.8e-06
+  1 settings made for diameter
+set     atom 2 diameter ${atom_dia}
+set     atom 2 diameter 2.8e-06
+  1 settings made for diameter
+
+#                       x   y   z
+fix	mag all magnetic    6e-4   0   0
+
+dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
+#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+
+#fix	1 nve_group nve/sphere
+
+run	100
+Setting up run at Mon Jul 26 20:39:22 2021
+
+Memory usage per processor = 9.41566 Mbytes
+    Step    Atoms         KinEng            CPU 
+       0        2              0              0 
+     100        2              0    0.014931256 
+Loop time of 0.0149539 on 1 procs for 100 steps with 2 atoms, finish time Mon Jul 26 20:39:22 2021
+
+
+Pair  time (%) = 0.00014909 (0.996995)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 2.042e-05 (0.136553)
+Outpt time (%) = 0.0145184 (97.0877)
+Other time (%) = 0.000265998 (1.77878)
+
+Nlocal:    2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs: 2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2
+Ave neighs/atom = 1
+Neighbor list builds = 0
+Dangerous builds = 0
