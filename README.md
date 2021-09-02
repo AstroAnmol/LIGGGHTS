@@ -1,3 +1,7 @@
+## Modified 
+To include magnetic forces between paramagnetic particles placed in a uniform magnetic field
+using Mutual Dipole Method.
+
 # LIGGGHTS
 
 Discrete Element Modelling code based on LIGGGHTS[1] framework.
