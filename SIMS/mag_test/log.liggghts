@@ -91,20 +91,20 @@ dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux m
 #fix	1 nve_group nve/sphere
 
 run	100
-Setting up run at Tue Jun 21 18:55:00 2022
+Setting up run at Thu Jul 21 11:23:55 2022
 
 Memory usage per processor = 9.41566 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-     100        2              0     0.00913827 
-Loop time of 0.00915066 on 1 procs for 100 steps with 2 atoms, finish time Tue Jun 21 18:55:00 2022
+     100        2              0    0.019141314 
+Loop time of 0.0191609 on 1 procs for 100 steps with 2 atoms, finish time Thu Jul 21 11:23:55 2022
 
 
-Pair  time (%) = 8.3211e-05 (0.909345)
+Pair  time (%) = 0.000168051 (0.877053)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.0515e-05 (0.11491)
-Outpt time (%) = 0.00890005 (97.2613)
-Other time (%) = 0.000156879 (1.7144)
+Comm  time (%) = 1.9224e-05 (0.100329)
+Outpt time (%) = 0.0186146 (97.149)
+Other time (%) = 0.000358995 (1.87358)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
