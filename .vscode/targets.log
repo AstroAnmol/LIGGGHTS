@@ -1,4 +1,4 @@
-make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+/usr/bin/make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 21 18:15:48 2022
+# Make data base, printed on Fri Sep 23 11:38:37 2022
 
 # Variables
 
@@ -26,8 +26,6 @@ XDG_SESSION_CLASS = user
 SNAP_COMMON = /var/snap/code/common
 # environment
 XDG_SESSION_TYPE = x11
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
@@ -41,15 +39,15 @@ GDMSESSION = ubuntu
 # environment
 XMODIFIERS = @im=ibus
 # makefile
-CURDIR := /home/aerospacenerd/UMD/Research/LIGGGHTS
+CURDIR := /home/anmol/Research/Code/LIGGGHTS
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/85
+SNAP_DATA = /var/snap/code/105
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48344
+JOURNAL_STREAM = 8:41452
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -63,53 +61,47 @@ MAKEFILE_LIST :=
 # environment
 GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-USERNAME = aerospacenerd
-# environment
-MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+USERNAME = anmol
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-VSCODE_VERBOSE_LOGGING = true
+_ = /snap/code/105/usr/share/code/code
 # environment
-_ = /snap/code/85/usr/share/code/code
-# environment
-MANAGERPID = 1530
+MANAGERPID = 913
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
-VSCODE_CWD = /home/aerospacenerd
+VSCODE_CWD = /home/anmol
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/85/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/105/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/aerospacenerd/.local/bin:/home/aerospacenerd/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /home/anmol/.local/bin:/home/anmol/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/nerdspace-hp:@/tmp/.ICE-unix/1761,unix/nerdspace-hp:/tmp/.ICE-unix/1761
+SESSION_MANAGER = local/sikka-dusty:@/tmp/.ICE-unix/1280,unix/sikka-dusty:/tmp/.ICE-unix/1280
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-GDK_PIXBUF_MODULE_FILE = /home/aerospacenerd/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+GDK_PIXBUF_MODULE_FILE = /home/anmol/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/85
+SNAP = /snap/code/105
 # environment
-SNAP_VERSION = 899d46d8
+SNAP_VERSION = e4503b30
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
-VSCODE_LOG_STACK = false
-# environment
 DISABLE_WAYLAND = 1
 # environment
-VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=92d9b5e2-754e-4649-b431-5088ada2afc1&iid=92d9b5e2-754e-4649-b431-5088ada2afc1&sid=92d9b5e2-754e-4649-b431-5088ada2afc1","uploadToServer":true}
+ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 9958d78374b54b44847cb60e7859a305
+INVOCATION_ID = 8aba48dfec494424bee5f808199209da
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/85/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/105/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -119,47 +111,45 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2344
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2459
 # automatic
 %F = $(notdir $%)
 # environment
 DISPLAY = :0
 # environment
-VSCODE_PIPE_LOGGING = true
-# environment
 SNAP_INSTANCE_KEY = 
 # environment
-PWD = /home/aerospacenerd/UMD/Research/LIGGGHTS
+PWD = /home/anmol/Research/Code/LIGGGHTS
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1718
+SSH_AGENT_PID = 1250
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
 GTK_MODULES = gail:atk-bridge
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /home/aerospacenerd
+HOME = /home/anmol
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/aerospacenerd/.config/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
+VSCODE_CODE_CACHE_PATH = /home/anmol/.config/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
 # environment
-LOGNAME = aerospacenerd
+LOGNAME = anmol
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # environment
-SNAP_CONTEXT = pZiKrT_nCI4CjMO6QFf863fkx2msh2z9mFOUvrAR9Ri-3MBWeLpc
+SNAP_CONTEXT = 3lMO4Es8iYQKirkf3Y9dMG2W8tDAE0x6ZRQVmeWH3YUHl4er8HMJ
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
-SNAP_USER_COMMON = /home/aerospacenerd/snap/code/common
+SNAP_USER_COMMON = /home/anmol/snap/code/common
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -169,7 +159,7 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # environment
 MAKELEVEL := 0
 # environment
-SNAP_REAL_HOME = /home/aerospacenerd
+SNAP_REAL_HOME = /home/anmol
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -177,19 +167,17 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/aerospacenerd/snap/code/85
+SNAP_USER_DATA = /home/anmol/snap/code/105
 # environment
 SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9753cabf-f935-42f1-a8fc-f22269cc9a78.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
-USER = aerospacenerd
+USER = anmol
 # environment
-SNAP_REVISION = 85
+SNAP_REVISION = 105
 # makefile
 .DEFAULT_GOAL := 
 # environment
@@ -197,13 +185,13 @@ XDG_CURRENT_DESKTOP = Unity
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
-MAKE_COMMAND := make
+MAKE_COMMAND := /usr/bin/make
 # default
 .VARIABLES := 
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-86b2dcd5-1.63.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-f35448c0-1.70.2-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -212,8 +200,6 @@ MAKEFLAGS = pqrR
 MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
-# environment
-BREAKPAD_DUMP_LOCATION = /home/aerospacenerd/.config/Code/exthost Crash Reports
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -222,16 +208,12 @@ GDK_BACKEND = x11
 +F = $(notdir $+)
 # environment
 QT_ACCESSIBILITY = 1
-# environment
-DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
 # default
 MAKEFILES := 
 # environment
-SNAP_COOKIE = pZiKrT_nCI4CjMO6QFf863fkx2msh2z9mFOUvrAR9Ri-3MBWeLpc
+SNAP_COOKIE = 3lMO4Es8iYQKirkf3Y9dMG2W8tDAE0x6ZRQVmeWH3YUHl4er8HMJ
 # automatic
 <F = $(notdir $<)
-# environment
-ELECTRON_RUN_AS_NODE = 1
 # environment
 SNAP_NAME = code
 # environment
@@ -257,9 +239,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2396
+VSCODE_PID = 2792
 # variable set hash-table stats:
-# Load=124/1024=12%, Rehash=0, Collisions=19/146=13%
+# Load=115/1024=11%, Rehash=0, Collisions=17/137=12%
 
 # Pattern-specific Variable Values
 
@@ -267,7 +249,7 @@ VSCODE_PID = 2396
 
 # Directories
 
-# . (device 66313, inode 1315087): 7 files, no impossibilities.
+# . (device 66306, inode 33163067): 7 files, no impossibilities.
 
 # 7 files, no impossibilities in 1 directories.
 
@@ -297,9 +279,6 @@ makefile:
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 
 # Not a target:
 .DEFAULT:
@@ -315,6 +294,9 @@ GNUmakefile:
 #  Failed to be updated.
 
 # files hash-table stats:
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
@@ -328,6 +310,6 @@ GNUmakefile:
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=1/18=6%
-# Finished Make data base on Tue Jun 21 18:15:48 2022
+# Finished Make data base on Fri Sep 23 11:38:37 2022
 
  
