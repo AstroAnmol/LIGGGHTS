@@ -1,0 +1,202 @@
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2022-09-27-15:26:50 by anmol, git commit unknown)
+atom_style	hybrid granular dipole
+boundary	f f f
+newton		off
+atom_modify	sort 10000 0
+
+communicate	single vel yes
+units		si
+processors	1 1 1
+
+
+soft_particles yes
+
+# variable reg_dim equal 10 #meters
+
+region		reg block -1 1 -1 1 0 10 units box
+create_box	1 reg
+Created orthogonal box = (-1 -1 0) to (1 1 10)
+  1 by 1 by 1 MPI processor grid
+neighbor	2 bin
+neigh_modify	delay 0 every 1
+
+fix 		m1 all property/global youngsModulus peratomtype 0.5e6
+fix 		m2 all property/global poissonsRatio peratomtype 0.3
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.3
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.3
+fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
+
+# fix m7 all property/global magneticSusceptibility peratomtype 0.96
+
+
+pair_style gran model hertz tangential history cohesion sjkr
+pair_coeff	* *
+
+timestep	10e-6 # seconds
+
+#radius of atoms
+variable atom_rad equal 0.5 #meters
+#diameter of atoms
+variable atom_dia equal 2*${atom_rad}
+variable atom_dia equal 2*0.5
+# #separation between the atoms
+# variable sep equal 5*${atom_rad}
+
+# create_atoms	1 single 0 0
+create_atoms	1 single 0 0 4
+Created 1 atoms
+
+set		atom 1 diameter ${atom_dia} mass 1.0
+set		atom 1 diameter 1 mass 1.0
+  1 settings made for diameter
+  1 settings made for mass
+# set     atom 2 diameter ${atom_dia}
+fix zwalls all wall/gran model hertz tangential history primitive type 1 zplane 0.15
+
+
+fix     int all nve/sphere
+fix     grav all gravity 9.81 vector 0.0 0.0 -1.0
+
+#                       x   y   z
+# fix	mag all magnetic    6e-4 0  0
+
+dump    dmp all custom 1000 post/dump*.liggghts id type fx fy fz x y z radius mass
+#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+
+#fix	1 nve_group nve/sphere
+
+run	200000
+Setting up run at Thu Nov 17 05:04:59 2022
+
+Memory usage per processor = 8.19774 Mbytes
+    Step    Atoms         KinEng            CPU 
+       0        1              0              0 
+  200000        1    3.12967e-18     0.14069528 
+Loop time of 0.140714 on 1 procs for 200000 steps with 1 atoms, finish time Thu Nov 17 05:04:59 2022
+
+
+Pair  time (%) = 0.0423607 (30.1041)
+Neigh time (%) = 7.731e-06 (0.00549411)
+Comm  time (%) = 0.00806666 (5.73265)
+Outpt time (%) = 0.0135953 (9.6616)
+Other time (%) = 0.0766839 (54.4962)
+
+Nlocal:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 3
+Dangerous builds = 0
+
+create_atoms	1 single 0 0 4
+Created 1 atoms
+
+set		atom 1 diameter ${atom_dia} mass 1.0
+set		atom 1 diameter 1 mass 1.0
+  1 settings made for diameter
+  1 settings made for mass
+
+run	200000
+Setting up run at Thu Nov 17 05:04:59 2022
+
+Memory usage per processor = 9.03698 Mbytes
+    Step    Atoms         KinEng            CPU 
+  200000        2    3.12967e-18              0 
+  400000        2  2.2594474e-16     0.17678331 
+Loop time of 0.176792 on 1 procs for 200000 steps with 2 atoms, finish time Thu Nov 17 05:04:59 2022
+
+
+Pair  time (%) = 0.0559203 (31.6306)
+Neigh time (%) = 6.029e-06 (0.00341022)
+Comm  time (%) = 0.00751517 (4.25085)
+Outpt time (%) = 0.0168134 (9.51027)
+Other time (%) = 0.0965371 (54.6049)
+
+Nlocal:    2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1
+Ave neighs/atom = 0.5
+Neighbor list builds = 2
+Dangerous builds = 0
+
+create_atoms	1 single 0 0 4
+Created 1 atoms
+
+set		atom 1 diameter ${atom_dia} mass 1.0
+set		atom 1 diameter 1 mass 1.0
+  1 settings made for diameter
+  1 settings made for mass
+
+run	200000
+Setting up run at Thu Nov 17 05:04:59 2022
+
+Memory usage per processor = 9.03709 Mbytes
+    Step    Atoms         KinEng            CPU 
+  400000        3  2.2594474e-16              0 
+  600000        3  5.9496886e-11     0.17332837 
+Loop time of 0.173336 on 1 procs for 200000 steps with 3 atoms, finish time Thu Nov 17 05:04:59 2022
+
+
+Pair  time (%) = 0.0675086 (38.9466)
+Neigh time (%) = 3.435e-06 (0.0019817)
+Comm  time (%) = 0.00689275 (3.97652)
+Outpt time (%) = 0.0154451 (8.91051)
+Other time (%) = 0.0834864 (48.1644)
+
+Nlocal:    3 ave 3 max 3 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    3 ave 3 max 3 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 3
+Ave neighs/atom = 1
+Neighbor list builds = 1
+Dangerous builds = 0
+
+create_atoms	1 single 0 0 4
+Created 1 atoms
+
+set		atom 1 diameter ${atom_dia} mass 1.0
+set		atom 1 diameter 1 mass 1.0
+  1 settings made for diameter
+  1 settings made for mass
+
+run	200000
+Setting up run at Thu Nov 17 05:04:59 2022
+
+Memory usage per processor = 9.03719 Mbytes
+    Step    Atoms         KinEng            CPU 
+  600000        4  5.9496886e-11              0 
+  800000        4  7.6296448e-10     0.20065988 
+Loop time of 0.200669 on 1 procs for 200000 steps with 4 atoms, finish time Thu Nov 17 05:04:59 2022
+
+
+Pair  time (%) = 0.0977648 (48.7194)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0.00623891 (3.10905)
+Outpt time (%) = 0.0124195 (6.18904)
+Other time (%) = 0.0842459 (41.9825)
+
+Nlocal:    4 ave 4 max 4 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    5 ave 5 max 5 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 5
+Ave neighs/atom = 1.25
+Neighbor list builds = 0
+Dangerous builds = 0

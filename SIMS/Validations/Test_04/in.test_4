@@ -1,0 +1,73 @@
+atom_style	hybrid granular dipole
+boundary	f f f
+newton		off
+atom_modify	sort 10000 0
+
+communicate	single vel yes
+units		si
+processors	1 1 1
+
+
+soft_particles yes
+
+# variable reg_dim equal 10 #meters
+
+region		reg block -1 1 -1 10 0 10 units box
+create_box	1 reg
+neighbor	2 bin
+neigh_modify	delay 0 every 1
+
+## Material Property variables
+variable restiv equal 0.06
+variable static_fric equal 0.5 
+variable rolling_fric equal 0.0 
+variable visc_damp equal 0
+variable k_c equal 0
+variable r_p equal 0.00125
+## Material properties
+fix            m1 all property/global youngsModulus peratomtype 5e6
+fix            m2 all property/global poissonsRatio peratomtype 0.3
+fix  	       m3 all property/global coefficientRestitution peratomtypepair 1 ${restiv}
+fix            m4 all property/global coefficientFriction peratomtypepair 1 ${static_fric}
+fix            m5 all property/global characteristicVelocity scalar .01
+fix            m6 all property/global cohesionEnergyDensity peratomtypepair 1 ${k_c}
+fix	       m7 all property/global coefficientRollingFriction peratomtypepair 1 ${rolling_fric}
+fix	       m8 all property/global coefficientRollingViscousDamping peratomtypepair 1 ${visc_damp}
+
+
+pair_style gran model hertz tangential history rolling_friction epsd torsionTorque on
+pair_coeff	* *
+
+timestep	10e-6 # seconds
+
+#radius of atoms
+variable atom_rad equal 0.5 #meters
+#diameter of atoms
+variable atom_dia equal 2*${atom_rad}
+
+create_atoms	1 single 0 0 2
+set		        atom 1 diameter ${atom_dia} mass 1.0
+group           atom_i id 1
+
+#angle of impact
+variable        angle_impact equal PI/4  #radians
+
+#velocity magnitude
+variable        vel_magnitude equal 5 # units
+
+print ${angle_impact}
+
+variable        velocity_y equal sin(${angle_impact})*${vel_magnitude}
+variable        velocity_z equal -cos(${angle_impact})*${vel_magnitude}
+
+velocity        atom_i set 0 ${velocity_y} ${velocity_z}
+
+fix             zwalls all wall/gran model hertz tangential history primitive type 1 zplane 0.15
+
+
+fix             int all nve/sphere
+
+
+dump            dmp all custom 1000 post/dump*.liggghts id type fx fy fz vx vy vz omegax omegay omegaz x y z radius mass
+run	            100000
+

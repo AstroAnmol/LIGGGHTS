@@ -1,0 +1,109 @@
+### Initialization
+
+## Preliminaries
+
+units 	si
+atom_style 	granular
+
+# the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
+processors 	1 1 1
+
+# periodic x boundaries, fixed y boundaries, fixed -z for floor and fixed shrink wrap for cieling
+boundary 	p f fm
+
+#LIGGGHTS-Public shouuld produce the same answers for any newton flag setting, besides round off
+newton 	off
+
+# communicate single - each processor acquires informaton for ghost atoms within a single distance of its sub domain - the default
+# vel yes - communicate velocity info with ghost atoms
+communicate 	single vel yes
+
+soft_particles yes
+
+
+## Declare domain
+
+# -x +x -y +y -z +z : 2cm x, 1.11m y, 40cm z
+# reg is the name of the region, block is the region type, unitx box means definie in box units instead of lattice
+region	reg block -1.0 1.0 -1.0 10.0 0.0 20.0 units box
+
+# create_box creates a simulation box based on the specified region
+# N = 1, number of atom types used in the simulation
+create_box	 1 reg
+
+# neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, style = bin
+neighbor	 0.0625 bin	 
+
+# neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
+neigh_modify delay 0
+
+## Material Property variables
+variable restiv equal 0.06
+variable static_fric equal 0.5 
+variable rolling_fric equal 0.0 
+variable visc_damp equal 0
+variable k_c equal 0
+variable r_p equal 0.00125
+## Material properties
+fix            m1 all property/global youngsModulus peratomtype 5e6
+fix            m2 all property/global poissonsRatio peratomtype 0.3
+fix  	       m3 all property/global coefficientRestitution peratomtypepair 1 ${restiv}
+fix            m4 all property/global coefficientFriction peratomtypepair 1 ${static_fric}
+fix            m5 all property/global characteristicVelocity scalar .01
+fix            m6 all property/global cohesionEnergyDensity peratomtypepair 1 ${k_c}
+fix	       m7 all property/global coefficientRollingFriction peratomtypepair 1 ${rolling_fric}
+fix	       m8 all property/global coefficientRollingViscousDamping peratomtypepair 1 ${visc_damp}
+
+## Pair style
+pair_style	gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
+pair_coeff	* * 
+
+# timestep
+timestep	0.00001
+
+
+# conserved - NVE - number, volume, and energy. the sum of KE and PE is conserved, T and P are unregulated
+fix		1 all nve
+
+# Earth gravity defined in -z vector
+fix		2 all gravity 9.81 vector 0.0 0.0 -1.0  
+
+## Thermo settings
+# thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
+thermo_style 	custom step atoms ke vol
+# thermo output every 1000 timesteps
+thermo		1000
+# LIGGGHTS will ignore last particles and will not normalize against num atoms
+thermo_modify	lost ignore norm no
+
+## box walls - define simulation
+# place one z wall on the floor
+
+fix		wall_z1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 zplane 0 		# floor
+
+# particles and their distribution
+create_atoms 1 single 0.0 0.0 0.501
+
+group p1 id 1
+
+fix ts_check all check/timestep/gran 100 0.1 0.1
+
+
+compute ct all pair/gran/local id delta force force_normal force_tangential history contactArea
+
+# define output - t=0 and t=end
+dump dmp all custom 100 post/dump_*.post id type x y z vx vy vz radius fx fy fz mass omegax omegay omegaz tqx tqy tqz
+
+
+reset_timestep 0
+run	15000
+
+velocity all set 0.0 0.0 0.0
+
+set group p1 omegax 0.0 omegay 0.0 omegaz 5
+
+run 140000
+
+undump dmp
+
+

@@ -1,0 +1,10 @@
+ITEM: TIMESTEP
+3500
+ITEM: NUMBER OF ATOMS
+1
+ITEM: BOX BOUNDS pp ff fm
+-1 1
+-1 10
+0 20
+ITEM: ATOMS id type x y z vx vy vz radius fx fy fz mass omegax omegay omegaz tqx tqy tqz 
+1 1 0 0 0.499851 0 0 -0.00201053 0.5 0 0 -0.050485 0.523599 0 0 0 0 0 0 

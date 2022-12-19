@@ -1,0 +1,345 @@
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2022-09-27-15:26:50 by anmol, git commit unknown)
+### Initialization
+
+## Preliminaries
+
+units 	si
+atom_style 	granular
+
+# the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
+processors 	1 1 1
+
+# periodic x boundaries, fixed y boundaries, fixed -z for floor and fixed shrink wrap for cieling
+boundary 	p f fm
+
+#LIGGGHTS-Public shouuld produce the same answers for any newton flag setting, besides round off
+newton 	off
+
+# communicate single - each processor acquires informaton for ghost atoms within a single distance of its sub domain - the default
+# vel yes - communicate velocity info with ghost atoms
+communicate 	single vel yes
+
+soft_particles yes
+
+
+## Declare domain
+
+# -x +x -y +y -z +z : 2cm x, 1.11m y, 40cm z
+# reg is the name of the region, block is the region type, unitx box means definie in box units instead of lattice
+region	reg block -1.0 1.0 -1.0 10.0 0.0 20.0 units box
+
+# create_box creates a simulation box based on the specified region
+# N = 1, number of atom types used in the simulation
+create_box	 1 reg
+Created orthogonal box = (-1 -1 0) to (1 10 20)
+  1 by 1 by 1 MPI processor grid
+
+# neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, style = bin
+neighbor	 0.0625 bin
+
+# neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
+neigh_modify delay 0
+
+## Material Property variables
+variable restiv equal 0.06
+variable static_fric equal 0.5
+variable rolling_fric equal 0.0
+variable visc_damp equal 0
+variable k_c equal 0
+variable r_p equal 0.00125
+## Material properties
+fix            m1 all property/global youngsModulus peratomtype 5e6
+fix            m2 all property/global poissonsRatio peratomtype 0.3
+fix  	       m3 all property/global coefficientRestitution peratomtypepair 1 ${restiv}
+fix  	       m3 all property/global coefficientRestitution peratomtypepair 1 0.06
+fix            m4 all property/global coefficientFriction peratomtypepair 1 ${static_fric}
+fix            m4 all property/global coefficientFriction peratomtypepair 1 0.5
+fix            m5 all property/global characteristicVelocity scalar .01
+fix            m6 all property/global cohesionEnergyDensity peratomtypepair 1 ${k_c}
+fix            m6 all property/global cohesionEnergyDensity peratomtypepair 1 0
+fix	       m7 all property/global coefficientRollingFriction peratomtypepair 1 ${rolling_fric}
+fix	       m7 all property/global coefficientRollingFriction peratomtypepair 1 0
+fix	       m8 all property/global coefficientRollingViscousDamping peratomtypepair 1 ${visc_damp}
+fix	       m8 all property/global coefficientRollingViscousDamping peratomtypepair 1 0
+
+## Pair style
+pair_style	gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
+WARNING: 
+	The contact model you specified is not located in any whitelist.
+	Because of this the model will be run in an unoptimized version (increasing runtime by up to 20%).
+	In order to optimize this model you have the following options:
+		(i)  Run the genAutoExamplesWhitelist.sh script in your LIGGGHTS(R) source folder to automatically parse the input script
+		(ii) Add the model combination by hand to your style_contact_model_user.whitelist that can be found in your LIGGGHTS(R) source folder
+	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
+
+ (../contact_models.h:364)
+pair_coeff	* *
+
+# timestep
+timestep	0.00001
+
+
+# conserved - NVE - number, volume, and energy. the sum of KE and PE is conserved, T and P are unregulated
+fix		1 all nve
+
+# Earth gravity defined in -z vector
+fix		2 all gravity 9.81 vector 0.0 0.0 -1.0
+
+## Thermo settings
+# thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
+thermo_style 	custom step atoms ke vol
+# thermo output every 1000 timesteps
+thermo		1000
+# LIGGGHTS will ignore last particles and will not normalize against num atoms
+thermo_modify	lost ignore norm no
+
+## box walls - define simulation
+# place one z wall on the floor
+
+fix		wall_z1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 zplane 0 		# floor
+WARNING: 
+	The contact model you specified is not located in any whitelist.
+	Because of this the model will be run in an unoptimized version (increasing runtime by up to 20%).
+	In order to optimize this model you have the following options:
+		(i)  Run the genAutoExamplesWhitelist.sh script in your LIGGGHTS(R) source folder to automatically parse the input script
+		(ii) Add the model combination by hand to your style_contact_model_user.whitelist that can be found in your LIGGGHTS(R) source folder
+	If you perform one of the steps above LIGGGHTS(R) needs to be recompiled to generate the optimized code.
+
+ (../contact_models.h:364)
+
+# particles and their distribution
+create_atoms 1 single 0.0 0.0 0.501
+Created 1 atoms
+
+group p1 id 1
+1 atoms in group p1
+
+fix ts_check all check/timestep/gran 100 0.1 0.1
+
+
+compute ct all pair/gran/local id delta force force_normal force_tangential history contactArea
+
+# define output - t=0 and t=end
+dump dmp all custom 100 post/dump_*.post id type x y z vx vy vz radius fx fy fz mass omegax omegay omegaz tqx tqy tqz
+
+
+reset_timestep 0
+run	15000
+Setting up run at Wed Oct 26 02:42:04 2022
+
+Memory usage per processor = 10.3015 Mbytes
+    Step    Atoms         KinEng         Volume 
+       0        1              0            440 
+    1000        1   0.0025194552            440 
+    2000        1  4.7645848e-05            440 
+    3000        1  1.8772218e-06            440 
+    4000        1  2.6135829e-07            440 
+    5000        1  7.1350395e-09            440 
+    6000        1  5.5418071e-11            440 
+    7000        1  8.7460445e-14            440 
+    8000        1  6.1728566e-14            440 
+    9000        1  2.5926071e-15            440 
+   10000        1  3.4917479e-17            440 
+   11000        1   2.360853e-20            440 
+   12000        1  1.1339168e-20            440 
+   13000        1  8.1267837e-22            440 
+   14000        1  1.7653574e-23            440 
+   15000        1  5.6748967e-28            440 
+Loop time of 0.0524819 on 1 procs for 15000 steps with 1 atoms, finish time Wed Oct 26 02:42:04 2022
+
+
+Pair  time (%) = 0.00868914 (16.5564)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0.00491868 (9.37213)
+Outpt time (%) = 0.021173 (40.3435)
+Other time (%) = 0.0177011 (33.728)
+
+Nlocal:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+velocity all set 0.0 0.0 0.0
+
+set group p1 omegax 0.0 omegay 0.0 omegaz 5
+  1 settings made for omegax
+  1 settings made for omegay
+  1 settings made for omegaz
+
+run 140000
+Setting up run at Wed Oct 26 02:42:04 2022
+
+Memory usage per processor = 10.3015 Mbytes
+    Step    Atoms         KinEng         Volume 
+   15000        1              0            440 
+   16000        1  1.0227135e-25            440 
+   17000        1  1.0725889e-25            440 
+   18000        1  1.0738046e-25            440 
+   19000        1  1.0738276e-25            440 
+   20000        1  1.0738276e-25            440 
+   21000        1  1.0738276e-25            440 
+   22000        1  1.0738276e-25            440 
+   23000        1  1.0738276e-25            440 
+   24000        1  1.0738276e-25            440 
+   25000        1  1.0738276e-25            440 
+   26000        1  1.0738276e-25            440 
+   27000        1  1.0738276e-25            440 
+   28000        1  1.0738276e-25            440 
+   29000        1  1.0738276e-25            440 
+   30000        1  1.0738276e-25            440 
+   31000        1  1.0738276e-25            440 
+   32000        1  1.0738276e-25            440 
+   33000        1  1.0738276e-25            440 
+   34000        1  1.0738276e-25            440 
+   35000        1  1.0738276e-25            440 
+   36000        1  1.0738276e-25            440 
+   37000        1  1.0738276e-25            440 
+   38000        1  1.0738276e-25            440 
+   39000        1  1.0738276e-25            440 
+   40000        1  1.0738276e-25            440 
+   41000        1  1.0738276e-25            440 
+   42000        1  1.0738276e-25            440 
+   43000        1  1.0738276e-25            440 
+   44000        1  1.0738276e-25            440 
+   45000        1  1.0738276e-25            440 
+   46000        1  1.0738276e-25            440 
+   47000        1  1.0738276e-25            440 
+   48000        1  1.0738276e-25            440 
+   49000        1  1.0738276e-25            440 
+   50000        1  1.0738276e-25            440 
+   51000        1  1.0738276e-25            440 
+   52000        1  1.0738276e-25            440 
+   53000        1  1.0738276e-25            440 
+   54000        1  1.0738276e-25            440 
+   55000        1  1.0738276e-25            440 
+   56000        1  1.0738276e-25            440 
+   57000        1  1.0738276e-25            440 
+   58000        1  1.0738276e-25            440 
+   59000        1  1.0738276e-25            440 
+   60000        1  1.0738276e-25            440 
+   61000        1  1.0738276e-25            440 
+   62000        1  1.0738276e-25            440 
+   63000        1  1.0738276e-25            440 
+   64000        1  1.0738276e-25            440 
+   65000        1  1.0738276e-25            440 
+   66000        1  1.0738276e-25            440 
+   67000        1  1.0738276e-25            440 
+   68000        1  1.0738276e-25            440 
+   69000        1  1.0738276e-25            440 
+   70000        1  1.0738276e-25            440 
+   71000        1  1.0738276e-25            440 
+   72000        1  1.0738276e-25            440 
+   73000        1  1.0738276e-25            440 
+   74000        1  1.0738276e-25            440 
+   75000        1  1.0738276e-25            440 
+   76000        1  1.0738276e-25            440 
+   77000        1  1.0738276e-25            440 
+   78000        1  1.0738276e-25            440 
+   79000        1  1.0738276e-25            440 
+   80000        1  1.0738276e-25            440 
+   81000        1  1.0738276e-25            440 
+   82000        1  1.0738276e-25            440 
+   83000        1  1.0738276e-25            440 
+   84000        1  1.0738276e-25            440 
+   85000        1  1.0738276e-25            440 
+   86000        1  1.0738276e-25            440 
+   87000        1  1.0738276e-25            440 
+   88000        1  1.0738276e-25            440 
+   89000        1  1.0738276e-25            440 
+   90000        1  1.0738276e-25            440 
+   91000        1  1.0738276e-25            440 
+   92000        1  1.0738276e-25            440 
+   93000        1  1.0738276e-25            440 
+   94000        1  1.0738276e-25            440 
+   95000        1  1.0738276e-25            440 
+   96000        1  1.0738276e-25            440 
+   97000        1  1.0738276e-25            440 
+   98000        1  1.0738276e-25            440 
+   99000        1  1.0738276e-25            440 
+  100000        1  1.0738276e-25            440 
+  101000        1  1.0738276e-25            440 
+  102000        1  1.0738276e-25            440 
+  103000        1  1.0738276e-25            440 
+  104000        1  1.0738276e-25            440 
+  105000        1  1.0738276e-25            440 
+  106000        1  1.0738276e-25            440 
+  107000        1  1.0738276e-25            440 
+  108000        1  1.0738276e-25            440 
+  109000        1  1.0738276e-25            440 
+  110000        1  1.0738276e-25            440 
+  111000        1  1.0738276e-25            440 
+  112000        1  1.0738276e-25            440 
+  113000        1  1.0738276e-25            440 
+  114000        1  1.0738276e-25            440 
+  115000        1  1.0738276e-25            440 
+  116000        1  1.0738276e-25            440 
+  117000        1  1.0738276e-25            440 
+  118000        1  1.0738276e-25            440 
+  119000        1  1.0738276e-25            440 
+  120000        1  1.0738276e-25            440 
+  121000        1  1.0738276e-25            440 
+  122000        1  1.0738276e-25            440 
+  123000        1  1.0738276e-25            440 
+  124000        1  1.0738276e-25            440 
+  125000        1  1.0738276e-25            440 
+  126000        1  1.0738276e-25            440 
+  127000        1  1.0738276e-25            440 
+  128000        1  1.0738276e-25            440 
+  129000        1  1.0738276e-25            440 
+  130000        1  1.0738276e-25            440 
+  131000        1  1.0738276e-25            440 
+  132000        1  1.0738276e-25            440 
+  133000        1  1.0738276e-25            440 
+  134000        1  1.0738276e-25            440 
+  135000        1  1.0738276e-25            440 
+  136000        1  1.0738276e-25            440 
+  137000        1  1.0738276e-25            440 
+  138000        1  1.0738276e-25            440 
+  139000        1  1.0738276e-25            440 
+  140000        1  1.0738276e-25            440 
+  141000        1  1.0738276e-25            440 
+  142000        1  1.0738276e-25            440 
+  143000        1  1.0738276e-25            440 
+  144000        1  1.0738276e-25            440 
+  145000        1  1.0738276e-25            440 
+  146000        1  1.0738276e-25            440 
+  147000        1  1.0738276e-25            440 
+  148000        1  1.0738276e-25            440 
+  149000        1  1.0738276e-25            440 
+  150000        1  1.0738276e-25            440 
+  151000        1  1.0738276e-25            440 
+  152000        1  1.0738276e-25            440 
+  153000        1  1.0738276e-25            440 
+  154000        1  1.0738276e-25            440 
+  155000        1  1.0738276e-25            440 
+Loop time of 0.302857 on 1 procs for 140000 steps with 1 atoms, finish time Wed Oct 26 02:42:05 2022
+
+
+Pair  time (%) = 0.0518152 (17.1088)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0.0269228 (8.88961)
+Outpt time (%) = 0.124327 (41.0515)
+Other time (%) = 0.0997917 (32.9501)
+
+Nlocal:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+undump dmp
+
+

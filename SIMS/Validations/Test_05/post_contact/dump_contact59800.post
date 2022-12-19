@@ -1,0 +1,9 @@
+ITEM: TIMESTEP
+59800
+ITEM: NUMBER OF ENTRIES
+0
+ITEM: BOX BOUNDS pp ff fm
+-1 1
+-1 10
+0 20
+ITEM: ENTRIES c_ct[1] c_ct[2] c_ct[4] c_ct[5] c_ct[6] c_ct[7] c_ct[8] c_ct[9] c_ct[10] c_ct[11] c_ct[12] c_ct[13] c_ct[14] c_ct[15] c_ct[16] c_ct[17] 

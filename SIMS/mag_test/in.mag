@@ -31,25 +31,6 @@ pair_coeff	* *
 
 timestep	1e-10 # seconds
 
-
-#fix	ptsc all particletemplate/sphere 15485863 atom_type 1 density constant 7750 radius constant $(v_mean) volume_limit 1e-17
-#fix     pts1 all particletemplate/sphere 49979687 atom_type 1 density constant 7750 radius constant $(v_mean+v_std) volume_limit 1e-17
-#fix     pts2 all particletemplate/sphere 15485867 atom_type 1 density constant 7750 radius constant $(v_mean+2*v_std) volume_limit 1e-17
-#fix     pts3 all particletemplate/sphere 32452843 atom_type 1 density constant 7750 radius constant $(v_mean+3*v_std) volume_limit 1e-17
-#fix     pts4 all particletemplate/sphere 32452867 atom_type 1 density constant 7750 radius constant $(v_mean+4*v_std) volume_limit 1e-17
-#fix     ptsm1 all particletemplate/sphere 49979693 atom_type 1 density constant 7750 radius constant $(v_mean-v_std) volume_limit 1e-17
-#fix     ptsm2 all particletemplate/sphere 67867967 atom_type 1 density constant 7750 radius constant $(v_mean-2*v_std) volume_limit 1e-17
-#fix     ptsm3 all particletemplate/sphere 67867979 atom_type 1 density constant 7750 radius constant $(v_mean-3*v_std) volume_limit 1e-17
-#fix     ptsm4 all particletemplate/sphere 86028121 atom_type 1 density constant 7750 radius constant $(v_mean-4*v_std) volume_limit 1e-17
-
-#fix	pdd all particledistribution/discrete 86028157 9 ptsc 0.22 pts1 0.175 ptsm1 0.175 pts2 0.121 ptsm2 0.121 pts3 0.066 ptsm3 0.066  pts4 0.028 ptsm4 0.028
-
-#region	rectangularrectangle block -0.00025 0.00025 -0.00025 0.00025 -0.000235 0.000235 units box
-#group   nve_group region rectangularrectangle
-#fix	ins nve_group insert/pack seed 179426369 distributiontemplate pdd &
-#	insert_every once overlapcheck yes all_in yes volumefraction_region 0.05 region &
-#	rectangularrectangle
-
 #index of simulations
 # variable a loop 10
 #radius of atoms
@@ -67,11 +48,11 @@ set     atom 2 diameter ${atom_dia}
 
 
 #                       x   y   z
-fix	mag all magnetic    0   6e-4 0
+fix	mag all magnetic    6e-4 0  0
 
 dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
-run	1
+run	100

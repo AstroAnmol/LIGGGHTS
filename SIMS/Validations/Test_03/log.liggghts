@@ -1,0 +1,97 @@
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2022-09-27-15:26:50 by anmol, git commit unknown)
+atom_style	hybrid granular dipole
+boundary	f f f
+newton		off
+atom_modify	sort 10000 0
+
+communicate	single vel yes
+units		si
+processors	1 1 1
+
+
+soft_particles yes
+
+# variable reg_dim equal 10 #meters
+
+region		reg block -1 1 -1 1 0 10 units box
+create_box	1 reg
+Created orthogonal box = (-1 -1 0) to (1 1 10)
+  1 by 1 by 1 MPI processor grid
+neighbor	2 bin
+neigh_modify	delay 0 every 1
+
+fix 		m1 all property/global youngsModulus peratomtype 0.5e6
+fix 		m2 all property/global poissonsRatio peratomtype 0.3
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.3
+# fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 1
+
+
+pair_style gran model hertz tangential history
+pair_coeff	* *
+
+timestep	10e-6 # seconds
+
+#radius of atoms
+variable atom_rad equal 0.5 #meters
+#diameter of atoms
+variable atom_dia equal 2*${atom_rad}
+variable atom_dia equal 2*0.5
+# #separation between the atoms
+# variable sep equal 5*${atom_rad}
+
+# create_atoms	1 single 0 0
+create_atoms	1 single 0 0 5
+Created 1 atoms
+set		        atom 1 diameter ${atom_dia} mass 1.0
+set		        atom 1 diameter 1 mass 1.0
+  1 settings made for diameter
+  1 settings made for mass
+group           atom_i id 1
+1 atoms in group atom_i
+
+
+create_atoms	1 single 0 0 3.9
+Created 1 atoms
+set             atom 2 diameter ${atom_dia} mass 1.0
+set             atom 2 diameter 1 mass 1.0
+  1 settings made for diameter
+  1 settings made for mass
+group           atom_j id 2
+1 atoms in group atom_j
+
+velocity        atom_i set 0 0 -5
+velocity        atom_j set 0 0  5
+
+fix             int all nve/sphere
+
+
+dump            dmp all custom 1000 post/dump*.liggghts id type fx fy fz vx vy vz x y z radius mass
+run	            10000
+Setting up run at Fri Oct 28 03:42:07 2022
+
+Memory usage per processor = 8.80818 Mbytes
+    Step    Atoms         KinEng            CPU 
+       0        2             25              0 
+   10000        2    0.089495547    0.013496985 
+Loop time of 0.0135165 on 1 procs for 10000 steps with 2 atoms, finish time Fri Oct 28 03:42:07 2022
+
+
+Pair  time (%) = 0.00502967 (37.2112)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0.00101445 (7.50528)
+Outpt time (%) = 0.00169494 (12.5398)
+Other time (%) = 0.00577747 (42.7437)
+
+Nlocal:    2 ave 2 max 2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1 ave 1 max 1 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1
+Ave neighs/atom = 0.5
+Neighbor list builds = 0
+Dangerous builds = 0
+
