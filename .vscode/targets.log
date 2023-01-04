@@ -1,6 +1,4 @@
 /usr/bin/make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Sep 30 14:17:25 2022
+# Make data base, printed on Wed Jan  4 15:04:50 2023
 
 # Variables
 
@@ -45,11 +43,11 @@ CURDIR := /home/anmol/Research/Code/LIGGGHTS
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/108
+SNAP_DATA = /var/snap/code/116
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:41630
+JOURNAL_STREAM = 8:38895
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -69,15 +67,15 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/d
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-_ = /snap/code/108/usr/share/code/code
+_ = /snap/code/116/usr/share/code/code
 # environment
-MANAGERPID = 961
+MANAGERPID = 983
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /home/anmol
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/108/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/116/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -85,23 +83,23 @@ PATH = /home/anmol/.local/bin:/home/anmol/.local/bin:/usr/local/sbin:/usr/local/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/sikka-dusty:@/tmp/.ICE-unix/1300,unix/sikka-dusty:/tmp/.ICE-unix/1300
+SESSION_MANAGER = local/sikka-dusty:@/tmp/.ICE-unix/1343,unix/sikka-dusty:/tmp/.ICE-unix/1343
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/anmol/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/108
+SNAP = /snap/code/116
 # environment
-SNAP_VERSION = 74b1f979
+SNAP_VERSION = e8a3071e
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 2c06d517e65144d58f41b1c3123d2ec0
+INVOCATION_ID = 8e2f1b183eba414aae7fde1403995d5f
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/108/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/116/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -111,7 +109,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5410
+GIO_LAUNCHED_DESKTOP_FILE_PID = 181263
 # automatic
 %F = $(notdir $%)
 # environment
@@ -123,7 +121,7 @@ PWD = /home/anmol/Research/Code/LIGGGHTS
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1270
+SSH_AGENT_PID = 1313
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -137,11 +135,11 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/anmol/.config/Code/CachedData/74b1f979648cc44d385a2286793c226e611f59e7
+VSCODE_CODE_CACHE_PATH = /home/anmol/.config/Code/CachedData/e8a3071ea4344d9d48ef8a4df2c097372b0c5161
 # environment
 LOGNAME = anmol
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # environment
@@ -167,7 +165,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/anmol/snap/code/108
+SNAP_USER_DATA = /home/anmol/snap/code/116
 # environment
 SHLVL = 0
 # environment
@@ -177,7 +175,7 @@ MAKE_VERSION := 4.2.1
 # environment
 USER = anmol
 # environment
-SNAP_REVISION = 108
+SNAP_REVISION = 116
 # makefile
 .DEFAULT_GOAL := 
 # environment
@@ -191,7 +189,7 @@ MAKE_COMMAND := /usr/bin/make
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-f35448c0-1.71.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-f35448c0-1.74.2-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -239,7 +237,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5456
+VSCODE_PID = 181308
 # variable set hash-table stats:
 # Load=114/1024=11%, Rehash=0, Collisions=17/136=12%
 
@@ -295,6 +293,8 @@ GNUmakefile:
 
 # files hash-table stats:
  
+make: *** No rule to make target 'all'.  Stop.
+
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
@@ -308,6 +308,6 @@ GNUmakefile:
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=1/18=6%
-# Finished Make data base on Fri Sep 30 14:17:25 2022
+# Finished Make data base on Wed Jan  4 15:04:50 2023
 
  

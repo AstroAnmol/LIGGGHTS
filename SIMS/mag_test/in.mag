@@ -26,7 +26,7 @@ fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
 fix m7 all property/global magneticSusceptibility peratomtype 0.96
 
 
-pair_style gran model hertz tangential history cohesion sjkr
+pair_style gran model hertz tangential history #cohesion sjkr
 pair_coeff	* *
 
 timestep	1e-10 # seconds
@@ -48,7 +48,7 @@ set     atom 2 diameter ${atom_dia}
 
 
 #                       x   y   z
-fix	mag all magnetic    6e-4 0  0
+fix	mag all magnetic    0   0   6e-4
 
 dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
