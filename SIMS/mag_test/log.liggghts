@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-01-10-16:19:47 by aerospacenerd, git commit unknown)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-01-12-18:19:57 by anmol, git commit unknown)
 atom_style	hybrid granular dipole
 boundary	f f f
 newton		off
@@ -66,28 +66,28 @@ set     atom 2 diameter 2.8e-06
 
 
 #                       x   y   z
-fix	mag all magnetic    0   0   6e-4
+fix	mag all magnetic    0   6e-4 0
 
 dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
-run	2
-Setting up run at Tue Jan 10 16:47:24 2023
+run	1
+Setting up run at Thu Jan 12 18:20:24 2023
 
 Memory usage per processor = 9.41566 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      21.080065 
-Loop time of 21.0801 on 1 procs for 2 steps with 2 atoms, finish time Tue Jan 10 16:47:57 2023
+       1        2              0      6.9636401 
+Loop time of 6.96367 on 1 procs for 1 steps with 2 atoms, finish time Thu Jan 12 18:20:38 2023
 
 
-Pair  time (%) = 5.793e-06 (2.74809e-05)
+Pair  time (%) = 2.359e-06 (3.38758e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 8.26e-07 (3.91839e-06)
-Outpt time (%) = 0.000520933 (0.00247121)
-Other time (%) = 21.0796 (99.9975)
+Comm  time (%) = 1.49e-07 (2.13968e-06)
+Outpt time (%) = 0.000184793 (0.00265367)
+Other time (%) = 6.96348 (99.9973)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

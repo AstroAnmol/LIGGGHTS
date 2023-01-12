@@ -48,11 +48,11 @@ set     atom 2 diameter ${atom_dia}
 
 
 #                       x   y   z
-fix	mag all magnetic    0   0   6e-4
+fix	mag all magnetic    0   6e-4 0
 
 dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
-run	2
+run	1
