@@ -55,4 +55,4 @@ dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux m
 
 #fix	1 nve_group nve/sphere
 
-run	100
+run	2

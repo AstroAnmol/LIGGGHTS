@@ -358,7 +358,7 @@ LIB_PATH ?= ../../lib
 
 # Initialization of EXTRA_* variables
 # All -I include paths
-EXTRA_INC= -I /home/anmol/Research/Code/LIGGGHTS/LIGGGHTS-PUBLIC/src/include
+EXTRA_INC= -I ../include
 # All -L library paths
 EXTRA_LIB=
 # All -l libraries
