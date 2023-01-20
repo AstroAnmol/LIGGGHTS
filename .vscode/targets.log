@@ -6,7 +6,7 @@
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jan 12 13:26:24 2023
+# Make data base, printed on Fri Jan 20 18:19:16 2023
 
 # Variables
 
@@ -47,7 +47,7 @@ SNAP_DATA = /var/snap/code/117
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:63989
+JOURNAL_STREAM = 8:56344
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -71,7 +71,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 _ = /snap/code/117/usr/share/code/code
 # environment
-MANAGERPID = 3335
+MANAGERPID = 1775
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -85,7 +85,7 @@ PATH = /home/aerospacenerd/.local/bin:/home/aerospacenerd/.local/bin:/usr/local/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/nerdspace-hp:@/tmp/.ICE-unix/3569,unix/nerdspace-hp:/tmp/.ICE-unix/3569
+SESSION_MANAGER = local/nerdspace-hp:@/tmp/.ICE-unix/1999,unix/nerdspace-hp:/tmp/.ICE-unix/1999
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -99,7 +99,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 630b5424d1934bfc964cebe80dd56876
+INVOCATION_ID = f46dd2fbc46c48328b720eca36c2e991
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/117/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -111,7 +111,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5015
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4522
 # automatic
 %F = $(notdir $%)
 # environment
@@ -123,7 +123,7 @@ PWD = /home/aerospacenerd/UMD/Research/LIGGGHTS
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 3531
+SSH_AGENT_PID = 1961
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -141,7 +141,7 @@ VSCODE_CODE_CACHE_PATH = /home/aerospacenerd/.config/Code/CachedData/97dec172d32
 # environment
 LOGNAME = aerospacenerd
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # environment
@@ -241,7 +241,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5058
+VSCODE_PID = 5087
 # variable set hash-table stats:
 # Load=116/1024=11%, Rehash=0, Collisions=17/138=12%
 
@@ -294,11 +294,11 @@ GNUmakefile:
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
+
+# files hash-table stats:
  
 make: *** No rule to make target 'all'.  Stop.
 
-
-# files hash-table stats:
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
@@ -312,6 +312,6 @@ make: *** No rule to make target 'all'.  Stop.
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=1/18=6%
-# Finished Make data base on Thu Jan 12 13:26:24 2023
+# Finished Make data base on Fri Jan 20 18:19:16 2023
 
  
