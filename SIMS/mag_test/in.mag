@@ -23,7 +23,7 @@ fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
 fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.4
 fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
 
-fix m7 all property/global magneticSusceptibility peratomtype 0.678
+fix m7 all property/global magneticSusceptibility peratomtype 1
 
 
 pair_style gran model hertz tangential history #cohesion sjkr
@@ -38,17 +38,19 @@ variable atom_rad equal 1.0 #meters
 #diameter of atoms
 variable atom_dia equal 2*${atom_rad}
 #separation between the atoms
-variable sep equal 2.2*${atom_rad}
+variable sep equal 2.1*${atom_rad}
 
+create_atoms	1 single 0 0 -${atom_dia}
 create_atoms	1 single 0 0 0
 create_atoms	1 single 0 0 ${sep}
 
 set		atom 1 diameter ${atom_dia}
 set     atom 2 diameter ${atom_dia}
+set     atom 3 diameter ${atom_dia}
 
 
 #                       x   y   z
-fix	mag all magnetic    0   6e-4   0
+fix	mag all magnetic    0   1.256e-6 0
 
 dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
