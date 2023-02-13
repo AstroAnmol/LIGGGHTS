@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-01-20-21:15:53 by aerospacenerd, git commit unknown)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-02-12-17:32:55 by aerospacenerd, git commit unknown)
 atom_style	hybrid granular dipole
 boundary	f f f
 newton		off
@@ -48,16 +48,16 @@ variable atom_rad equal 1.0 #meters
 variable atom_dia equal 2*${atom_rad}
 variable atom_dia equal 2*1
 #separation between the atoms
-variable sep equal 2.1*${atom_rad}
-variable sep equal 2.1*1
+variable sep equal 2.5*${atom_rad}
+variable sep equal 2.5*1
 
-create_atoms	1 single 0 0 -${atom_dia}
-create_atoms	1 single 0 0 -2
+create_atoms	1 single 0 0 -${sep}
+create_atoms	1 single 0 0 -2.5
 Created 1 atoms
 create_atoms	1 single 0 0 0
 Created 1 atoms
-create_atoms	1 single 0 0 ${sep}
-create_atoms	1 single 0 0 2.1
+create_atoms	1 single 0 0 ${atom_dia}
+create_atoms	1 single 0 0 2
 Created 1 atoms
 
 set		atom 1 diameter ${atom_dia}
@@ -80,20 +80,20 @@ dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux m
 #fix	1 nve_group nve/sphere
 
 run	2
-Setting up run at Fri Jan 20 22:19:19 2023
+Setting up run at Sun Feb 12 19:47:59 2023
 
 Memory usage per processor = 9.36283 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       2        3              0       40.78057 
-Loop time of 40.7806 on 1 procs for 2 steps with 3 atoms, finish time Fri Jan 20 22:20:20 2023
+       2        3              0      26.256472 
+Loop time of 26.2565 on 1 procs for 2 steps with 3 atoms, finish time Sun Feb 12 19:48:39 2023
 
 
-Pair  time (%) = 7.767e-06 (1.90458e-05)
+Pair  time (%) = 5.68e-06 (2.16328e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.475e-06 (3.61692e-06)
-Outpt time (%) = 0.000368716 (0.000904146)
-Other time (%) = 40.7802 (99.9991)
+Comm  time (%) = 7.49e-07 (2.85263e-06)
+Outpt time (%) = 0.000206864 (0.000787859)
+Other time (%) = 26.2563 (99.9992)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

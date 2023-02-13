@@ -38,11 +38,11 @@ variable atom_rad equal 1.0 #meters
 #diameter of atoms
 variable atom_dia equal 2*${atom_rad}
 #separation between the atoms
-variable sep equal 2.1*${atom_rad}
+variable sep equal 2.5*${atom_rad}
 
-create_atoms	1 single 0 0 -${atom_dia}
+create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 0
-create_atoms	1 single 0 0 ${sep}
+create_atoms	1 single 0 0 ${atom_dia}
 
 set		atom 1 diameter ${atom_dia}
 set     atom 2 diameter ${atom_dia}
