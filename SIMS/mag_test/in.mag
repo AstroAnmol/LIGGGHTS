@@ -37,12 +37,19 @@ timestep	1e-10 # seconds
 variable atom_rad equal 1.0 #meters
 #diameter of atoms
 variable atom_dia equal 2*${atom_rad}
+
+# Define loops
+
+label loop
+variable c loop 20 44
 #separation between the atoms
-variable sep equal 2.5*${atom_rad}
+variable sep equal ${c}*${atom_rad}/10
 
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 0
+
 create_atoms	1 single 0 0 ${atom_dia}
+group           atom_j id 3
 
 set		atom 1 diameter ${atom_dia}
 set     atom 2 diameter ${atom_dia}
@@ -50,11 +57,20 @@ set     atom 3 diameter ${atom_dia}
 
 
 #                       x   y   z
-fix	mag all magnetic    0   1.256e-6 0
+fix	mag all magnetic    0   1   0
 
-dump    dmp all custom 1 post/dump*.liggghts id type fx fy fz x y z radius mux muy muz
+dump    dmp all custom 1 post/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 run	2
+
+reset_timestep 0
+run	2
+delete_atoms group  atom_j
+next c
+undump	dmp
+#undump dmp_local
+#uncompute deltas
+jump in.mag loop
