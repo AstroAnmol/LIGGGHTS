@@ -1,6 +1,6 @@
 /usr/bin/make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/aerospacenerd/UMD/Research/LIGGGHTS'
-make: Leaving directory '/home/aerospacenerd/UMD/Research/LIGGGHTS'
+make: Entering directory '/home/anmol/Research/Code/LIGGGHTS'
+make: Leaving directory '/home/anmol/Research/Code/LIGGGHTS'
  
 make: *** No targets specified and no makefile found.  Stop.
 

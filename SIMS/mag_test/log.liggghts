@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-03-04-21:24:58 by anmol, git commit unknown)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-03-04-23:45:36 by anmol, git commit unknown)
 atom_style	hybrid granular dipole
 boundary	f f f
 newton		off
@@ -81,28 +81,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:25:54 2023
+Setting up run at Sat Mar  4 23:48:00 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.248421 
-Loop time of 14.2484 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:26:16 2023
+       2        2              0      17.232532 
+Loop time of 17.2325 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:48:25 2023
 
 
-Pair  time (%) = 5.059e-06 (3.55057e-05)
+Pair  time (%) = 5.259e-06 (3.05178e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.006e-06 (7.06043e-06)
-Outpt time (%) = 0.000300412 (0.00210839)
-Other time (%) = 14.2481 (99.9978)
+Comm  time (%) = 7.59e-07 (4.40446e-06)
+Outpt time (%) = 0.000219875 (0.00127593)
+Other time (%) = 17.2323 (99.9987)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -143,28 +143,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:26:16 2023
+Setting up run at Sat Mar  4 23:48:25 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.249937 
-Loop time of 14.2499 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:26:37 2023
+       2        2              0      17.392474 
+Loop time of 17.3925 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:48:51 2023
 
 
-Pair  time (%) = 5.211e-06 (3.65686e-05)
+Pair  time (%) = 5.333e-06 (3.06627e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.6e-07 (5.33335e-06)
-Outpt time (%) = 0.000291682 (0.0020469)
-Other time (%) = 14.2496 (99.9979)
+Comm  time (%) = 9.23e-07 (5.30689e-06)
+Outpt time (%) = 0.000262182 (0.00150744)
+Other time (%) = 17.3922 (99.9985)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -205,28 +205,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:26:37 2023
+Setting up run at Sat Mar  4 23:48:51 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.418561 
-Loop time of 14.4186 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:26:59 2023
+       2        2              0      15.315927 
+Loop time of 15.3159 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:49:15 2023
 
 
-Pair  time (%) = 4.753e-06 (3.29644e-05)
+Pair  time (%) = 4.883e-06 (3.18818e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.08e-07 (4.21678e-06)
-Outpt time (%) = 0.000311381 (0.00215958)
-Other time (%) = 14.4183 (99.9978)
+Comm  time (%) = 7.53e-07 (4.91645e-06)
+Outpt time (%) = 0.000244825 (0.0015985)
+Other time (%) = 15.3157 (99.9984)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -267,28 +267,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:26:59 2023
+Setting up run at Sat Mar  4 23:49:15 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.303276 
-Loop time of 14.3033 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:27:20 2023
+       2        2              0      16.875447 
+Loop time of 16.8755 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:49:41 2023
 
 
-Pair  time (%) = 4.765e-06 (3.3314e-05)
+Pair  time (%) = 4.755e-06 (2.8177e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.02e-07 (4.20882e-06)
-Outpt time (%) = 0.000244393 (0.00170865)
-Other time (%) = 14.303 (99.9983)
+Comm  time (%) = 6.61e-07 (3.91693e-06)
+Outpt time (%) = 0.000255256 (0.00151259)
+Other time (%) = 16.8752 (99.9985)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -329,28 +329,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:27:20 2023
+Setting up run at Sat Mar  4 23:49:41 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.893159 
-Loop time of 14.8932 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:27:43 2023
+       2        2              0      16.025608 
+Loop time of 16.0256 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:50:05 2023
 
 
-Pair  time (%) = 5.39e-06 (3.61911e-05)
+Pair  time (%) = 2.6883e-05 (0.00016775)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.23e-07 (4.18313e-06)
-Outpt time (%) = 0.000238039 (0.00159831)
-Other time (%) = 14.8929 (99.9984)
+Comm  time (%) = 7.25e-07 (4.52401e-06)
+Outpt time (%) = 0.00023699 (0.00147882)
+Other time (%) = 16.0254 (99.9983)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -391,28 +391,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:27:43 2023
+Setting up run at Sat Mar  4 23:50:05 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.591833 
-Loop time of 14.5918 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:28:04 2023
+       2        2              0      17.547991 
+Loop time of 17.548 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:50:31 2023
 
 
-Pair  time (%) = 5.967e-06 (4.08927e-05)
+Pair  time (%) = 2.3077e-05 (0.000131508)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.02e-07 (4.12559e-06)
-Outpt time (%) = 0.000242045 (0.00165877)
-Other time (%) = 14.5916 (99.9983)
+Comm  time (%) = 7.47e-07 (4.2569e-06)
+Outpt time (%) = 0.000253177 (0.00144277)
+Other time (%) = 17.5477 (99.9984)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -453,28 +453,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:28:04 2023
+Setting up run at Sat Mar  4 23:50:31 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.784132 
-Loop time of 14.7841 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:28:27 2023
+       2        2              0      16.187077 
+Loop time of 16.1871 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:50:55 2023
 
 
-Pair  time (%) = 2.358e-05 (0.000159495)
+Pair  time (%) = 7.421e-06 (4.58452e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.38e-07 (4.99184e-06)
-Outpt time (%) = 0.000245896 (0.00166324)
-Other time (%) = 14.7839 (99.9982)
+Comm  time (%) = 8.5e-07 (5.2511e-06)
+Outpt time (%) = 0.000311285 (0.00192305)
+Other time (%) = 16.1868 (99.998)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -515,28 +515,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:28:27 2023
+Setting up run at Sat Mar  4 23:50:55 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      14.252737 
-Loop time of 14.2527 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:28:48 2023
+       2        2              0      15.930917 
+Loop time of 15.9309 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:51:19 2023
 
 
-Pair  time (%) = 5.244e-06 (3.67929e-05)
+Pair  time (%) = 6.203e-06 (3.89368e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.301e-06 (9.12807e-06)
-Outpt time (%) = 0.000259762 (0.00182254)
-Other time (%) = 14.2525 (99.9981)
+Comm  time (%) = 1.05e-06 (6.59095e-06)
+Outpt time (%) = 0.000314108 (0.00197169)
+Other time (%) = 15.9306 (99.998)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -577,28 +577,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:28:48 2023
+Setting up run at Sat Mar  4 23:51:19 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.912303 
-Loop time of 13.9123 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:29:10 2023
+       2        2              0      15.918484 
+Loop time of 15.9185 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:51:44 2023
 
 
-Pair  time (%) = 4.672e-06 (3.35818e-05)
+Pair  time (%) = 5.252e-06 (3.29931e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 9.06e-07 (6.51222e-06)
-Outpt time (%) = 0.000229601 (0.00165034)
-Other time (%) = 13.9121 (99.9983)
+Comm  time (%) = 7.46e-07 (4.68637e-06)
+Outpt time (%) = 0.000277665 (0.00174429)
+Other time (%) = 15.9182 (99.9982)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -639,28 +639,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:29:10 2023
+Setting up run at Sat Mar  4 23:51:44 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.538389 
-Loop time of 13.5384 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:29:30 2023
+       2        2              0      16.268158 
+Loop time of 16.2682 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:52:09 2023
 
 
-Pair  time (%) = 5.313e-06 (3.92439e-05)
+Pair  time (%) = 5.16e-06 (3.17184e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.22e-07 (4.59434e-06)
-Outpt time (%) = 0.000238424 (0.00176109)
-Other time (%) = 13.5382 (99.9982)
+Comm  time (%) = 6.48e-07 (3.98324e-06)
+Outpt time (%) = 0.000288572 (0.00177384)
+Other time (%) = 16.2679 (99.9982)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -701,28 +701,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:29:30 2023
+Setting up run at Sat Mar  4 23:52:09 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.479663 
-Loop time of 13.4797 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:29:50 2023
+       2        2              0      18.414297 
+Loop time of 18.4143 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:52:35 2023
 
 
-Pair  time (%) = 4.651e-06 (3.45038e-05)
+Pair  time (%) = 4.909e-06 (2.66586e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 8.63e-07 (6.40223e-06)
-Outpt time (%) = 0.00028674 (0.0021272)
-Other time (%) = 13.4794 (99.9978)
+Comm  time (%) = 7.3e-07 (3.96431e-06)
+Outpt time (%) = 0.000269648 (0.00146434)
+Other time (%) = 18.414 (99.9985)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -763,28 +763,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:29:50 2023
+Setting up run at Sat Mar  4 23:52:35 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.451071 
-Loop time of 13.4511 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:30:10 2023
+       2        2              0      16.035305 
+Loop time of 16.0353 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:52:59 2023
 
 
-Pair  time (%) = 2.3624e-05 (0.000175629)
+Pair  time (%) = 5e-06 (3.11812e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.13e-07 (4.55726e-06)
-Outpt time (%) = 0.000309578 (0.00230151)
-Other time (%) = 13.4507 (99.9975)
+Comm  time (%) = 8.26e-07 (5.15113e-06)
+Outpt time (%) = 0.000253852 (0.00158308)
+Other time (%) = 16.0351 (99.9984)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -825,28 +825,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:30:10 2023
+Setting up run at Sat Mar  4 23:52:59 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.525887 
-Loop time of 13.5259 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:30:31 2023
+       2        2              0      18.025485 
+Loop time of 18.0255 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:53:26 2023
 
 
-Pair  time (%) = 6.096e-06 (4.50691e-05)
+Pair  time (%) = 4.862e-06 (2.69729e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.15e-07 (5.28616e-06)
-Outpt time (%) = 0.000219328 (0.00162154)
-Other time (%) = 13.5257 (99.9983)
+Comm  time (%) = 9.35e-07 (5.1871e-06)
+Outpt time (%) = 0.000252292 (0.00139964)
+Other time (%) = 18.0252 (99.9986)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -887,28 +887,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:30:31 2023
+Setting up run at Sat Mar  4 23:53:26 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.551653 
-Loop time of 13.5517 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:30:51 2023
+       2        2              0      16.003349 
+Loop time of 16.0034 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:53:51 2023
 
 
-Pair  time (%) = 5.014e-06 (3.69992e-05)
+Pair  time (%) = 5.743e-06 (3.58862e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 5.67e-07 (4.18399e-06)
-Outpt time (%) = 0.000245513 (0.00181168)
-Other time (%) = 13.5514 (99.9981)
+Comm  time (%) = 7.02e-07 (4.38658e-06)
+Outpt time (%) = 0.000293138 (0.00183173)
+Other time (%) = 16.0031 (99.9981)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -949,28 +949,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:30:51 2023
+Setting up run at Sat Mar  4 23:53:51 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0       13.74345 
-Loop time of 13.7435 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:31:11 2023
+       2        2              0      15.622336 
+Loop time of 15.6223 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:54:16 2023
 
 
-Pair  time (%) = 4.73e-06 (3.44164e-05)
+Pair  time (%) = 5.466e-06 (3.49883e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 5.92e-07 (4.3075e-06)
-Outpt time (%) = 0.000241038 (0.00175384)
-Other time (%) = 13.7432 (99.9982)
+Comm  time (%) = 6.96e-07 (4.45516e-06)
+Outpt time (%) = 0.00028575 (0.00182911)
+Other time (%) = 15.6221 (99.9981)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1011,28 +1011,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:31:11 2023
+Setting up run at Sat Mar  4 23:54:16 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.452816 
-Loop time of 13.4528 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:31:32 2023
+       2        2              0      17.858432 
+Loop time of 17.8584 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:54:43 2023
 
 
-Pair  time (%) = 4.674e-06 (3.47436e-05)
+Pair  time (%) = 5.996e-06 (3.35752e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.92e-07 (5.88724e-06)
-Outpt time (%) = 0.000216678 (0.00161065)
-Other time (%) = 13.4526 (99.9983)
+Comm  time (%) = 7.03e-07 (3.93651e-06)
+Outpt time (%) = 0.000229327 (0.00128414)
+Other time (%) = 17.8582 (99.9987)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1073,28 +1073,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:31:32 2023
+Setting up run at Sat Mar  4 23:54:43 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.534884 
-Loop time of 13.5349 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:31:52 2023
+       2        2              0      17.423174 
+Loop time of 17.4232 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:55:08 2023
 
 
-Pair  time (%) = 4.76e-06 (3.51684e-05)
+Pair  time (%) = 5.492e-06 (3.15212e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6e-07 (4.43299e-06)
-Outpt time (%) = 0.000277865 (0.00205295)
-Other time (%) = 13.5346 (99.9979)
+Comm  time (%) = 7.9e-07 (4.53419e-06)
+Outpt time (%) = 0.000277924 (0.00159514)
+Other time (%) = 17.4229 (99.9984)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1135,28 +1135,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:31:52 2023
+Setting up run at Sat Mar  4 23:55:08 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.573409 
-Loop time of 13.5734 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:32:12 2023
+       2        2              0      17.820004 
+Loop time of 17.82 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:55:35 2023
 
 
-Pair  time (%) = 4.793e-06 (3.53117e-05)
+Pair  time (%) = 5.627e-06 (3.15769e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 9.33e-07 (6.87373e-06)
-Outpt time (%) = 0.000245307 (0.00180726)
-Other time (%) = 13.5732 (99.9982)
+Comm  time (%) = 7.52e-07 (4.21997e-06)
+Outpt time (%) = 0.000339612 (0.00190579)
+Other time (%) = 17.8197 (99.9981)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1197,28 +1197,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:32:12 2023
+Setting up run at Sat Mar  4 23:55:35 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.631572 
-Loop time of 13.6316 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:32:33 2023
+       2        2              0      16.726225 
+Loop time of 16.7262 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:55:59 2023
 
 
-Pair  time (%) = 5.363e-06 (3.93425e-05)
+Pair  time (%) = 5.627e-06 (3.36418e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 9.2e-07 (6.74903e-06)
-Outpt time (%) = 0.000268373 (0.00196876)
-Other time (%) = 13.6313 (99.998)
+Comm  time (%) = 6.99e-07 (4.17906e-06)
+Outpt time (%) = 0.000257864 (0.00154167)
+Other time (%) = 16.726 (99.9984)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1259,28 +1259,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:32:33 2023
+Setting up run at Sat Mar  4 23:55:59 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.468054 
-Loop time of 13.4681 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:32:53 2023
+       2        2              0      16.543817 
+Loop time of 16.5438 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:56:25 2023
 
 
-Pair  time (%) = 4.997e-06 (3.71026e-05)
+Pair  time (%) = 4.944e-06 (2.98843e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.09e-07 (4.52181e-06)
-Outpt time (%) = 0.000269277 (0.00199937)
-Other time (%) = 13.4678 (99.998)
+Comm  time (%) = 7.88e-07 (4.76311e-06)
+Outpt time (%) = 0.000260778 (0.00157629)
+Other time (%) = 16.5436 (99.9984)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1321,28 +1321,28 @@ set     atom 2 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 21:32:53 2023
+Setting up run at Sat Mar  4 23:56:25 2023
 
 Memory usage per processor = 9.36274 Mbytes
     Step    Atoms         KinEng            CPU 
        0        2              0              0 
-       2        2              0      13.492109 
-Loop time of 13.4921 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 21:33:13 2023
+       2        2              0      17.158812 
+Loop time of 17.1588 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:56:50 2023
 
 
-Pair  time (%) = 5.849e-06 (4.33512e-05)
+Pair  time (%) = 5.886e-06 (3.43031e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.74e-07 (4.99551e-06)
-Outpt time (%) = 0.000255475 (0.00189351)
-Other time (%) = 13.4919 (99.9981)
+Comm  time (%) = 6.95e-07 (4.05039e-06)
+Outpt time (%) = 0.000239663 (0.00139673)
+Other time (%) = 17.1586 (99.9986)
 
 Nlocal:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

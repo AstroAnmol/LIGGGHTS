@@ -60,7 +60,7 @@ group           atom_j id 2
 set     atom 2 diameter ${atom_dia}
 
 
-dump  dmp all custom 1 post_two_par_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
