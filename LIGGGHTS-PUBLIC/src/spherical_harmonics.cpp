@@ -9,7 +9,7 @@ spherical_harmonics::spherical_harmonics(double radius, double susceptibilty, Ei
     // variable assignment
     a=radius;
     susc=susceptibilty;
-    H0=H0_vec/mu0;
+    H0=H0_vec;
     SEP=SEP_vec;
     M_i=M_i_vec;
 
@@ -243,6 +243,7 @@ Eigen::Vector3d spherical_harmonics::integrand(double th, double ph){
     H0_sph=post*H0;
     H_sph= mag_field(a, th, ph) + H0_sph;
     H_cart=pre*H_sph;
+    //change the magnetic field for far field affects (is it correct)
     H_cart[1]=H_cart[1]-(M_i.dot(y_cap)/(4*M_PI*a*a*a))*(lpmn_cos(1,1, th)*std::sin(ph)/(a*a));
     double h=H_cart.norm();
     T_cart=mu0*(H_cart*H_cart.transpose() - 0.5*(h*h)*Eigen::Matrix3d::Identity());

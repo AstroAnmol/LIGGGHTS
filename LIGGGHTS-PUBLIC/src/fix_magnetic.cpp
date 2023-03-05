@@ -259,7 +259,7 @@ void FixMagnetic::post_force(int vflag)
       if (mask[i] & groupbit) {
         susc= susceptibility_[type[i]-1];
         susc_eff=3*susc/(susc+3);//3*(susc-1)/(susc+2);
-        double C = susc_eff*rad[i]*rad[i]*rad[i]*p4/3/mu0;
+        double C = susc_eff*rad[i]*rad[i]*rad[i]*p4/3;
         mu[i][0] = C*ex;
         mu[i][1] = C*ey;
         mu[i][2] = C*ez;
@@ -268,13 +268,13 @@ void FixMagnetic::post_force(int vflag)
         Eigen::Vector3d mu_i_vector;
         mu_i_vector << mu[i][0], mu[i][1], mu[i][2];
 
-        for (jj = 0; jj<jnum; jj++)  {          
+        for (jj = 0; jj<jnum; jj++){          
           j =jlist[jj];
           j &= NEIGHMASK;
           SEP << x[i][0] - x[j][0], x[i][1] - x[j][1], x[i][2] - x[j][2];
           sep = SEP.norm();
           // r = sqrt(rsq);
-          A = C*mu0/p4/sep/sep/sep;
+          A = C/p4/sep/sep/sep;
           // SEP /= sep;
           
           Eigen::Vector3d mu_j_vector;
@@ -341,7 +341,7 @@ void FixMagnetic::post_force(int vflag)
       if (mask[i] & groupbit) {
         susc= susceptibility_[type[i]-1];
         susc_eff=3*susc/(susc+3);
-        double C = susc_eff*rad[i]*rad[i]*rad[i]*p4/3/mu0;
+        double C = susc_eff*rad[i]*rad[i]*rad[i]*p4/3;
         Eigen::Vector3d mu_i_dipole;
         mu_i_dipole<<C*ex, C*ey, C*ez;
         jlist = firstneigh[i];
@@ -360,7 +360,7 @@ void FixMagnetic::post_force(int vflag)
           SEP << x[i][0] - x[j][0], x[i][1] - x[j][1], x[i][2] - x[j][2];
           sep = SEP.norm();
           // r = sqrt(rsq);
-          A = C*mu0/p4/sep/sep/sep;
+          A = C/p4/sep/sep/sep;
           double mr = mu_i_dipole.dot(SEP)/sep;
           K = 3e-7/sep_sq/sep_sq;
 
@@ -382,7 +382,7 @@ void FixMagnetic::post_force(int vflag)
             //   F_2B<<0,0,1.32303550148865e-13;//particle_i_j.get_force();
             // }
             
-
+            // add the spherical harmonics component and subtract the far-field affect (something wrong with this)
             f[i][0] += F_2B[0] ;//- K*(mr*mu_i_dipole[0]+mr*mu_i_dipole[0]+(mumu_d-5*mr*mr)*SEP[0]/sep);
             f[i][1] += F_2B[1] ;//- K*(mr*mu_i_dipole[1]+mr*mu_i_dipole[1]+(mumu_d-5*mr*mr)*SEP[1]/sep);
             f[i][2] += F_2B[2] ;//- K*(mr*mu_i_dipole[2]+mr*mu_i_dipole[2]+(mumu_d-5*mr*mr)*SEP[2]/sep);
