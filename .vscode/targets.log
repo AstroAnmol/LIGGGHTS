@@ -6,7 +6,7 @@
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Mar  4 23:17:27 2023
+# Make data base, printed on Mon Apr  3 11:55:42 2023
 
 # Variables
 
@@ -45,11 +45,13 @@ CURDIR := /home/anmol/Research/Code/LIGGGHTS
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/120
+SNAP_DATA = /var/snap/code/123
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+GIO_MODULE_DIR = /home/anmol/snap/code/common/.cache/gio-modules
 # environment
-JOURNAL_STREAM = 8:42318
+VSCODE_NLS_CONFIG = {"locale":"en-us","osLocale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 8:47474
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -65,51 +67,53 @@ GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.deskto
 # environment
 USERNAME = anmol
 # environment
-XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+XDG_DATA_DIRS = /home/anmol/snap/code/123/.local/share:/home/anmol/snap/code/123:/snap/code/123/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-_ = /snap/code/120/usr/share/code/code
+_ = /snap/code/123/usr/share/code/code
 # environment
-MANAGERPID = 916
+MANAGERPID = 1048
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /home/anmol
-# environment
-GSETTINGS_SCHEMA_DIR = /snap/code/120/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
 PATH = /home/anmol/.local/bin:/home/anmol/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # environment
+GTK_USE_PORTAL = 1
+# environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/sikka-dusty:@/tmp/.ICE-unix/1286,unix/sikka-dusty:/tmp/.ICE-unix/1286
+SESSION_MANAGER = local/sikka-dusty:@/tmp/.ICE-unix/1468,unix/sikka-dusty:/tmp/.ICE-unix/1468
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/anmol/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/120
+SNAP = /snap/code/123
 # environment
-SNAP_VERSION = 92da9481
+SNAP_VERSION = 7f329fe6
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 9230cd4cd7534b90a04cd51a0f0e6885
+INVOCATION_ID = c7cd91da433d4913943da1256f25d571
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/120/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/123/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 68544
+GIO_LAUNCHED_DESKTOP_FILE_PID = 52220
 # automatic
 %F = $(notdir $%)
 # environment
@@ -119,7 +123,9 @@ PWD = /home/anmol/Research/Code/LIGGGHTS
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1256
+GTK_PATH = /snap/code/123/usr/lib/x86_64-linux-gnu/gtk-3.0
+# environment
+SSH_AGENT_PID = 1431
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -133,7 +139,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/anmol/.config/Code/CachedData/92da9481c0904c6adfe372c12da3b7748d74bdcb
+VSCODE_CODE_CACHE_PATH = /home/anmol/.config/Code/CachedData/7f329fe6c66b0f86ae1574c2911b681ad5a45d63
 # environment
 LOGNAME = anmol
 # environment
@@ -143,7 +149,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # environment
 SNAP_CONTEXT = 3lMO4Es8iYQKirkf3Y9dMG2W8tDAE0x6ZRQVmeWH3YUHl4er8HMJ
 # environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
+SNAP_LAUNCHER_ARCH_TRIPLET = x86_64-linux-gnu
 # environment
 SNAP_USER_COMMON = /home/anmol/snap/code/common
 # environment
@@ -163,7 +169,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/anmol/snap/code/120
+SNAP_USER_DATA = /home/anmol/snap/code/123
 # environment
 SHLVL = 0
 # environment
@@ -173,7 +179,7 @@ MAKE_VERSION := 4.2.1
 # environment
 USER = anmol
 # environment
-SNAP_REVISION = 120
+SNAP_REVISION = 123
 # makefile
 .DEFAULT_GOAL := 
 # environment
@@ -187,7 +193,9 @@ MAKE_COMMAND := /usr/bin/make
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-f35448c0-1.76-main.sock
+GTK_EXE_PREFIX = /snap/code/123/usr
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-f35448c0-1.77-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -196,6 +204,8 @@ MAKEFLAGS = pqrR
 MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
+# environment
+GTK_IM_MODULE_FILE = /home/anmol/snap/code/common/.cache/immodules/immodules.cache
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -226,6 +236,8 @@ SUFFIXES :=
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
 WINDOWPATH = 2
+# environment
+LOCPATH = /snap/code/123/usr/lib/locale
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -235,9 +247,9 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 68588
+VSCODE_PID = 52265
 # variable set hash-table stats:
-# Load=113/1024=11%, Rehash=0, Collisions=17/135=13%
+# Load=119/1024=12%, Rehash=0, Collisions=18/141=13%
 
 # Pattern-specific Variable Values
 
@@ -269,6 +281,9 @@ Makefile:
 #  File has been updated.
 #  Failed to be updated.
 
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
@@ -290,9 +305,6 @@ GNUmakefile:
 #  Failed to be updated.
 
 # files hash-table stats:
- 
-make: *** No rule to make target 'all'.  Stop.
-
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
@@ -306,6 +318,6 @@ make: *** No rule to make target 'all'.  Stop.
 # strcache performance: lookups = 18 / hit rate = 16%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=1/18=6%
-# Finished Make data base on Sat Mar  4 23:17:27 2023
+# Finished Make data base on Mon Apr  3 11:55:42 2023
 
  

@@ -7,4 +7,4 @@ ITEM: BOX BOUNDS ff ff ff
 -10 10
 -10 10
 ITEM: ATOMS id type fx fy fz x y z radius mux muy muz 
-3 1 1.23634e-08 -2.03674e-08 -1.76843e+06 0 0 -3 1 0 2.4082e+06 0 
+3 1 2.07231e-20 5.57829e-21 -6.96172e-08 0 0 -3 1 0 3.11365 0 

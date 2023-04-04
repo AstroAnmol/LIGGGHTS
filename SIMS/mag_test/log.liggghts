@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-03-04-23:45:36 by anmol, git commit unknown)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-04-03-20:29:36 by anmol, git commit unknown)
 atom_style	hybrid granular dipole
 boundary	f f f
 newton		off
@@ -32,7 +32,7 @@ fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
 fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.4
 fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
 
-fix         m7 all property/global magneticSusceptibility peratomtype 1
+fix m7 all property/global magneticSusceptibility peratomtype 1
 
 
 pair_style gran model hertz tangential history #cohesion sjkr
@@ -51,11 +51,17 @@ variable atom_dia equal 2*1
 
 create_atoms	1 single 0 0 0
 Created 1 atoms
+create_atoms	1 single 0 0 ${atom_dia}
+create_atoms	1 single 0 0 2
+Created 1 atoms
 set		atom 1 diameter ${atom_dia}
 set		atom 1 diameter 2
   1 settings made for diameter
+set     atom 2 diameter ${atom_dia}
+set     atom 2 diameter 2
+  1 settings made for diameter
 
-
+# Magnetic force is gauss (B mag field)
 #                       x   y   z
 fix	mag all magnetic    0   1   0
 
@@ -73,57 +79,57 @@ separation distance = 2
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:48:00 2023
+Setting up run at Mon Apr  3 21:43:43 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36264 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.232532 
-Loop time of 17.2325 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:48:25 2023
+       0        3           -nan              0 
+       2        3              0      277.58392 
+Loop time of 277.584 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 21:50:38 2023
 
 
-Pair  time (%) = 5.259e-06 (3.05178e-05)
+Pair  time (%) = 6.581e-06 (2.37081e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.59e-07 (4.40446e-06)
-Outpt time (%) = 0.000219875 (0.00127593)
-Other time (%) = 17.2323 (99.9987)
+Comm  time (%) = 9.55e-07 (3.4404e-07)
+Outpt time (%) = 0.000274655 (9.89448e-05)
+Other time (%) = 277.584 (99.9999)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -135,57 +141,57 @@ separation distance = 2.1
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.1
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:48:25 2023
+Setting up run at Mon Apr  3 21:50:38 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.392474 
-Loop time of 17.3925 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:48:51 2023
+       0        3              0              0 
+       2        3              0      186.72206 
+Loop time of 186.722 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 21:55:18 2023
 
 
-Pair  time (%) = 5.333e-06 (3.06627e-05)
+Pair  time (%) = 2.5421e-05 (1.36144e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 9.23e-07 (5.30689e-06)
-Outpt time (%) = 0.000262182 (0.00150744)
-Other time (%) = 17.3922 (99.9985)
+Comm  time (%) = 8.24e-07 (4.41298e-07)
+Outpt time (%) = 0.000241097 (0.000129121)
+Other time (%) = 186.722 (99.9999)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -197,57 +203,57 @@ separation distance = 2.2
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.2
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:48:51 2023
+Setting up run at Mon Apr  3 21:55:18 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      15.315927 
-Loop time of 15.3159 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:49:15 2023
+       0        3              0              0 
+       2        3              0      187.35996 
+Loop time of 187.36 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 21:59:59 2023
 
 
-Pair  time (%) = 4.883e-06 (3.18818e-05)
+Pair  time (%) = 1.0948e-05 (5.8433e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.53e-07 (4.91645e-06)
-Outpt time (%) = 0.000244825 (0.0015985)
-Other time (%) = 15.3157 (99.9984)
+Comm  time (%) = 1.447e-06 (7.7231e-07)
+Outpt time (%) = 0.000394986 (0.000210817)
+Other time (%) = 187.36 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -259,57 +265,57 @@ separation distance = 2.3
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.3
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:49:15 2023
+Setting up run at Mon Apr  3 21:59:59 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.875447 
-Loop time of 16.8755 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:49:41 2023
+       0        3              0              0 
+       2        3              0      187.67159 
+Loop time of 187.672 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:04:41 2023
 
 
-Pair  time (%) = 4.755e-06 (2.8177e-05)
+Pair  time (%) = 5.775e-06 (3.07718e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.61e-07 (3.91693e-06)
-Outpt time (%) = 0.000255256 (0.00151259)
-Other time (%) = 16.8752 (99.9985)
+Comm  time (%) = 8.34e-07 (4.44393e-07)
+Outpt time (%) = 0.000296859 (0.00015818)
+Other time (%) = 187.671 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -321,57 +327,57 @@ separation distance = 2.4
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.4
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:49:41 2023
+Setting up run at Mon Apr  3 22:04:41 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.025608 
-Loop time of 16.0256 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:50:05 2023
+       0        3              0              0 
+       2        3              0      186.83554 
+Loop time of 186.836 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:09:22 2023
 
 
-Pair  time (%) = 2.6883e-05 (0.00016775)
+Pair  time (%) = 5.632e-06 (3.01442e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.25e-07 (4.52401e-06)
-Outpt time (%) = 0.00023699 (0.00147882)
-Other time (%) = 16.0254 (99.9983)
+Comm  time (%) = 1.072e-06 (5.73767e-07)
+Outpt time (%) = 0.00026788 (0.000143377)
+Other time (%) = 186.835 (99.9999)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -383,57 +389,57 @@ separation distance = 2.5
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.5
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:50:05 2023
+Setting up run at Mon Apr  3 22:09:22 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.547991 
-Loop time of 17.548 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:50:31 2023
+       0        3              0              0 
+       2        3              0      185.42843 
+Loop time of 185.428 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:14:01 2023
 
 
-Pair  time (%) = 2.3077e-05 (0.000131508)
+Pair  time (%) = 6.801e-06 (3.66772e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.47e-07 (4.2569e-06)
-Outpt time (%) = 0.000253177 (0.00144277)
-Other time (%) = 17.5477 (99.9984)
+Comm  time (%) = 9.35e-07 (5.04238e-07)
+Outpt time (%) = 0.000344597 (0.000185838)
+Other time (%) = 185.428 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -445,57 +451,57 @@ separation distance = 2.6
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.6
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:50:31 2023
+Setting up run at Mon Apr  3 22:14:01 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.187077 
-Loop time of 16.1871 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:50:55 2023
+       0        3              0              0 
+       2        3              0      184.03313 
+Loop time of 184.033 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:18:36 2023
 
 
-Pair  time (%) = 7.421e-06 (4.58452e-05)
+Pair  time (%) = 7.288e-06 (3.96016e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 8.5e-07 (5.2511e-06)
-Outpt time (%) = 0.000311285 (0.00192305)
-Other time (%) = 16.1868 (99.998)
+Comm  time (%) = 7.58e-07 (4.11882e-07)
+Outpt time (%) = 0.000259534 (0.000141026)
+Other time (%) = 184.033 (99.9999)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -507,57 +513,57 @@ separation distance = 2.7
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.7
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:50:55 2023
+Setting up run at Mon Apr  3 22:18:36 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      15.930917 
-Loop time of 15.9309 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:51:19 2023
+       0        3              0              0 
+       2        3              0      184.70677 
+Loop time of 184.707 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:23:13 2023
 
 
-Pair  time (%) = 6.203e-06 (3.89368e-05)
+Pair  time (%) = 5.762e-06 (3.11954e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.05e-06 (6.59095e-06)
-Outpt time (%) = 0.000314108 (0.00197169)
-Other time (%) = 15.9306 (99.998)
+Comm  time (%) = 8.15e-07 (4.4124e-07)
+Outpt time (%) = 0.000368723 (0.000199626)
+Other time (%) = 184.706 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -569,57 +575,57 @@ separation distance = 2.8
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.8
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:51:19 2023
+Setting up run at Mon Apr  3 22:23:13 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      15.918484 
-Loop time of 15.9185 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:51:44 2023
+       0        3              0              0 
+       2        3              0       185.7535 
+Loop time of 185.754 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:27:51 2023
 
 
-Pair  time (%) = 5.252e-06 (3.29931e-05)
+Pair  time (%) = 6.894e-06 (3.71137e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.46e-07 (4.68637e-06)
-Outpt time (%) = 0.000277665 (0.00174429)
-Other time (%) = 15.9182 (99.9982)
+Comm  time (%) = 9.57e-07 (5.15199e-07)
+Outpt time (%) = 0.000284459 (0.000153138)
+Other time (%) = 185.753 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -631,57 +637,57 @@ separation distance = 2.9
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -2.9
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:51:44 2023
+Setting up run at Mon Apr  3 22:27:51 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.268158 
-Loop time of 16.2682 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:52:09 2023
+       0        3              0              0 
+       2        3              0      187.56617 
+Loop time of 187.566 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:32:33 2023
 
 
-Pair  time (%) = 5.16e-06 (3.17184e-05)
+Pair  time (%) = 6.637e-06 (3.53848e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.48e-07 (3.98324e-06)
-Outpt time (%) = 0.000288572 (0.00177384)
-Other time (%) = 16.2679 (99.9982)
+Comm  time (%) = 8.25e-07 (4.39845e-07)
+Outpt time (%) = 0.000239105 (0.000127478)
+Other time (%) = 187.566 (99.9999)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -693,57 +699,57 @@ separation distance = 3
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:52:09 2023
+Setting up run at Mon Apr  3 22:32:33 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      18.414297 
-Loop time of 18.4143 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:52:35 2023
+       0        3              0              0 
+       2        3              0      188.22887 
+Loop time of 188.229 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:37:16 2023
 
 
-Pair  time (%) = 4.909e-06 (2.66586e-05)
+Pair  time (%) = 7.465e-06 (3.96592e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.3e-07 (3.96431e-06)
-Outpt time (%) = 0.000269648 (0.00146434)
-Other time (%) = 18.414 (99.9985)
+Comm  time (%) = 8.88e-07 (4.71766e-07)
+Outpt time (%) = 0.000350216 (0.000186059)
+Other time (%) = 188.229 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -755,57 +761,57 @@ separation distance = 3.1
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.1
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:52:35 2023
+Setting up run at Mon Apr  3 22:37:16 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.035305 
-Loop time of 16.0353 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:52:59 2023
+       0        3              0              0 
+       2        3              0       187.0464 
+Loop time of 187.046 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:41:56 2023
 
 
-Pair  time (%) = 5e-06 (3.11812e-05)
+Pair  time (%) = 6.297e-06 (3.36654e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 8.26e-07 (5.15113e-06)
-Outpt time (%) = 0.000253852 (0.00158308)
-Other time (%) = 16.0351 (99.9984)
+Comm  time (%) = 7.71e-07 (4.12197e-07)
+Outpt time (%) = 0.000269542 (0.000144104)
+Other time (%) = 187.046 (99.9999)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -817,57 +823,57 @@ separation distance = 3.2
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.2
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:52:59 2023
+Setting up run at Mon Apr  3 22:41:56 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      18.025485 
-Loop time of 18.0255 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:53:26 2023
+       0        3              0              0 
+       2        3              0       191.5069 
+Loop time of 191.507 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:46:41 2023
 
 
-Pair  time (%) = 4.862e-06 (2.69729e-05)
+Pair  time (%) = 6.865e-06 (3.58473e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 9.35e-07 (5.1871e-06)
-Outpt time (%) = 0.000252292 (0.00139964)
-Other time (%) = 18.0252 (99.9986)
+Comm  time (%) = 8.94e-07 (4.66824e-07)
+Outpt time (%) = 0.000323126 (0.000168728)
+Other time (%) = 191.507 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -879,57 +885,57 @@ separation distance = 3.3
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.3
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:53:26 2023
+Setting up run at Mon Apr  3 22:46:41 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.003349 
-Loop time of 16.0034 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:53:51 2023
+       0        3              0              0 
+       2        3              0      182.46013 
+Loop time of 182.46 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:51:19 2023
 
 
-Pair  time (%) = 5.743e-06 (3.58862e-05)
+Pair  time (%) = 9.153e-06 (5.01644e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.02e-07 (4.38658e-06)
-Outpt time (%) = 0.000293138 (0.00183173)
-Other time (%) = 16.0031 (99.9981)
+Comm  time (%) = 1.056e-06 (5.78756e-07)
+Outpt time (%) = 0.000284708 (0.000156038)
+Other time (%) = 182.46 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -941,57 +947,57 @@ separation distance = 3.4
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.4
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:53:51 2023
+Setting up run at Mon Apr  3 22:51:19 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      15.622336 
-Loop time of 15.6223 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:54:16 2023
+       0        3              0              0 
+       2        3              0      189.22175 
+Loop time of 189.222 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 22:56:02 2023
 
 
-Pair  time (%) = 5.466e-06 (3.49883e-05)
+Pair  time (%) = 1.4643e-05 (7.73854e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.96e-07 (4.45516e-06)
-Outpt time (%) = 0.00028575 (0.00182911)
-Other time (%) = 15.6221 (99.9981)
+Comm  time (%) = 1.707e-06 (9.02116e-07)
+Outpt time (%) = 0.000380747 (0.000201217)
+Other time (%) = 189.221 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1003,57 +1009,57 @@ separation distance = 3.5
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.5
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:54:16 2023
+Setting up run at Mon Apr  3 22:56:02 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.858432 
-Loop time of 17.8584 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:54:43 2023
+       0        3              0              0 
+       2        3              0      189.43187 
+Loop time of 189.432 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 23:00:46 2023
 
 
-Pair  time (%) = 5.996e-06 (3.35752e-05)
+Pair  time (%) = 8.397e-06 (4.43273e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.03e-07 (3.93651e-06)
-Outpt time (%) = 0.000229327 (0.00128414)
-Other time (%) = 17.8582 (99.9987)
+Comm  time (%) = 1.334e-06 (7.04211e-07)
+Outpt time (%) = 0.000291158 (0.000153701)
+Other time (%) = 189.432 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1065,57 +1071,57 @@ separation distance = 3.6
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.6
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:54:43 2023
+Setting up run at Mon Apr  3 23:00:46 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.423174 
-Loop time of 17.4232 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:55:08 2023
+       0        3              0              0 
+       2        3              0      190.25121 
+Loop time of 190.251 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 23:05:31 2023
 
 
-Pair  time (%) = 5.492e-06 (3.15212e-05)
+Pair  time (%) = 7.571e-06 (3.97947e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.9e-07 (4.53419e-06)
-Outpt time (%) = 0.000277924 (0.00159514)
-Other time (%) = 17.4229 (99.9984)
+Comm  time (%) = 9.11001e-07 (4.78841e-07)
+Outpt time (%) = 0.00063403 (0.000333259)
+Other time (%) = 190.251 (99.9997)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1127,57 +1133,57 @@ separation distance = 3.7
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.7
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:55:08 2023
+Setting up run at Mon Apr  3 23:05:31 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.820004 
-Loop time of 17.82 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:55:35 2023
+       0        3              0              0 
+       2        3              0      180.35014 
+Loop time of 180.35 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 23:10:03 2023
 
 
-Pair  time (%) = 5.627e-06 (3.15769e-05)
+Pair  time (%) = 2.5249e-05 (1.4e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.52e-07 (4.21997e-06)
-Outpt time (%) = 0.000339612 (0.00190579)
-Other time (%) = 17.8197 (99.9981)
+Comm  time (%) = 7.72e-07 (4.28056e-07)
+Outpt time (%) = 0.000281568 (0.000156123)
+Other time (%) = 180.35 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1189,57 +1195,57 @@ separation distance = 3.8
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.8
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:55:35 2023
+Setting up run at Mon Apr  3 23:10:03 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.726225 
-Loop time of 16.7262 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:55:59 2023
+       0        3              0              0 
+       2        3              0      172.17561 
+Loop time of 172.176 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 23:14:22 2023
 
 
-Pair  time (%) = 5.627e-06 (3.36418e-05)
+Pair  time (%) = 6.897e-06 (4.00579e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.99e-07 (4.17906e-06)
-Outpt time (%) = 0.000257864 (0.00154167)
-Other time (%) = 16.726 (99.9984)
+Comm  time (%) = 8.43999e-07 (4.90197e-07)
+Outpt time (%) = 0.000269921 (0.000156771)
+Other time (%) = 172.175 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1251,57 +1257,57 @@ separation distance = 3.9
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -3.9
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:55:59 2023
+Setting up run at Mon Apr  3 23:14:22 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      16.543817 
-Loop time of 16.5438 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:56:25 2023
+       0        3              0              0 
+       2        3              0      161.10487 
+Loop time of 161.105 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 23:18:31 2023
 
 
-Pair  time (%) = 4.944e-06 (2.98843e-05)
+Pair  time (%) = 6.243e-06 (3.87511e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 7.88e-07 (4.76311e-06)
-Outpt time (%) = 0.000260778 (0.00157629)
-Other time (%) = 16.5436 (99.9984)
+Comm  time (%) = 1.103e-06 (6.84647e-07)
+Outpt time (%) = 0.000250917 (0.000155748)
+Other time (%) = 161.105 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1313,54 +1319,54 @@ separation distance = 4
 create_atoms	1 single 0 0 -${sep}
 create_atoms	1 single 0 0 -4
 Created 1 atoms
-group           atom_j id 2
+group           atom_j id 3
 1 atoms in group atom_j
 
-set     atom 2 diameter ${atom_dia}
-set     atom 2 diameter 2
+set     atom 3 diameter ${atom_dia}
+set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp all custom 1 post_two_par_SHA_2/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp all custom 1 post_two_par_SHA_2/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	2
-Setting up run at Sat Mar  4 23:56:25 2023
+Setting up run at Mon Apr  3 23:18:31 2023
 
-Memory usage per processor = 9.36274 Mbytes
+Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
-       0        2              0              0 
-       2        2              0      17.158812 
-Loop time of 17.1588 on 1 procs for 2 steps with 2 atoms, finish time Sat Mar  4 23:56:50 2023
+       0        3              0              0 
+       2        3              0      163.47586 
+Loop time of 163.476 on 1 procs for 2 steps with 3 atoms, finish time Mon Apr  3 23:22:35 2023
 
 
-Pair  time (%) = 5.886e-06 (3.43031e-05)
+Pair  time (%) = 5.434e-06 (3.32404e-06)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 6.95e-07 (4.05039e-06)
-Outpt time (%) = 0.000239663 (0.00139673)
-Other time (%) = 17.1586 (99.9986)
+Comm  time (%) = 7.77e-07 (4.75299e-07)
+Outpt time (%) = 0.000249215 (0.000152448)
+Other time (%) = 163.476 (99.9998)
 
-Nlocal:    2 ave 2 max 2 min
+Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1 ave 1 max 1 min
+Neighs:    2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 2 ave 2 max 2 min
+FullNghs: 4 ave 4 max 4 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2
-Ave neighs/atom = 1
+Total # of neighbors = 4
+Ave neighs/atom = 1.33333
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
 delete_atoms group  atom_j
-Deleted 1 atoms, new total = 1
+Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag_2 loop
+jump in.mag loop

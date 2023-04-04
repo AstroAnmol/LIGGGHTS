@@ -13,7 +13,7 @@ spherical_harmonics::spherical_harmonics(double radius, double susceptibilty, Ei
     SEP=SEP_vec;
     M_i=M_i_vec;
 
-    L=10; //choose option later
+    L=20; //choose option later
     double mu=(1+susc)*mu0;
     susc_eff=3*susc/(susc+3);
     sep = SEP.norm();
