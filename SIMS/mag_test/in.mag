@@ -46,7 +46,7 @@ set     atom 2 diameter ${atom_dia}
 
 # Magnetic force is gauss (B mag field)
 #                       x   y   z
-fix	mag all magnetic    0   1   0
+fix	mag all magnetic    0   0   1
 
 # Define loops
 
@@ -62,13 +62,13 @@ group           atom_j id 3
 set     atom 3 diameter ${atom_dia}
 
 
-dump  dmp atom_j custom 1 post_par3_SHA_MDM_20_betachange/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 post_par3_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
-run	2
+run	3
 undump	dmp
 delete_atoms group  atom_j
 next c

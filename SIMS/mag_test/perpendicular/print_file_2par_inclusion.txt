@@ -1,0 +1,756 @@
+force_MDM 
+0,0,-1.79272e-07
+force_MDM 
+0,0,1.79272e-07
+Force from 2B 
+-2.32715e-21  1.00578e-20 -1.56532e-07
+Force from 2B corrections 
+           0            0 -1.79272e-07
+Force from 2B 
+-2.32243e-20  5.57443e-21  1.56531e-07
+Force from 2B corrections 
+          0           0 1.79272e-07
+force_MDM 
+0,0,-1.74015e-07
+force_MDM 
+0,0,1.74015e-07
+Force from 2B 
+ 1.54241e-20 -3.17124e-21 -1.51641e-07
+Force from 2B corrections 
+           0            0 -1.74015e-07
+Force from 2B 
+1.03848e-21 3.07912e-21 1.51641e-07
+Force from 2B corrections 
+          0           0 1.74015e-07
+force_MDM 
+0,0,-1.7401e-07
+force_MDM 
+0,0,1.7401e-07
+Force from 2B 
+ 1.46937e-20 -2.50961e-20 -1.51636e-07
+Force from 2B corrections 
+          0           0 -1.7401e-07
+Force from 2B 
+-7.97836e-21  1.20695e-20  1.51636e-07
+Force from 2B corrections 
+         0          0 1.7401e-07
+force_MDM 
+0,0,-1.44362e-07
+force_MDM 
+0,0,1.44362e-07
+Force from 2B 
+-3.60821e-21 -2.55511e-21 -1.30159e-07
+Force from 2B corrections 
+           0            0 -1.44362e-07
+Force from 2B 
+-1.30565e-20 -2.50836e-21  1.30159e-07
+Force from 2B corrections 
+          0           0 1.44362e-07
+force_MDM 
+0,0,-1.44347e-07
+force_MDM 
+0,0,1.44347e-07
+Force from 2B 
+-3.03477e-20 -9.84328e-21 -1.30145e-07
+Force from 2B corrections 
+           0            0 -1.44347e-07
+Force from 2B 
+1.34482e-21 5.93274e-22 1.30145e-07
+Force from 2B corrections 
+          0           0 1.44347e-07
+force_MDM 
+0,0,-1.44347e-07
+force_MDM 
+0,0,1.44347e-07
+Force from 2B 
+-4.56524e-20  1.19254e-20 -1.30145e-07
+Force from 2B corrections 
+           0            0 -1.44347e-07
+Force from 2B 
+  5.3228e-21 -1.54956e-20  1.30145e-07
+Force from 2B corrections 
+          0           0 1.44347e-07
+force_MDM 
+0,0,-1.20672e-07
+force_MDM 
+0,0,1.20672e-07
+Force from 2B 
+ 1.19166e-20  4.09923e-22 -1.11563e-07
+Force from 2B corrections 
+           0            0 -1.20672e-07
+Force from 2B 
+ 2.09556e-20 -1.26349e-20  1.11563e-07
+Force from 2B corrections 
+          0           0 1.20672e-07
+force_MDM 
+0,0,-1.20663e-07
+force_MDM 
+0,0,1.20663e-07
+Force from 2B 
+-8.44023e-21 -6.25543e-21 -1.11554e-07
+Force from 2B corrections 
+           0            0 -1.20663e-07
+Force from 2B 
+-3.64744e-20 -2.76993e-20  1.11554e-07
+Force from 2B corrections 
+          0           0 1.20663e-07
+force_MDM 
+0,0,-1.20663e-07
+force_MDM 
+0,0,1.20663e-07
+Force from 2B 
+ 1.62521e-20  -1.9572e-20 -1.11554e-07
+Force from 2B corrections 
+           0            0 -1.20663e-07
+Force from 2B 
+2.59802e-21 6.40285e-21 1.11554e-07
+Force from 2B corrections 
+          0           0 1.20663e-07
+force_MDM 
+0,0,-1.01594e-07
+force_MDM 
+0,0,1.01594e-07
+Force from 2B 
+-9.85262e-23 -2.27337e-20 -9.56655e-08
+Force from 2B corrections 
+           0            0 -1.01594e-07
+Force from 2B 
+-1.26599e-20 -2.14109e-20  9.56655e-08
+Force from 2B corrections 
+          0           0 1.01594e-07
+force_MDM 
+0,0,-1.01588e-07
+force_MDM 
+0,0,1.01588e-07
+Force from 2B 
+ 3.66465e-20  -5.8102e-21 -9.56598e-08
+Force from 2B corrections 
+           0            0 -1.01588e-07
+Force from 2B 
+-3.02651e-20 -1.17734e-21  9.56598e-08
+Force from 2B corrections 
+          0           0 1.01588e-07
+force_MDM 
+0,0,-1.01588e-07
+force_MDM 
+0,0,1.01588e-07
+Force from 2B 
+-1.17808e-20 -1.29013e-20 -9.56598e-08
+Force from 2B corrections 
+           0            0 -1.01588e-07
+Force from 2B 
+ 9.75601e-21 -6.86906e-21  9.56598e-08
+Force from 2B corrections 
+          0           0 1.01588e-07
+force_MDM 
+0,0,-8.61047e-08
+force_MDM 
+0,0,8.61047e-08
+Force from 2B 
+ 4.29193e-22  -7.2908e-21 -8.21816e-08
+Force from 2B corrections 
+           0            0 -8.61047e-08
+Force from 2B 
+ 2.82961e-20 -1.91052e-20  8.21816e-08
+Force from 2B corrections 
+          0           0 8.61047e-08
+force_MDM 
+0,0,-8.6101e-08
+force_MDM 
+0,0,8.6101e-08
+Force from 2B 
+-3.05419e-20 -2.74295e-21  -8.2178e-08
+Force from 2B corrections 
+          0           0 -8.6101e-08
+Force from 2B 
+1.91054e-20 6.85397e-22  8.2178e-08
+Force from 2B corrections 
+         0          0 8.6101e-08
+force_MDM 
+0,0,-8.6101e-08
+force_MDM 
+0,0,8.6101e-08
+Force from 2B 
+ 4.55928e-21 -1.03894e-20  -8.2178e-08
+Force from 2B corrections 
+          0           0 -8.6101e-08
+Force from 2B 
+1.57244e-20 5.74591e-21  8.2178e-08
+Force from 2B corrections 
+         0          0 8.6101e-08
+force_MDM 
+0,0,-7.34324e-08
+force_MDM 
+0,0,7.34324e-08
+Force from 2B 
+-2.59051e-20 -1.65197e-20 -7.07923e-08
+Force from 2B corrections 
+           0            0 -7.34324e-08
+Force from 2B 
+-1.39552e-21 -7.00776e-21  7.07923e-08
+Force from 2B corrections 
+          0           0 7.34324e-08
+force_MDM 
+0,0,-7.343e-08
+force_MDM 
+0,0,7.343e-08
+Force from 2B 
+-2.98072e-20 -3.77027e-22   -7.079e-08
+Force from 2B corrections 
+         0          0 -7.343e-08
+Force from 2B 
+-1.47666e-20 -1.28167e-20    7.079e-08
+Force from 2B corrections 
+        0         0 7.343e-08
+force_MDM 
+0,0,-7.343e-08
+force_MDM 
+0,0,7.343e-08
+Force from 2B 
+ 1.31453e-20 -7.28223e-21   -7.079e-08
+Force from 2B corrections 
+         0          0 -7.343e-08
+Force from 2B 
+ 1.13906e-20 -1.82286e-20    7.079e-08
+Force from 2B corrections 
+        0         0 7.343e-08
+force_MDM 
+0,0,-6.29898e-08
+force_MDM 
+0,0,6.29898e-08
+Force from 2B 
+-1.29407e-20 -1.06916e-21  -6.1184e-08
+Force from 2B corrections 
+           0            0 -6.29898e-08
+Force from 2B 
+3.46845e-21 7.69646e-21  6.1184e-08
+Force from 2B corrections 
+          0           0 6.29898e-08
+force_MDM 
+0,0,-6.29883e-08
+force_MDM 
+0,0,6.29883e-08
+Force from 2B 
+-5.24886e-21 -1.78895e-21 -6.11825e-08
+Force from 2B corrections 
+           0            0 -6.29883e-08
+Force from 2B 
+ 2.11177e-20 -1.36729e-20  6.11825e-08
+Force from 2B corrections 
+          0           0 6.29883e-08
+force_MDM 
+0,0,-6.29883e-08
+force_MDM 
+0,0,6.29883e-08
+Force from 2B 
+-5.86571e-21  4.92613e-21 -6.11825e-08
+Force from 2B corrections 
+           0            0 -6.29883e-08
+Force from 2B 
+-9.8296e-21 8.88069e-21 6.11825e-08
+Force from 2B corrections 
+          0           0 6.29883e-08
+force_MDM 
+0,0,-5.43265e-08
+force_MDM 
+0,0,5.43265e-08
+Force from 2B 
+9.95216e-21 5.98193e-21 -5.3072e-08
+Force from 2B corrections 
+           0            0 -5.43265e-08
+Force from 2B 
+-1.30318e-21  5.45716e-22   5.3072e-08
+Force from 2B corrections 
+          0           0 5.43265e-08
+force_MDM 
+0,0,-5.43254e-08
+force_MDM 
+0,0,5.43254e-08
+Force from 2B 
+1.28612e-20 1.57968e-20 -5.3071e-08
+Force from 2B corrections 
+           0            0 -5.43254e-08
+Force from 2B 
+-1.24509e-21 -1.65771e-20   5.3071e-08
+Force from 2B corrections 
+          0           0 5.43254e-08
+force_MDM 
+0,0,-5.43254e-08
+force_MDM 
+0,0,5.43254e-08
+Force from 2B 
+ 1.50176e-20 -3.76456e-21  -5.3071e-08
+Force from 2B corrections 
+           0            0 -5.43254e-08
+Force from 2B 
+-3.33439e-20  3.17543e-21   5.3071e-08
+Force from 2B corrections 
+          0           0 5.43254e-08
+force_MDM 
+0,0,-4.70933e-08
+force_MDM 
+0,0,4.70933e-08
+Force from 2B 
+ 1.18377e-20  1.91213e-21 -4.62092e-08
+Force from 2B corrections 
+           0            0 -4.70933e-08
+Force from 2B 
+ 3.40878e-20 -2.80805e-20  4.62092e-08
+Force from 2B corrections 
+          0           0 4.70933e-08
+force_MDM 
+0,0,-4.70926e-08
+force_MDM 
+0,0,4.70926e-08
+Force from 2B 
+ 2.32874e-20  -8.8457e-21 -4.62085e-08
+Force from 2B corrections 
+           0            0 -4.70926e-08
+Force from 2B 
+-3.89927e-21  7.65055e-21  4.62085e-08
+Force from 2B corrections 
+          0           0 4.70926e-08
+force_MDM 
+0,0,-4.70926e-08
+force_MDM 
+0,0,4.70926e-08
+Force from 2B 
+-1.08987e-20  7.70825e-21 -4.62085e-08
+Force from 2B corrections 
+           0            0 -4.70926e-08
+Force from 2B 
+1.74615e-20 1.64873e-21 4.62085e-08
+Force from 2B corrections 
+          0           0 4.70926e-08
+force_MDM 
+0,0,-4.10181e-08
+force_MDM 
+0,0,4.10181e-08
+Force from 2B 
+ 4.70308e-22  9.65844e-21 -4.03866e-08
+Force from 2B corrections 
+           0            0 -4.10181e-08
+Force from 2B 
+-1.79901e-20   7.5078e-21  4.03866e-08
+Force from 2B corrections 
+          0           0 4.10181e-08
+force_MDM 
+0,0,-4.10177e-08
+force_MDM 
+0,0,4.10177e-08
+Force from 2B 
+-1.63336e-20   5.2737e-21 -4.03861e-08
+Force from 2B corrections 
+           0            0 -4.10177e-08
+Force from 2B 
+ 1.75179e-20 -4.05783e-21  4.03861e-08
+Force from 2B corrections 
+          0           0 4.10177e-08
+force_MDM 
+0,0,-4.10177e-08
+force_MDM 
+0,0,4.10177e-08
+Force from 2B 
+ 2.35507e-20 -1.73479e-21 -4.03861e-08
+Force from 2B corrections 
+           0            0 -4.10177e-08
+Force from 2B 
+-2.77906e-20 -1.38858e-20  4.03861e-08
+Force from 2B corrections 
+          0           0 4.10177e-08
+force_MDM 
+0,0,-3.58868e-08
+force_MDM 
+0,0,3.58868e-08
+Force from 2B 
+-1.42636e-20 -7.97394e-21 -3.54299e-08
+Force from 2B corrections 
+           0            0 -3.58868e-08
+Force from 2B 
+-1.71865e-21 -2.74217e-21  3.54299e-08
+Force from 2B corrections 
+          0           0 3.58868e-08
+force_MDM 
+0,0,-3.58864e-08
+force_MDM 
+0,0,3.58864e-08
+Force from 2B 
+-1.43771e-20  1.02368e-20 -3.54296e-08
+Force from 2B corrections 
+           0            0 -3.58864e-08
+Force from 2B 
+-2.24675e-20  1.44762e-20  3.54296e-08
+Force from 2B corrections 
+          0           0 3.58864e-08
+force_MDM 
+0,0,-3.58864e-08
+force_MDM 
+0,0,3.58864e-08
+Force from 2B 
+-3.24909e-20  3.64581e-21 -3.54296e-08
+Force from 2B corrections 
+           0            0 -3.58864e-08
+Force from 2B 
+1.96124e-20 4.74109e-21 3.54296e-08
+Force from 2B corrections 
+          0           0 3.58864e-08
+force_MDM 
+0,0,-3.15296e-08
+force_MDM 
+0,0,3.15296e-08
+Force from 2B 
+ 2.04393e-20  7.22724e-22 -3.11952e-08
+Force from 2B corrections 
+           0            0 -3.15296e-08
+Force from 2B 
+-9.87991e-22 -1.08878e-20  3.11952e-08
+Force from 2B corrections 
+          0           0 3.15296e-08
+force_MDM 
+0,0,-3.15294e-08
+force_MDM 
+0,0,3.15294e-08
+Force from 2B 
+-1.56119e-20 -8.52394e-21  -3.1195e-08
+Force from 2B corrections 
+           0            0 -3.15294e-08
+Force from 2B 
+2.77413e-20 9.18828e-22  3.1195e-08
+Force from 2B corrections 
+          0           0 3.15294e-08
+force_MDM 
+0,0,-3.15294e-08
+force_MDM 
+0,0,3.15294e-08
+Force from 2B 
+-8.07366e-21  4.94622e-21  -3.1195e-08
+Force from 2B corrections 
+           0            0 -3.15294e-08
+Force from 2B 
+1.88565e-20 6.76292e-21  3.1195e-08
+Force from 2B corrections 
+          0           0 3.15294e-08
+force_MDM 
+0,0,-2.78113e-08
+force_MDM 
+0,0,2.78113e-08
+Force from 2B 
+  3.3261e-21  7.66807e-22 -2.75638e-08
+Force from 2B corrections 
+           0            0 -2.78113e-08
+Force from 2B 
+-1.36526e-21 -9.29536e-21  2.75638e-08
+Force from 2B corrections 
+          0           0 2.78113e-08
+force_MDM 
+0,0,-2.78112e-08
+force_MDM 
+0,0,2.78112e-08
+Force from 2B 
+-2.38267e-20 -1.98142e-20 -2.75637e-08
+Force from 2B corrections 
+           0            0 -2.78112e-08
+Force from 2B 
+-8.70085e-21  5.92191e-21  2.75637e-08
+Force from 2B corrections 
+          0           0 2.78112e-08
+force_MDM 
+0,0,-2.78112e-08
+force_MDM 
+0,0,2.78112e-08
+Force from 2B 
+ 2.42764e-20 -5.00615e-21 -2.75637e-08
+Force from 2B corrections 
+           0            0 -2.78112e-08
+Force from 2B 
+ -2.3914e-20 -4.94166e-21  2.75637e-08
+Force from 2B corrections 
+          0           0 2.78112e-08
+force_MDM 
+0,0,-2.46233e-08
+force_MDM 
+0,0,2.46233e-08
+Force from 2B 
+-7.72163e-21  1.32316e-20 -2.44382e-08
+Force from 2B corrections 
+           0            0 -2.46233e-08
+Force from 2B 
+-6.55867e-21  1.27992e-20  2.44382e-08
+Force from 2B corrections 
+          0           0 2.46233e-08
+force_MDM 
+0,0,-2.46232e-08
+force_MDM 
+0,0,2.46232e-08
+Force from 2B 
+-1.80833e-20 -4.91938e-21 -2.44381e-08
+Force from 2B corrections 
+           0            0 -2.46232e-08
+Force from 2B 
+ 1.61573e-20 -7.35989e-21  2.44381e-08
+Force from 2B corrections 
+          0           0 2.46232e-08
+force_MDM 
+0,0,-2.46232e-08
+force_MDM 
+0,0,2.46232e-08
+Force from 2B 
+-1.44645e-20 -5.11658e-21 -2.44381e-08
+Force from 2B corrections 
+           0            0 -2.46232e-08
+Force from 2B 
+ 1.64147e-20 -4.33674e-21  2.44381e-08
+Force from 2B corrections 
+          0           0 2.46232e-08
+force_MDM 
+0,0,-2.18776e-08
+force_MDM 
+0,0,2.18776e-08
+Force from 2B 
+ 2.31778e-20  2.71201e-21 -2.17379e-08
+Force from 2B corrections 
+           0            0 -2.18776e-08
+Force from 2B 
+4.74911e-20 7.43935e-21 2.17379e-08
+Force from 2B corrections 
+          0           0 2.18776e-08
+force_MDM 
+0,0,-2.18775e-08
+force_MDM 
+0,0,2.18775e-08
+Force from 2B 
+-1.34202e-20  1.40755e-20 -2.17378e-08
+Force from 2B corrections 
+           0            0 -2.18775e-08
+Force from 2B 
+-1.39101e-20 -8.31027e-21  2.17378e-08
+Force from 2B corrections 
+          0           0 2.18775e-08
+force_MDM 
+0,0,-2.18775e-08
+force_MDM 
+0,0,2.18775e-08
+Force from 2B 
+-1.23155e-20 -8.66637e-22 -2.17378e-08
+Force from 2B corrections 
+           0            0 -2.18775e-08
+Force from 2B 
+   9.081e-21 -2.76204e-21  2.17378e-08
+Force from 2B corrections 
+          0           0 2.18775e-08
+force_MDM 
+0,0,-1.95029e-08
+force_MDM 
+0,0,1.95029e-08
+Force from 2B 
+-2.81304e-20  1.04042e-20 -1.93966e-08
+Force from 2B corrections 
+           0            0 -1.95029e-08
+Force from 2B 
+2.95881e-20 4.23742e-21 1.93966e-08
+Force from 2B corrections 
+          0           0 1.95029e-08
+force_MDM 
+0,0,-1.95029e-08
+force_MDM 
+0,0,1.95029e-08
+Force from 2B 
+ -3.7569e-20  8.12624e-22 -1.93965e-08
+Force from 2B corrections 
+           0            0 -1.95029e-08
+Force from 2B 
+2.44891e-20  4.8322e-21 1.93965e-08
+Force from 2B corrections 
+          0           0 1.95029e-08
+force_MDM 
+0,0,-1.95029e-08
+force_MDM 
+0,0,1.95029e-08
+Force from 2B 
+-4.29897e-20   6.4131e-21 -1.93965e-08
+Force from 2B corrections 
+           0            0 -1.95029e-08
+Force from 2B 
+4.54517e-20  6.5186e-21 1.93965e-08
+Force from 2B corrections 
+          0           0 1.95029e-08
+force_MDM 
+0,0,-1.7441e-08
+force_MDM 
+0,0,1.7441e-08
+Force from 2B 
+ 1.57349e-20 -5.33249e-21 -1.73592e-08
+Force from 2B corrections 
+          0           0 -1.7441e-08
+Force from 2B 
+-7.86675e-21   1.4654e-20  1.73592e-08
+Force from 2B corrections 
+         0          0 1.7441e-08
+force_MDM 
+0,0,-1.74409e-08
+force_MDM 
+0,0,1.74409e-08
+Force from 2B 
+ 1.61384e-21  2.15342e-20 -1.73592e-08
+Force from 2B corrections 
+           0            0 -1.74409e-08
+Force from 2B 
+-3.08312e-20  9.64548e-21  1.73592e-08
+Force from 2B corrections 
+          0           0 1.74409e-08
+force_MDM 
+0,0,-1.74409e-08
+force_MDM 
+0,0,1.74409e-08
+Force from 2B 
+ 8.37026e-21  9.02503e-21 -1.73592e-08
+Force from 2B corrections 
+           0            0 -1.74409e-08
+Force from 2B 
+-1.0124e-20 8.39803e-21 1.73592e-08
+Force from 2B corrections 
+          0           0 1.74409e-08
+force_MDM 
+0,0,-1.56437e-08
+force_MDM 
+0,0,1.56437e-08
+Force from 2B 
+ 1.23131e-20 -7.90539e-21 -1.55804e-08
+Force from 2B corrections 
+           0            0 -1.56437e-08
+Force from 2B 
+-7.62967e-21 -9.60403e-21  1.55804e-08
+Force from 2B corrections 
+          0           0 1.56437e-08
+force_MDM 
+0,0,-1.56436e-08
+force_MDM 
+0,0,1.56436e-08
+Force from 2B 
+-1.56836e-20 -6.30316e-21 -1.55804e-08
+Force from 2B corrections 
+           0            0 -1.56436e-08
+Force from 2B 
+-2.66411e-20  2.29721e-20  1.55804e-08
+Force from 2B corrections 
+          0           0 1.56436e-08
+force_MDM 
+0,0,-1.56436e-08
+force_MDM 
+0,0,1.56436e-08
+Force from 2B 
+-4.84297e-21  2.70174e-20 -1.55804e-08
+Force from 2B corrections 
+           0            0 -1.56436e-08
+Force from 2B 
+5.58849e-21  2.6743e-20 1.55804e-08
+Force from 2B corrections 
+          0           0 1.56436e-08
+force_MDM 
+0,0,-1.40715e-08
+force_MDM 
+0,0,1.40715e-08
+Force from 2B 
+-4.51667e-21 -7.76745e-21 -1.40221e-08
+Force from 2B corrections 
+           0            0 -1.40715e-08
+Force from 2B 
+7.65201e-21 4.41835e-21 1.40221e-08
+Force from 2B corrections 
+          0           0 1.40715e-08
+force_MDM 
+0,0,-1.40714e-08
+force_MDM 
+0,0,1.40714e-08
+Force from 2B 
+ 1.80855e-20  1.31699e-20 -1.40221e-08
+Force from 2B corrections 
+           0            0 -1.40714e-08
+Force from 2B 
+ 6.86687e-21 -1.36567e-21  1.40221e-08
+Force from 2B corrections 
+          0           0 1.40714e-08
+force_MDM 
+0,0,-1.40714e-08
+force_MDM 
+0,0,1.40714e-08
+Force from 2B 
+ 3.38966e-20  7.35566e-21 -1.40221e-08
+Force from 2B corrections 
+           0            0 -1.40714e-08
+Force from 2B 
+-3.36991e-20  7.28142e-21  1.40221e-08
+Force from 2B corrections 
+          0           0 1.40714e-08
+force_MDM 
+0,0,-1.26914e-08
+force_MDM 
+0,0,1.26914e-08
+Force from 2B 
+ -1.6894e-21  4.01864e-21 -1.26527e-08
+Force from 2B corrections 
+           0            0 -1.26914e-08
+Force from 2B 
+2.35352e-20 8.83705e-21 1.26527e-08
+Force from 2B corrections 
+          0           0 1.26914e-08
+force_MDM 
+0,0,-1.26914e-08
+force_MDM 
+0,0,1.26914e-08
+Force from 2B 
+ 2.33677e-20  1.58523e-20 -1.26526e-08
+Force from 2B corrections 
+           0            0 -1.26914e-08
+Force from 2B 
+ 6.44863e-22 -1.09789e-20  1.26526e-08
+Force from 2B corrections 
+          0           0 1.26914e-08
+force_MDM 
+0,0,-1.26914e-08
+force_MDM 
+0,0,1.26914e-08
+Force from 2B 
+ 2.30775e-20  3.96482e-21 -1.26526e-08
+Force from 2B corrections 
+           0            0 -1.26914e-08
+Force from 2B 
+-2.36544e-20  4.44869e-21  1.26526e-08
+Force from 2B corrections 
+          0           0 1.26914e-08
+force_MDM 
+0,0,-1.14761e-08
+force_MDM 
+0,0,1.14761e-08
+Force from 2B 
+ 2.22304e-21  1.39629e-20 -1.14455e-08
+Force from 2B corrections 
+           0            0 -1.14761e-08
+Force from 2B 
+2.32429e-20 2.12748e-20 1.14455e-08
+Force from 2B corrections 
+          0           0 1.14761e-08
+force_MDM 
+0,0,-1.14761e-08
+force_MDM 
+0,0,1.14761e-08
+Force from 2B 
+ 1.69963e-20  2.64565e-21 -1.14454e-08
+Force from 2B corrections 
+           0            0 -1.14761e-08
+Force from 2B 
+ 1.12222e-20 -5.29945e-21  1.14454e-08
+Force from 2B corrections 
+          0           0 1.14761e-08
+force_MDM 
+0,0,-1.14761e-08
+force_MDM 
+0,0,1.14761e-08
+Force from 2B 
+ -1.3502e-20 -8.26014e-21 -1.14454e-08
+Force from 2B corrections 
+           0            0 -1.14761e-08
+Force from 2B 
+ 1.29336e-20 -8.10095e-21  1.14454e-08
+Force from 2B corrections 
+          0           0 1.14761e-08
