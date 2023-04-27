@@ -62,7 +62,7 @@ group           atom_j id 3
 set     atom 3 diameter ${atom_dia}
 
 
-dump  dmp atom_j custom 1 post_par3_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere

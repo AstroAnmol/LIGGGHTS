@@ -6,8 +6,8 @@ import pandas as pd
 simulation_folder=                  'mag_test'
 
 
-# mag_field_orientation=              '/parallel'  
-mag_field_orientation=              '/perpendicular'
+mag_field_orientation=              '/parallel'  
+# mag_field_orientation=              '/perpendicular'
 
 post_folder_MDM=                    'MDM'
 post_folder_SHA=                    'SHA'
