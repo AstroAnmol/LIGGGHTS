@@ -1,0 +1,11 @@
+ITEM: TIMESTEP
+2
+ITEM: NUMBER OF ATOMS
+2
+ITEM: BOX BOUNDS ff ff ff
+-10 10
+-10 10
+-10 10
+ITEM: ATOMS id type fx fy fz x y z radius mux muy muz 
+2 1 -3.24909e-20 3.64581e-21 -3.54296e-08 0 0 -3 1 0 3.11277 0 
+1 1 1.96124e-20 4.74109e-21 3.54296e-08 0 0 0 1 0 3.11277 0 

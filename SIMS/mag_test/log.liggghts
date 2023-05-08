@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-04-27-02:42:30 by anmol, git commit unknown)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-05-08-18:01:56 by anmol, git commit unknown)
 atom_style	hybrid granular dipole
 boundary	f f f
 newton		off
@@ -63,7 +63,7 @@ set     atom 2 diameter 2
 
 # Magnetic force is gauss (B mag field)
 #                       x   y   z
-fix	mag all magnetic    0   0   1
+fix	mag all magnetic    0   1   0
 
 # Define loops
 
@@ -87,28 +87,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:43:45 2023
+Setting up run at Mon May  8 19:04:08 2023
 
 Memory usage per processor = 9.36264 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      77.621238 
-Loop time of 77.6213 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:45:29 2023
+       3        3              0      86.108532 
+Loop time of 86.1086 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:06:01 2023
 
 
-Pair  time (%) = 1.2397e-05 (1.59711e-05)
+Pair  time (%) = 3.1832e-05 (3.69673e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.939e-06 (2.49803e-06)
-Outpt time (%) = 0.00057567 (0.00074164)
-Other time (%) = 77.6207 (99.9992)
+Comm  time (%) = 3.688e-06 (4.28297e-06)
+Outpt time (%) = 0.000679849 (0.000789525)
+Other time (%) = 86.1078 (99.9992)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -149,28 +150,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:45:29 2023
+Setting up run at Mon May  8 19:06:01 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      54.824851 
-Loop time of 54.8249 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:46:42 2023
+       3        3              0      53.708169 
+Loop time of 53.7082 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:07:12 2023
 
 
-Pair  time (%) = 9.011e-06 (1.6436e-05)
+Pair  time (%) = 2.7436e-05 (5.10834e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.24e-06 (2.26175e-06)
-Outpt time (%) = 0.000325935 (0.000594502)
-Other time (%) = 54.8245 (99.9994)
+Comm  time (%) = 3.607e-06 (6.71592e-06)
+Outpt time (%) = 0.000556963 (0.00103702)
+Other time (%) = 53.7076 (99.9989)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -211,28 +213,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:46:42 2023
+Setting up run at Mon May  8 19:07:12 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      51.458835 
-Loop time of 51.4588 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:47:50 2023
+       3        3              0       52.24619 
+Loop time of 52.2462 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:08:22 2023
 
 
-Pair  time (%) = 9.128e-06 (1.77384e-05)
+Pair  time (%) = 1.9934e-05 (3.8154e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.178e-06 (2.28921e-06)
-Outpt time (%) = 0.000269151 (0.000523041)
-Other time (%) = 51.4586 (99.9995)
+Comm  time (%) = 4.725e-06 (9.04372e-06)
+Outpt time (%) = 0.000603583 (0.00115527)
+Other time (%) = 52.2456 (99.9988)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -273,28 +276,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:47:50 2023
+Setting up run at Mon May  8 19:08:22 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      52.388531 
-Loop time of 52.3885 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:49:00 2023
+       3        3              0      52.147205 
+Loop time of 52.1472 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:09:32 2023
 
 
-Pair  time (%) = 1.0722e-05 (2.04663e-05)
+Pair  time (%) = 1.9748e-05 (3.78697e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.337e-06 (2.55208e-06)
-Outpt time (%) = 0.000264552 (0.000504981)
-Other time (%) = 52.3883 (99.9995)
+Comm  time (%) = 2.155e-06 (4.13253e-06)
+Outpt time (%) = 0.000602372 (0.00115514)
+Other time (%) = 52.1466 (99.9988)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -335,28 +339,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:49:00 2023
+Setting up run at Mon May  8 19:09:32 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      51.942562 
-Loop time of 51.9426 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:50:09 2023
+       3        3              0      49.992161 
+Loop time of 49.9922 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:10:39 2023
 
 
-Pair  time (%) = 1.4597e-05 (2.81022e-05)
+Pair  time (%) = 2.5039e-05 (5.00858e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.077e-06 (2.07344e-06)
-Outpt time (%) = 0.000251185 (0.000483582)
-Other time (%) = 51.9423 (99.9995)
+Comm  time (%) = 3.14e-06 (6.28098e-06)
+Outpt time (%) = 0.000703434 (0.00140709)
+Other time (%) = 49.9915 (99.9985)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -397,28 +402,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:50:09 2023
+Setting up run at Mon May  8 19:10:39 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      47.699135 
-Loop time of 47.6991 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:51:13 2023
+       3        3              0      48.926034 
+Loop time of 48.926 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:11:44 2023
 
 
-Pair  time (%) = 8.094e-06 (1.69689e-05)
+Pair  time (%) = 1.7365e-05 (3.54923e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.034e-06 (2.16775e-06)
-Outpt time (%) = 0.000217925 (0.000456874)
-Other time (%) = 47.6989 (99.9995)
+Comm  time (%) = 2.364e-06 (4.83178e-06)
+Outpt time (%) = 0.000426411 (0.000871542)
+Other time (%) = 48.9256 (99.9991)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -459,28 +465,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:51:13 2023
+Setting up run at Mon May  8 19:11:44 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      43.104919 
-Loop time of 43.1049 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:52:11 2023
+       3        3              0      49.541896 
+Loop time of 49.5419 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:12:51 2023
 
 
-Pair  time (%) = 8.003e-06 (1.85663e-05)
+Pair  time (%) = 1.8307e-05 (3.69525e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.388e-06 (3.22005e-06)
-Outpt time (%) = 0.000257356 (0.000597045)
-Other time (%) = 43.1047 (99.9994)
+Comm  time (%) = 1.853e-06 (3.74027e-06)
+Outpt time (%) = 0.000524973 (0.00105965)
+Other time (%) = 49.5414 (99.9989)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -521,28 +528,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:52:11 2023
+Setting up run at Mon May  8 19:12:51 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      43.011971 
-Loop time of 43.012 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:53:08 2023
+       3        3              0      49.524751 
+Loop time of 49.5248 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:13:56 2023
 
 
-Pair  time (%) = 7.41e-06 (1.72278e-05)
+Pair  time (%) = 1.5894e-05 (3.2093e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.034e-06 (2.40398e-06)
-Outpt time (%) = 0.000228931 (0.000532249)
-Other time (%) = 43.0117 (99.9994)
+Comm  time (%) = 2.494e-06 (5.03586e-06)
+Outpt time (%) = 0.000620449 (0.0012528)
+Other time (%) = 49.5242 (99.9987)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -583,28 +591,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:53:08 2023
+Setting up run at Mon May  8 19:13:56 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      43.492961 
-Loop time of 43.493 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:54:06 2023
+       3        3              0       49.55303 
+Loop time of 49.553 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:15:03 2023
 
 
-Pair  time (%) = 8.266e-06 (1.90054e-05)
+Pair  time (%) = 2.7437e-05 (5.5369e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.086e-06 (2.49696e-06)
-Outpt time (%) = 0.000261791 (0.000601916)
-Other time (%) = 43.4927 (99.9994)
+Comm  time (%) = 3.628e-06 (7.32145e-06)
+Outpt time (%) = 0.000551849 (0.00111365)
+Other time (%) = 49.5525 (99.9988)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -645,28 +654,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:54:06 2023
+Setting up run at Mon May  8 19:15:03 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      41.946616 
-Loop time of 41.9466 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:55:02 2023
+       3        3              0      49.174774 
+Loop time of 49.1748 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:16:08 2023
 
 
-Pair  time (%) = 7.832e-06 (1.86713e-05)
+Pair  time (%) = 2.4161e-05 (4.91329e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.056e-06 (2.51748e-06)
-Outpt time (%) = 0.00022901 (0.000545956)
-Other time (%) = 41.9464 (99.9994)
+Comm  time (%) = 3.36e-06 (6.83277e-06)
+Outpt time (%) = 0.000595594 (0.00121118)
+Other time (%) = 49.1742 (99.9987)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -707,28 +717,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:55:02 2023
+Setting up run at Mon May  8 19:16:08 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      43.114993 
-Loop time of 43.115 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:56:00 2023
+       3        3              0      49.748439 
+Loop time of 49.7485 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:17:15 2023
 
 
-Pair  time (%) = 7.229e-06 (1.67668e-05)
+Pair  time (%) = 3.2628e-05 (6.5586e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.046e-06 (2.42607e-06)
-Outpt time (%) = 0.000231319 (0.000536516)
-Other time (%) = 43.1148 (99.9994)
+Comm  time (%) = 3.771e-06 (7.58013e-06)
+Outpt time (%) = 0.000684409 (0.00137574)
+Other time (%) = 49.7477 (99.9986)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -769,28 +780,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:56:00 2023
+Setting up run at Mon May  8 19:17:15 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.640195 
-Loop time of 42.6402 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:56:56 2023
+       3        3              0      48.876663 
+Loop time of 48.8767 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:18:20 2023
 
 
-Pair  time (%) = 7.835e-06 (1.83747e-05)
+Pair  time (%) = 2.5814e-05 (5.28145e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.957e-05 (4.58957e-05)
-Outpt time (%) = 0.000281606 (0.000660424)
-Other time (%) = 42.6399 (99.9993)
+Comm  time (%) = 2.973e-06 (6.08265e-06)
+Outpt time (%) = 0.000688443 (0.00140853)
+Other time (%) = 48.876 (99.9985)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -831,28 +843,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:56:56 2023
+Setting up run at Mon May  8 19:18:20 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.330864 
-Loop time of 42.3309 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:57:53 2023
+       3        3              0      48.961223 
+Loop time of 48.9612 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:19:25 2023
 
 
-Pair  time (%) = 8.594e-06 (2.0302e-05)
+Pair  time (%) = 1.4436e-05 (2.94845e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.29e-06 (3.04742e-06)
-Outpt time (%) = 0.000284208 (0.000671396)
-Other time (%) = 42.3306 (99.9993)
+Comm  time (%) = 1.818e-06 (3.71314e-06)
+Outpt time (%) = 0.000538391 (0.00109963)
+Other time (%) = 48.9607 (99.9989)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -893,28 +906,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:57:53 2023
+Setting up run at Mon May  8 19:19:25 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.531492 
-Loop time of 42.5315 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:58:50 2023
+       3        3              0      49.129042 
+Loop time of 49.1291 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:20:31 2023
 
 
-Pair  time (%) = 7.389e-06 (1.7373e-05)
+Pair  time (%) = 1.8408e-05 (3.74687e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.069e-06 (2.51343e-06)
-Outpt time (%) = 0.000252282 (0.000593165)
-Other time (%) = 42.5312 (99.9994)
+Comm  time (%) = 2.593e-06 (5.27794e-06)
+Outpt time (%) = 0.000330138 (0.000671981)
+Other time (%) = 49.1287 (99.9993)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -955,28 +969,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:58:50 2023
+Setting up run at Mon May  8 19:20:31 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.170019 
-Loop time of 42.17 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 02:59:46 2023
+       3        3              0      48.834638 
+Loop time of 48.8347 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:21:36 2023
 
 
-Pair  time (%) = 6.955e-06 (1.64928e-05)
+Pair  time (%) = 2.0109e-05 (4.11777e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.074e-06 (2.54683e-06)
-Outpt time (%) = 0.000237286 (0.000562689)
-Other time (%) = 42.1698 (99.9994)
+Comm  time (%) = 1.967e-06 (4.02788e-06)
+Outpt time (%) = 0.000502852 (0.0010297)
+Other time (%) = 48.8341 (99.9989)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1017,28 +1032,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 02:59:46 2023
+Setting up run at Mon May  8 19:21:36 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.292255 
-Loop time of 42.2923 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 03:00:42 2023
+       3        3              0      49.641109 
+Loop time of 49.6411 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:22:42 2023
 
 
-Pair  time (%) = 7.738e-06 (1.82965e-05)
+Pair  time (%) = 2.3844e-05 (4.80328e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.102e-06 (2.60568e-06)
-Outpt time (%) = 0.000228625 (0.000540583)
-Other time (%) = 42.292 (99.9994)
+Comm  time (%) = 3.308e-06 (6.66383e-06)
+Outpt time (%) = 0.000459794 (0.000926236)
+Other time (%) = 49.6406 (99.999)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1079,28 +1095,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 03:00:42 2023
+Setting up run at Mon May  8 19:22:42 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0       42.44885 
-Loop time of 42.4489 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 03:01:39 2023
+       3        3              0      49.270043 
+Loop time of 49.2701 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:23:48 2023
 
 
-Pair  time (%) = 8.449e-06 (1.9904e-05)
+Pair  time (%) = 2.2344e-05 (4.535e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.053e-06 (2.48063e-06)
-Outpt time (%) = 0.000285013 (0.000671427)
-Other time (%) = 42.4486 (99.9993)
+Comm  time (%) = 2.049e-06 (4.15871e-06)
+Outpt time (%) = 0.000430484 (0.000873723)
+Other time (%) = 49.2696 (99.9991)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1141,28 +1158,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 03:01:39 2023
+Setting up run at Mon May  8 19:23:48 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0       42.99048 
-Loop time of 42.9905 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 03:02:37 2023
+       3        3              0      49.454961 
+Loop time of 49.455 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:24:54 2023
 
 
-Pair  time (%) = 8.276e-06 (1.92508e-05)
+Pair  time (%) = 2.5859e-05 (5.2288e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.455e-06 (3.38447e-06)
-Outpt time (%) = 0.000230152 (0.000535356)
-Other time (%) = 42.9902 (99.9994)
+Comm  time (%) = 2.249e-06 (4.54757e-06)
+Outpt time (%) = 0.000573688 (0.00116002)
+Other time (%) = 49.4544 (99.9988)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1203,28 +1221,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 03:02:37 2023
+Setting up run at Mon May  8 19:24:54 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.629856 
-Loop time of 42.6299 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 03:03:33 2023
+       3        3              0      49.305026 
+Loop time of 49.3051 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:26:00 2023
 
 
-Pair  time (%) = 2.1466e-05 (5.03544e-05)
+Pair  time (%) = 3.025e-05 (6.13527e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.175e-06 (2.75628e-06)
-Outpt time (%) = 0.000296142 (0.000694682)
-Other time (%) = 42.6295 (99.9993)
+Comm  time (%) = 4.567e-06 (9.26274e-06)
+Outpt time (%) = 0.000692969 (0.00140547)
+Other time (%) = 49.3043 (99.9985)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1265,28 +1284,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 03:03:33 2023
+Setting up run at Mon May  8 19:26:00 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      41.943333 
-Loop time of 41.9433 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 03:04:29 2023
+       3        3              0      50.278527 
+Loop time of 50.2786 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:27:07 2023
 
 
-Pair  time (%) = 7.463e-06 (1.77931e-05)
+Pair  time (%) = 2.5735e-05 (5.11848e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.088e-06 (2.59398e-06)
-Outpt time (%) = 0.000244608 (0.000583187)
-Other time (%) = 41.9431 (99.9994)
+Comm  time (%) = 2.931e-06 (5.82952e-06)
+Outpt time (%) = 0.000625475 (0.00124402)
+Other time (%) = 50.2779 (99.9987)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -1327,28 +1347,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 parallel/post_par3_FDMprint/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
 #dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Thu Apr 27 03:04:29 2023
+Setting up run at Mon May  8 19:27:07 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      42.759431 
-Loop time of 42.7594 on 1 procs for 3 steps with 3 atoms, finish time Thu Apr 27 03:05:27 2023
+       3        3              0      49.091987 
+Loop time of 49.092 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:28:12 2023
 
 
-Pair  time (%) = 8.402e-06 (1.96495e-05)
+Pair  time (%) = 2.32e-05 (4.72582e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.142e-06 (2.67076e-06)
-Outpt time (%) = 0.000247191 (0.000578097)
-Other time (%) = 42.7592 (99.9994)
+Comm  time (%) = 4.623e-06 (9.41701e-06)
+Outpt time (%) = 0.000492455 (0.00100313)
+Other time (%) = 49.0915 (99.9989)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
