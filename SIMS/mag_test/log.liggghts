@@ -1,4 +1,4 @@
-LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-05-08-18:01:56 by anmol, git commit unknown)
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-04-26-20:00:56 by anmol, git commit unknown)
 atom_style	hybrid granular dipole
 boundary	f f f
 newton		off
@@ -63,7 +63,7 @@ set     atom 2 diameter 2
 
 # Magnetic force is gauss (B mag field)
 #                       x   y   z
-fix	mag all magnetic    0   1   0
+fix	mag all magnetic    0   0   1
 
 # Define loops
 
@@ -76,8 +76,9 @@ variable sep equal 20*1/10
 print "separation distance = ${sep}"
 separation distance = 2
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2 ${atom_rad}
+create_atoms	1 single 0 2 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -87,29 +88,29 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_20_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:04:08 2023
+Setting up run at Tue Jul  4 02:17:32 2023
 
 Memory usage per processor = 9.36264 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      86.108532 
-Loop time of 86.1086 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:06:01 2023
+       3        3              0      62.854408 
+Loop time of 62.8544 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:18:56 2023
 
 
-Pair  time (%) = 3.1832e-05 (3.69673e-05)
+Pair  time (%) = 9.592e-06 (1.52607e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.688e-06 (4.28297e-06)
-Outpt time (%) = 0.000679849 (0.000789525)
-Other time (%) = 86.1078 (99.9992)
+Comm  time (%) = 1.741e-06 (2.76989e-06)
+Outpt time (%) = 0.00030195 (0.000480396)
+Other time (%) = 62.8541 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -130,7 +131,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -139,8 +140,9 @@ variable sep equal 21*1/10
 print "separation distance = ${sep}"
 separation distance = 2.1
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.1
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.1 ${atom_rad}
+create_atoms	1 single 0 2.1 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -150,41 +152,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_21_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:06:01 2023
+Setting up run at Tue Jul  4 02:18:56 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      53.708169 
-Loop time of 53.7082 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:07:12 2023
+       3        3              0      63.693068 
+Loop time of 63.6931 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:20:21 2023
 
 
-Pair  time (%) = 2.7436e-05 (5.10834e-05)
+Pair  time (%) = 1.0521e-05 (1.65183e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.607e-06 (6.71592e-06)
-Outpt time (%) = 0.000556963 (0.00103702)
-Other time (%) = 53.7076 (99.9989)
+Comm  time (%) = 1.522e-06 (2.38958e-06)
+Outpt time (%) = 0.000257889 (0.000404893)
+Other time (%) = 63.6928 (99.9996)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -193,7 +195,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -202,8 +204,9 @@ variable sep equal 22*1/10
 print "separation distance = ${sep}"
 separation distance = 2.2
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.2
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.2 ${atom_rad}
+create_atoms	1 single 0 2.2 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -213,41 +216,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_22_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:07:12 2023
+Setting up run at Tue Jul  4 02:20:21 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0       52.24619 
-Loop time of 52.2462 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:08:22 2023
+       3        3              0      62.659979 
+Loop time of 62.66 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:21:44 2023
 
 
-Pair  time (%) = 1.9934e-05 (3.8154e-05)
+Pair  time (%) = 1.3376e-05 (2.1347e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 4.725e-06 (9.04372e-06)
-Outpt time (%) = 0.000603583 (0.00115527)
-Other time (%) = 52.2456 (99.9988)
+Comm  time (%) = 2.015e-06 (3.21577e-06)
+Outpt time (%) = 0.000358641 (0.00057236)
+Other time (%) = 62.6596 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -256,7 +259,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -265,8 +268,9 @@ variable sep equal 23*1/10
 print "separation distance = ${sep}"
 separation distance = 2.3
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.3
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.3 ${atom_rad}
+create_atoms	1 single 0 2.3 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -276,41 +280,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_23_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:08:22 2023
+Setting up run at Tue Jul  4 02:21:44 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      52.147205 
-Loop time of 52.1472 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:09:32 2023
+       3        3              0      63.195727 
+Loop time of 63.1957 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:23:09 2023
 
 
-Pair  time (%) = 1.9748e-05 (3.78697e-05)
+Pair  time (%) = 1.8599e-05 (2.94308e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.155e-06 (4.13253e-06)
-Outpt time (%) = 0.000602372 (0.00115514)
-Other time (%) = 52.1466 (99.9988)
+Comm  time (%) = 2.11e-06 (3.33883e-06)
+Outpt time (%) = 0.000431679 (0.000683082)
+Other time (%) = 63.1953 (99.9993)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -319,7 +323,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -328,8 +332,9 @@ variable sep equal 24*1/10
 print "separation distance = ${sep}"
 separation distance = 2.4
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.4
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.4 ${atom_rad}
+create_atoms	1 single 0 2.4 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -339,41 +344,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_24_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:09:32 2023
+Setting up run at Tue Jul  4 02:23:09 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.992161 
-Loop time of 49.9922 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:10:39 2023
+       3        3              0      62.743522 
+Loop time of 62.7435 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:24:32 2023
 
 
-Pair  time (%) = 2.5039e-05 (5.00858e-05)
+Pair  time (%) = 1.458e-05 (2.32375e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.14e-06 (6.28098e-06)
-Outpt time (%) = 0.000703434 (0.00140709)
-Other time (%) = 49.9915 (99.9985)
+Comm  time (%) = 1.639e-06 (2.61222e-06)
+Outpt time (%) = 0.000314539 (0.000501309)
+Other time (%) = 62.7432 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -382,7 +387,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -391,8 +396,9 @@ variable sep equal 25*1/10
 print "separation distance = ${sep}"
 separation distance = 2.5
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.5
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.5 ${atom_rad}
+create_atoms	1 single 0 2.5 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -402,41 +408,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_25_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:10:39 2023
+Setting up run at Tue Jul  4 02:24:32 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      48.926034 
-Loop time of 48.926 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:11:44 2023
+       3        3              0      62.564901 
+Loop time of 62.5649 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:25:56 2023
 
 
-Pair  time (%) = 1.7365e-05 (3.54923e-05)
+Pair  time (%) = 1.533e-05 (2.45026e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.364e-06 (4.83178e-06)
-Outpt time (%) = 0.000426411 (0.000871542)
-Other time (%) = 48.9256 (99.9991)
+Comm  time (%) = 1.832e-06 (2.92816e-06)
+Outpt time (%) = 0.000380543 (0.000608237)
+Other time (%) = 62.5645 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -445,7 +451,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -454,8 +460,9 @@ variable sep equal 26*1/10
 print "separation distance = ${sep}"
 separation distance = 2.6
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.6
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.6 ${atom_rad}
+create_atoms	1 single 0 2.6 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -465,41 +472,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_26_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:11:44 2023
+Setting up run at Tue Jul  4 02:25:56 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.541896 
-Loop time of 49.5419 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:12:51 2023
+       3        3              0      63.288163 
+Loop time of 63.2882 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:27:20 2023
 
 
-Pair  time (%) = 1.8307e-05 (3.69525e-05)
+Pair  time (%) = 1.3432e-05 (2.12236e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.853e-06 (3.74027e-06)
-Outpt time (%) = 0.000524973 (0.00105965)
-Other time (%) = 49.5414 (99.9989)
+Comm  time (%) = 2.105e-06 (3.32606e-06)
+Outpt time (%) = 0.000546647 (0.000863743)
+Other time (%) = 63.2876 (99.9991)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -508,7 +515,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -517,8 +524,9 @@ variable sep equal 27*1/10
 print "separation distance = ${sep}"
 separation distance = 2.7
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.7
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.7 ${atom_rad}
+create_atoms	1 single 0 2.7 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -528,41 +536,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_27_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:12:51 2023
+Setting up run at Tue Jul  4 02:27:20 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.524751 
-Loop time of 49.5248 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:13:56 2023
+       3        3              0      63.123268 
+Loop time of 63.1233 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:28:44 2023
 
 
-Pair  time (%) = 1.5894e-05 (3.2093e-05)
+Pair  time (%) = 1.4102e-05 (2.23404e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.494e-06 (5.03586e-06)
-Outpt time (%) = 0.000620449 (0.0012528)
-Other time (%) = 49.5242 (99.9987)
+Comm  time (%) = 2.341e-06 (3.70862e-06)
+Outpt time (%) = 0.000353945 (0.00056072)
+Other time (%) = 63.1229 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -571,7 +579,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -580,8 +588,9 @@ variable sep equal 28*1/10
 print "separation distance = ${sep}"
 separation distance = 2.8
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.8
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.8 ${atom_rad}
+create_atoms	1 single 0 2.8 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -591,41 +600,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_28_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:13:56 2023
+Setting up run at Tue Jul  4 02:28:44 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0       49.55303 
-Loop time of 49.553 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:15:03 2023
+       3        3              0       63.22606 
+Loop time of 63.2261 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:30:08 2023
 
 
-Pair  time (%) = 2.7437e-05 (5.5369e-05)
+Pair  time (%) = 1.1082e-05 (1.75276e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.628e-06 (7.32145e-06)
-Outpt time (%) = 0.000551849 (0.00111365)
-Other time (%) = 49.5525 (99.9988)
+Comm  time (%) = 1.186e-06 (1.87581e-06)
+Outpt time (%) = 0.00033842 (0.000535254)
+Other time (%) = 63.2257 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -634,7 +643,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -643,8 +652,9 @@ variable sep equal 29*1/10
 print "separation distance = ${sep}"
 separation distance = 2.9
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -2.9
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 2.9 ${atom_rad}
+create_atoms	1 single 0 2.9 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -654,41 +664,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_29_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:15:03 2023
+Setting up run at Tue Jul  4 02:30:08 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.174774 
-Loop time of 49.1748 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:16:08 2023
+       3        3              0      63.211481 
+Loop time of 63.2115 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:31:33 2023
 
 
-Pair  time (%) = 2.4161e-05 (4.91329e-05)
+Pair  time (%) = 9.825e-06 (1.55431e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.36e-06 (6.83277e-06)
-Outpt time (%) = 0.000595594 (0.00121118)
-Other time (%) = 49.1742 (99.9987)
+Comm  time (%) = 1.519e-06 (2.40304e-06)
+Outpt time (%) = 0.000289504 (0.000457993)
+Other time (%) = 63.2112 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -697,7 +707,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -706,8 +716,9 @@ variable sep equal 30*1/10
 print "separation distance = ${sep}"
 separation distance = 3
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3 ${atom_rad}
+create_atoms	1 single 0 3 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -717,41 +728,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_30_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:16:08 2023
+Setting up run at Tue Jul  4 02:31:33 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.748439 
-Loop time of 49.7485 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:17:15 2023
+       3        3              0      62.713345 
+Loop time of 62.7134 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:32:57 2023
 
 
-Pair  time (%) = 3.2628e-05 (6.5586e-05)
+Pair  time (%) = 1.0138e-05 (1.61656e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.771e-06 (7.58013e-06)
-Outpt time (%) = 0.000684409 (0.00137574)
-Other time (%) = 49.7477 (99.9986)
+Comm  time (%) = 1.487e-06 (2.3711e-06)
+Outpt time (%) = 0.000287917 (0.0004591)
+Other time (%) = 62.7131 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -760,7 +771,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -769,8 +780,9 @@ variable sep equal 31*1/10
 print "separation distance = ${sep}"
 separation distance = 3.1
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.1
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.1 ${atom_rad}
+create_atoms	1 single 0 3.1 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -780,41 +792,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_31_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:17:15 2023
+Setting up run at Tue Jul  4 02:32:57 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      48.876663 
-Loop time of 48.8767 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:18:20 2023
+       3        3              0      63.789025 
+Loop time of 63.789 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:34:21 2023
 
 
-Pair  time (%) = 2.5814e-05 (5.28145e-05)
+Pair  time (%) = 1.082e-05 (1.69622e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.973e-06 (6.08265e-06)
-Outpt time (%) = 0.000688443 (0.00140853)
-Other time (%) = 48.876 (99.9985)
+Comm  time (%) = 1.715e-06 (2.68855e-06)
+Outpt time (%) = 0.000282894 (0.000443484)
+Other time (%) = 63.7887 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -823,7 +835,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -832,8 +844,9 @@ variable sep equal 32*1/10
 print "separation distance = ${sep}"
 separation distance = 3.2
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.2
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.2 ${atom_rad}
+create_atoms	1 single 0 3.2 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -843,41 +856,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_32_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:18:20 2023
+Setting up run at Tue Jul  4 02:34:21 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      48.961223 
-Loop time of 48.9612 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:19:25 2023
+       3        3              0      62.511863 
+Loop time of 62.5119 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:35:45 2023
 
 
-Pair  time (%) = 1.4436e-05 (2.94845e-05)
+Pair  time (%) = 1.2672e-05 (2.02713e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.818e-06 (3.71314e-06)
-Outpt time (%) = 0.000538391 (0.00109963)
-Other time (%) = 48.9607 (99.9989)
+Comm  time (%) = 1.573e-06 (2.51632e-06)
+Outpt time (%) = 0.000345155 (0.000552143)
+Other time (%) = 62.5115 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -886,7 +899,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -895,8 +908,9 @@ variable sep equal 33*1/10
 print "separation distance = ${sep}"
 separation distance = 3.3
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.3
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.3 ${atom_rad}
+create_atoms	1 single 0 3.3 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -906,41 +920,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_33_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:19:25 2023
+Setting up run at Tue Jul  4 02:35:45 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.129042 
-Loop time of 49.1291 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:20:31 2023
+       3        3              0      62.988709 
+Loop time of 62.9887 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:37:09 2023
 
 
-Pair  time (%) = 1.8408e-05 (3.74687e-05)
+Pair  time (%) = 1.2073e-05 (1.91669e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.593e-06 (5.27794e-06)
-Outpt time (%) = 0.000330138 (0.000671981)
-Other time (%) = 49.1287 (99.9993)
+Comm  time (%) = 1.778e-06 (2.82273e-06)
+Outpt time (%) = 0.000282537 (0.000448552)
+Other time (%) = 62.9884 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -949,7 +963,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -958,8 +972,9 @@ variable sep equal 34*1/10
 print "separation distance = ${sep}"
 separation distance = 3.4
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.4
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.4 ${atom_rad}
+create_atoms	1 single 0 3.4 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -969,41 +984,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_34_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:20:31 2023
+Setting up run at Tue Jul  4 02:37:09 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      48.834638 
-Loop time of 48.8347 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:21:36 2023
+       3        3              0      63.193988 
+Loop time of 63.194 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:38:33 2023
 
 
-Pair  time (%) = 2.0109e-05 (4.11777e-05)
+Pair  time (%) = 1.6789e-05 (2.65674e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 1.967e-06 (4.02788e-06)
-Outpt time (%) = 0.000502852 (0.0010297)
-Other time (%) = 48.8341 (99.9989)
+Comm  time (%) = 1.917e-06 (3.03352e-06)
+Outpt time (%) = 0.000308522 (0.000488214)
+Other time (%) = 63.1937 (99.9995)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1012,7 +1027,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1021,8 +1036,9 @@ variable sep equal 35*1/10
 print "separation distance = ${sep}"
 separation distance = 3.5
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.5
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.5 ${atom_rad}
+create_atoms	1 single 0 3.5 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -1032,41 +1048,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_35_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:21:36 2023
+Setting up run at Tue Jul  4 02:38:33 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.641109 
-Loop time of 49.6411 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:22:42 2023
+       3        3              0      62.674902 
+Loop time of 62.6749 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:39:57 2023
 
 
-Pair  time (%) = 2.3844e-05 (4.80328e-05)
+Pair  time (%) = 1.706e-05 (2.72198e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 3.308e-06 (6.66383e-06)
-Outpt time (%) = 0.000459794 (0.000926236)
-Other time (%) = 49.6406 (99.999)
+Comm  time (%) = 2.109e-06 (3.36498e-06)
+Outpt time (%) = 0.000422096 (0.000673469)
+Other time (%) = 62.6745 (99.9993)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1075,7 +1091,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1084,8 +1100,9 @@ variable sep equal 36*1/10
 print "separation distance = ${sep}"
 separation distance = 3.6
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.6
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.6 ${atom_rad}
+create_atoms	1 single 0 3.6 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -1095,41 +1112,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_36_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:22:42 2023
+Setting up run at Tue Jul  4 02:39:57 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.270043 
-Loop time of 49.2701 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:23:48 2023
+       3        3              0      62.553629 
+Loop time of 62.5537 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:41:21 2023
 
 
-Pair  time (%) = 2.2344e-05 (4.535e-05)
+Pair  time (%) = 1.4464e-05 (2.31226e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.049e-06 (4.15871e-06)
-Outpt time (%) = 0.000430484 (0.000873723)
-Other time (%) = 49.2696 (99.9991)
+Comm  time (%) = 2.24e-06 (3.58093e-06)
+Outpt time (%) = 0.000487295 (0.000779003)
+Other time (%) = 62.5531 (99.9992)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1138,7 +1155,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1147,8 +1164,9 @@ variable sep equal 37*1/10
 print "separation distance = ${sep}"
 separation distance = 3.7
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.7
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.7 ${atom_rad}
+create_atoms	1 single 0 3.7 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -1158,41 +1176,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_37_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:23:48 2023
+Setting up run at Tue Jul  4 02:41:21 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.454961 
-Loop time of 49.455 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:24:54 2023
+       3        3              0      62.994072 
+Loop time of 62.9941 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:42:44 2023
 
 
-Pair  time (%) = 2.5859e-05 (5.2288e-05)
+Pair  time (%) = 1.0602e-05 (1.68302e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.249e-06 (4.54757e-06)
-Outpt time (%) = 0.000573688 (0.00116002)
-Other time (%) = 49.4544 (99.9988)
+Comm  time (%) = 1.467e-06 (2.32879e-06)
+Outpt time (%) = 0.000384004 (0.000609587)
+Other time (%) = 62.9937 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1201,7 +1219,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1210,8 +1228,9 @@ variable sep equal 38*1/10
 print "separation distance = ${sep}"
 separation distance = 3.8
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.8
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.8 ${atom_rad}
+create_atoms	1 single 0 3.8 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -1221,41 +1240,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_38_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:24:54 2023
+Setting up run at Tue Jul  4 02:42:44 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.305026 
-Loop time of 49.3051 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:26:00 2023
+       3        3              0      63.873953 
+Loop time of 63.874 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:44:09 2023
 
 
-Pair  time (%) = 3.025e-05 (6.13527e-05)
+Pair  time (%) = 9.87e-06 (1.54523e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 4.567e-06 (9.26274e-06)
-Outpt time (%) = 0.000692969 (0.00140547)
-Other time (%) = 49.3043 (99.9985)
+Comm  time (%) = 1.22e-06 (1.91001e-06)
+Outpt time (%) = 0.000355375 (0.000556369)
+Other time (%) = 63.8736 (99.9994)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 6 ave 6 max 6 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 6
+Ave neighs/atom = 2
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1264,7 +1283,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1273,8 +1292,9 @@ variable sep equal 39*1/10
 print "separation distance = ${sep}"
 separation distance = 3.9
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -3.9
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 3.9 ${atom_rad}
+create_atoms	1 single 0 3.9 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -1284,41 +1304,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_39_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:26:00 2023
+Setting up run at Tue Jul  4 02:44:09 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      50.278527 
-Loop time of 50.2786 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:27:07 2023
+       3        3              0       21.95802 
+Loop time of 21.958 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:44:38 2023
 
 
-Pair  time (%) = 2.5735e-05 (5.11848e-05)
+Pair  time (%) = 9.292e-06 (4.23171e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 2.931e-06 (5.82952e-06)
-Outpt time (%) = 0.000625475 (0.00124402)
-Other time (%) = 50.2779 (99.9987)
+Comm  time (%) = 1.197e-06 (5.45131e-06)
+Outpt time (%) = 0.000409517 (0.001865)
+Other time (%) = 21.9576 (99.9981)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    1 ave 1 max 1 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 2
+Ave neighs/atom = 0.666667
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1327,7 +1347,7 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop
 variable c loop 20 40
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
@@ -1336,8 +1356,9 @@ variable sep equal 40*1/10
 print "separation distance = ${sep}"
 separation distance = 4
 
-create_atoms	1 single 0 0 -${sep}
-create_atoms	1 single 0 0 -4
+create_atoms	1 single 0 ${sep} ${atom_rad}
+create_atoms	1 single 0 4 ${atom_rad}
+create_atoms	1 single 0 4 1
 Created 1 atoms
 group           atom_j id 3
 1 atoms in group atom_j
@@ -1347,41 +1368,41 @@ set     atom 3 diameter 2
   1 settings made for diameter
 
 
-# dump  dmp atom_j custom 1 parallel/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
-dump  dmp atom_j custom 1 perpendicular/post_par3_trial/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_40_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 #fix	1 nve_group nve/sphere
 
 reset_timestep 0
 run	3
-Setting up run at Mon May  8 19:27:07 2023
+Setting up run at Tue Jul  4 02:44:38 2023
 
 Memory usage per processor = 9.36265 Mbytes
     Step    Atoms         KinEng            CPU 
        0        3              0              0 
-       3        3              0      49.091987 
-Loop time of 49.092 on 1 procs for 3 steps with 3 atoms, finish time Mon May  8 19:28:12 2023
+       3        3              0      20.797192 
+Loop time of 20.7972 on 1 procs for 3 steps with 3 atoms, finish time Tue Jul  4 02:45:06 2023
 
 
-Pair  time (%) = 2.32e-05 (4.72582e-05)
+Pair  time (%) = 1.4916e-05 (7.17212e-05)
 Neigh time (%) = 0 (0)
-Comm  time (%) = 4.623e-06 (9.41701e-06)
-Outpt time (%) = 0.000492455 (0.00100313)
-Other time (%) = 49.0915 (99.9989)
+Comm  time (%) = 1.969e-06 (9.46762e-06)
+Outpt time (%) = 0.000383286 (0.00184297)
+Other time (%) = 20.7968 (99.9981)
 
 Nlocal:    3 ave 3 max 3 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Nghost:    0 ave 0 max 0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    2 ave 2 max 2 min
+Neighs:    1 ave 1 max 1 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs: 4 ave 4 max 4 min
+FullNghs: 2 ave 2 max 2 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 4
-Ave neighs/atom = 1.33333
+Total # of neighbors = 2
+Ave neighs/atom = 0.666667
 Neighbor list builds = 0
 Dangerous builds = 0
 undump	dmp
@@ -1390,4 +1411,4 @@ Deleted 1 atoms, new total = 2
 next c
 #undump dmp_local
 #uncompute deltas
-jump in.mag loop
+jump in.mag_3 loop

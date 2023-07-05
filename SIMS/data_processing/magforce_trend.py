@@ -21,17 +21,17 @@ post_folder_inc=                    'inclusion'
 # post_folder_SHA_MDM_20_betachange=  'SHA_MDM_20_betachange'
 # post_folder_beta_print=             'print_beta'
 # post_folder_beta_print10=           'print_beta10'
-post_folder_nb=                     'nobeta'
+# post_folder_nb=                     'nobeta'
 # post_folder_nbm=                    'nobeta_nomag'
-post_folder_trial=                  'trial'
+# post_folder_trial=                  'trial'
 
 c=                  np.arange(20,41,1)
 force_MDM=          np.zeros(c.size)
 force_SHA=          np.zeros(c.size)
 force_inc=          np.zeros(c.size)
 
-force_nb=           np.zeros(c.size)
-force_trial=        np.zeros(c.size)
+# force_nb=           np.zeros(c.size)
+# force_trial=        np.zeros(c.size)
 # force_nbm=          np.zeros(c.size)
 # force_SHA_2=np.zeros(c.size)
 # force_SHA20=np.zeros(c.size)
@@ -44,7 +44,7 @@ force_trial=        np.zeros(c.size)
 for n in range(2):
     particle_number=n+2
     if particle_number==2:
-        post_folder_par=            '/post_two_par_'
+        post_folder_par=            '/post_par2_'
         skip_rows=10
     
     elif particle_number==3:
@@ -64,11 +64,11 @@ for n in range(2):
         inc_file_location=      (dump_folder + post_folder_inc+ f"/dump_{sep_file}_2.liggghts")
         force_inc[i]=           np.loadtxt(inc_file_location, skiprows=skip_rows, usecols=4)
 
-        nb_file_location=       (dump_folder + post_folder_nb+ f"/dump_{sep_file}_2.liggghts")
-        force_nb[i]=            np.loadtxt(nb_file_location, skiprows=skip_rows, usecols=4)   
+        # nb_file_location=       (dump_folder + post_folder_nb+ f"/dump_{sep_file}_2.liggghts")
+        # force_nb[i]=            np.loadtxt(nb_file_location, skiprows=skip_rows, usecols=4)   
         
-        trial_file_location=    (dump_folder + post_folder_trial+ f"/dump_{sep_file}_2.liggghts")
-        force_trial[i]=            np.loadtxt(trial_file_location, skiprows=skip_rows, usecols=4)   
+        # trial_file_location=    (dump_folder + post_folder_trial+ f"/dump_{sep_file}_2.liggghts")
+        # force_trial[i]=            np.loadtxt(trial_file_location, skiprows=skip_rows, usecols=4)   
         
         # nbm_file_location=      (dump_folder + post_folder_nbm+ f"/dump_{sep_file}_2.liggghts")
         # force_nbm[i]=           np.loadtxt(nbm_file_location, skiprows=skip_rows, usecols=4)
@@ -101,7 +101,7 @@ for n in range(2):
     plt.plot(c/10, force_SHA, 'g--', label= 'SHA')
     plt.plot(c/10, force_inc, label= 'inclusion')
     # plt.plot(c/10, force_nb, label= 'nobeta')
-    plt.plot(c/10, force_trial, label= 'trial')
+    # plt.plot(c/10, force_trial, label= 'trial')
     # plt.plot(c/10, force_nbm, label= 'nobeta_nomag')
     # plt.plot(c/10, force_SHA_2,  label= 'Inclusion Model 2.0')
     # plt.plot(c/10, force_SHA20,  label= 'Inclusion Model 20')
