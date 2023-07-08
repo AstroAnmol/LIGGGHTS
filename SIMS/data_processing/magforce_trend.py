@@ -8,6 +8,10 @@ simulation_folder=                  'mag_test'
 
 # mag_field_orientation=              '/parallel'  
 mag_field_orientation=              '/perpendicular'
+# mag_field_orientation=              '/perpendicular_plane'
+
+susc_folder=                        '/susc1'
+# susc_folder=                        '/susc4'
 
 post_folder_MDM=                    'MDM'
 post_folder_SHA=                    'SHA'
@@ -41,7 +45,7 @@ force_inc=          np.zeros(c.size)
 # force_beta_print=np.zeros(c.size)
 # force_beta_print10=np.zeros(c.size)
 
-for n in range(2):
+for n in range(3):
     particle_number=n+2
     if particle_number==2:
         post_folder_par=            '/post_par2_'
@@ -51,9 +55,13 @@ for n in range(2):
         post_folder_par=            '/post_par3_'
         skip_rows=9
 
+    elif particle_number==4:
+        post_folder_par=            '/post_par3_triangle_'
+        skip_rows=9
+
     for i in range(c.size):
         sep_file=c[i]
-        dump_folder=            simulation_folder + mag_field_orientation + post_folder_par 
+        dump_folder=            simulation_folder + mag_field_orientation + susc_folder + post_folder_par 
 
         MDM_file_location=      (dump_folder + post_folder_MDM + f"/dump_{sep_file}_2.liggghts")
         force_MDM[i]=           np.loadtxt(MDM_file_location, skiprows=skip_rows, usecols=4)
@@ -108,6 +116,8 @@ for n in range(2):
     # plt.plot(c/10, force_SHA20_2,  label= 'Inclusion Model 20 2')
     # plt.plot(c/10, force_SHA_MDM_20,  label= 'Inclusion Model MDM 20')
     # plt.plot(c/10, force_SHA_MDM_20_betachange,  label= 'Inclusion Model MDM 20 Betachange')
+    plt.title("Parallel Susceptibilty=1")
+    plt.grid()
     plt.legend()
     plt.show()
 

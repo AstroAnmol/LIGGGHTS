@@ -11,7 +11,7 @@ variable reg_dim equal 10 #meters
 
 region		reg block -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} units box
 create_box	1 reg
-neighbor	2 bin
+neighbor	5 bin
 neigh_modify	delay 0 every 1
 
 hard_particles	yes
@@ -51,7 +51,7 @@ fix	mag all magnetic    0   0   1
 # Define loops
 
 label loop
-variable c loop 20 40
+variable c loop 38 50
 #separation between the atoms
 variable sep equal ${c}*${atom_rad}/10
 print "separation distance = ${sep}"
@@ -62,7 +62,7 @@ group           atom_j id 3
 set     atom 3 diameter ${atom_dia}
 
 
-dump  dmp atom_j custom 1 parallel/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 parallel/susc1/post_par3_triangle_inclusion/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 # dump  dmp atom_j custom 1 perpendicular/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 # dump  dmp atom_j custom 1 perpendicular_plane/susc1/post_par3_triangle_SHA/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
