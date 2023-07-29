@@ -1,51 +1,117 @@
-atom_style	hybrid granular dipole
-boundary	f f f
-newton		off
-atom_modify	sort 10000 0
-
-communicate	single vel yes
-units		si
-processors	1 1 1
+### Angle of repose experiment in uniform magnetic field
 
 
+### Initialization
+# Preliminaries
+units           si
+atom_style      hybrid granular dipole
+atom_modify     sort 10000 0
+
+# periodic x boundaries, fixed y boundaries, fixed -z for floor and fixed shrink wrap for cieling
+boundary        f f f
+
+#LIGGGHTS-Public shouuld produce the same answers for any newton flag setting, besides round off
+newton          off
 soft_particles yes
+communicate     single vel yes
 
-# variable reg_dim equal 10 #meters
+# the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
+processors      2 2 2
 
-region		reg block -0.063 0.063 -0.009 0.009 -0.177 0 units box
-create_box	1 reg
-neighbor	2 bin
-neigh_modify	delay 0 every 1
+# Declare domain
+region          domain block 0 .126 0 .018 0 .177 units box
+create_box      2 domain
 
-fix 		m1 all property/global youngsModulus peratomtype 70
-fix 		m2 all property/global poissonsRatio peratomtype 0.24
-fix 		m3 all property/global coefficientRestitution peratomtypepair 2 0.97 0.82
-fix 		m4 all property/global coefficientFriction peratomtypepair 2 0.16 0.45
-fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
+# Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
+neighbor        0.003 bin
+# neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
+neigh_modify    delay 0
 
-# fix m7 all property/global magneticSusceptibility peratomtype 0.96
+### Setup
+# Material and interaction properties required
+fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
+fix             m2 all property/global poissonsRatio peratomtype 0.24 0.24
+fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.2 0.2 0.2 0.2
+fix             m4 all property/global coefficientFriction peratomtypepair 2 0.6 0.6 0.6 0.6
+fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.4 0.4 0.4 0.4
+fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.4 0.4 0.4 0.4
+fix             m7 all property/global coeffRollingStiffness scalar 10
+fix             m8 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
+
+fix             m9 all property/global magneticSusceptibility peratomtype 1 1
+
+## box walls - define simulation
+
+fix		        wall_y1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 yplane 0.0 	
+fix		        wall_y2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 yplane 0.018  	
+fix		        wall_z1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 zplane 0.0        #floor
+fix             wall_x1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.0            
+fix             wall_x2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.126
 
 
-pair_style gran model hertz tangential history cohesion sjkr
-pair_coeff	* *
+# Mesh for incline
+fix             cad1 all mesh/surface file meshes/piling_test_incline.STL type 2 scale .0001 move 0.00 0.00 0.167 #rotate axis 1. 0. 0. angle -50.
+# fix             cad2 all mesh/surface file meshes/piling_test_incline.STL type 2 scale .0001 move 0.126 0.018 0.167 #rotate axis 0. 1. 0. angle -180.
+fix             granwalls all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd mesh n_meshes 1 meshes cad1 #cad2
 
-timestep	10e-6 # seconds
-
-#radius of atoms
-variable atom_rad equal 0.001 #meters
-#diameter of atoms
-variable atom_dia equal 2*${atom_rad}
-
-fix zwalls all wall/gran model hertz tangential history primitive type 1 zplane 0.15
+## Pair style
+pair_style      gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
+pair_coeff	    * *  # the asterisks set force field coeefficients for all atom types, but then no other args? ASK TOM
 
 
-fix     int all nve/sphere
-fix     grav all gravity 9.81 vector 0.0 0.0 -1.0
+# Particle insertion
+fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 2500 &
+                radius constant 0.0005
+fix             pdd1 all particledistribution/discrete 15487517 1 particles 1.0
+
+# region and insertion
+group		nve_group region domain
+
+# Create stopper wall 
+fix             stopper all wall/gran model hertz tangential history primitive type 2 zplane 0.056
 
 
+### Detailed settings
+# apply nve integration to all particles that are inserted as single particles
+fix		integr nve_group nve/sphere
 
-dump    dmp all custom 1000 post/dump*.liggghts id type fx fy fz x y z radius mass
-#dump_modify dmp format "%d %d %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f %1.23f"
+# Gravity
+fix             grav all gravity 9.81 vector 0.0 0.0 -1.0
 
-#fix	1 nve_group nve/sphere
+# Time step
+timestep        .000001 #seconds (1 microsecond)
 
+## Thermo settings
+# thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
+thermo_style 	custom step atoms ke vol
+# thermo output every 1000 timesteps
+thermo		1000
+# LIGGGHTS will ignore last particles and will not normalize against num atoms
+thermo_modify	lost ignore norm no
+
+# Check time step and initialize dump file
+fix             ctg all check/timestep/gran 1 0.01 0.01
+run             1
+unfix           ctg
+
+# Create imaging information
+dump            dmp all custom 100000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
+
+# STL dump files
+dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
+
+### execution and further settings
+
+# Fill the hopper
+run             150000 upto
+
+
+# pull the stopper
+unfix           stopper
+
+run             30000
+
+# fix magnetic
+fix	            mag all magnetic    0   0   6e-4
+
+run             30000
