@@ -1,70 +1,90 @@
-### Mass Wasting Event in uniform magnetic field using MDM
+### Angle of repose experiment in uniform magnetic field
 
 
 ### Initialization
 # Preliminaries
 units           si
-atom_style      sphere
-atom_modify     map array
-boundary        f p f
+atom_style      hybrid granular dipole
+atom_modify     sort 10000 0
+
+# periodic x boundaries, fixed y boundaries, fixed -z for floor and fixed shrink wrap for cieling
+boundary        f f f
+
+#LIGGGHTS-Public shouuld produce the same answers for any newton flag setting, besides round off
 newton          off
+soft_particles yes
 communicate     single vel yes
-#processors     2 2 3
+
+# the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
+processors      2 2 2
 
 # Declare domain
-region          domain block -3.75 3.75 -1 1 0 10 units box
+region          domain block 0 .126 0 .018 0 .160 units box
 create_box      2 domain
 
-# Neighbor listing
+# Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
 neighbor        0.003 bin
+# neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
 neigh_modify    delay 0
-
 
 ### Setup
 # Material and interaction properties required
-fix             m1 all property/global youngsModulus peratomtype 1.0e9 1.0e9
-fix             m2 all property/global poissonsRatio peratomtype 0.278 0.278
+fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
+fix             m2 all property/global poissonsRatio peratomtype 0.24 0.24
 fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.2 0.2 0.2 0.2
 fix             m4 all property/global coefficientFriction peratomtypepair 2 0.6 0.6 0.6 0.6
 fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.4 0.4 0.4 0.4
-fix             m5 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.4 0.4 0.4 0.4
-fix             m6 all property/global coeffRollingStiffness scalar 10
-fix             m7 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
+fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.4 0.4 0.4 0.4
+fix             m7 all property/global coeffRollingStiffness scalar 10
+fix             m8 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
 
-fix             m8 all property/global magneticSusceptibility peratomtype 1 1
+fix             m9 all property/global magneticSusceptibility peratomtype 1 1
+
+## box walls - define simulation
+
+fix		        wall_y1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 yplane 0.0 	
+fix		        wall_y2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 yplane 0.018  	
+fix		        wall_z1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 zplane 0.0        #floor
+fix             wall_x1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.0            
+fix             wall_x2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.126
+
+## wall in centre which is removed to simulate mass wasting
+fix             wall_rm all wall/gran model hertz tangnetial history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.063
+
+## Pair style
+pair_style      gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
+pair_coeff	    * *  # the asterisks set force field coeefficients for all atom types, but then no other args? ASK TOM
 
 
 # Particle insertion
-fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 7750 &
-                radius constant 0.05
-fix             pdd all particledistribution/discrete 49979687 1 particles 1.0
-region          ins_geo block -3.75 0 -1 1 1 9.95 units box
-fix             ins all insert/pack seed 32452843 distributiontemplate pdd insert_every once overlapcheck yes &
-                particles_in_region 70000 region ins_geo ntry_mc 10000
+fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 2500 &
+                radius constant 0.0005
+fix             pdd1 all particledistribution/discrete 15487517 1 particles 1.0
 
-# wall the region
-fix             wall all wall/region domain  lj93 1.0 1.0 2.5
+# region and insertion
+group		nve_group region domain
+
 # Create stopper wall 
-fix             stopper all wall/gran model hertz tangential history primitive type 2 xplane 0.0
-# Define the physics
-pair_style      gran model hertz tangential history
-pair_coeff      * *
+fix             stopper all wall/gran model hertz tangential history primitive type 2 zplane 0.056
 
 
 ### Detailed settings
-# Integrator
-fix             integrate all nve/sphere
+# apply nve integration to all particles that are inserted as single particles
+fix		integr nve_group nve/sphere
 
 # Gravity
 fix             grav all gravity 9.81 vector 0.0 0.0 -1.0
 
 # Time step
-timestep        .00001 #seconds
+timestep        .000001 #seconds (1 microsecond)
 
-# Themodynamic output settings
-# thermo_style    custom step atoms ke cpu
-# thermo          1e9
-# thermo_modify   norm no lost ignore
+## Thermo settings
+# thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
+thermo_style 	custom step atoms ke vol
+# thermo output every 1000 timesteps
+thermo		1000
+# LIGGGHTS will ignore last particles and will not normalize against num atoms
+thermo_modify	lost ignore norm no
 
 # Check time step and initialize dump file
 fix             ctg all check/timestep/gran 1 0.01 0.01
@@ -72,8 +92,10 @@ run             1
 unfix           ctg
 
 # Create imaging information
-dump            dmp all custom 10000 post/dump*.liggghts id type x y z ix iy iz vx vy vz &
-                fx fy fz omegax omegay omegaz radius
+dump            dmp all custom 100000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
+
+# STL dump files
+dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
 
 ### execution and further settings
 

@@ -38,7 +38,7 @@ fix             m6 all property/global coefficientRollingViscousDamping peratomt
 fix             m7 all property/global coeffRollingStiffness scalar 10
 fix             m8 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
 
-fix             m9 all property/global magneticSusceptibility peratomtype 1 1
+# fix             m9 all property/global magneticSusceptibility peratomtype 1 1
 
 ## box walls - define simulation
 
@@ -50,22 +50,26 @@ fix             wall_x2 all wall/gran model hertz tangential history cohesion sj
 
 
 # Mesh for incline
-fix             cad1 all mesh/surface file meshes/piling_test_incline.STL type 2 scale .0001 move 0.00 0.00 0.167 #rotate axis 1. 0. 0. angle -50.
+# fix             cad1 all mesh/surface file meshes/piling_test_incline.STL type 2 scale .0001 move 0.00 0.00 0.167 #rotate axis 1. 0. 0. angle -50.
 # fix             cad2 all mesh/surface file meshes/piling_test_incline.STL type 2 scale .0001 move 0.126 0.018 0.167 #rotate axis 0. 1. 0. angle -180.
-fix             granwalls all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd mesh n_meshes 1 meshes cad1 #cad2
+# fix             granwalls all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd mesh n_meshes 1 meshes cad1 #cad2
 
 ## Pair style
 pair_style      gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
 pair_coeff	    * *  # the asterisks set force field coeefficients for all atom types, but then no other args? ASK TOM
 
+# Particle floor
+
+region          floor block 0 .126 0 .018 0 .0011 units box
+create_atoms    1 region floor basis 1 1 1
 
 # Particle insertion
-fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 2500 &
-                radius constant 0.0005
-fix             pdd1 all particledistribution/discrete 15487517 1 particles 1.0
+# fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 2500 &
+                # radius constant 0.0005
+# fix             pdd1 all particledistribution/discrete 15487517 1 particles 1.0
 
 # region and insertion
-group		nve_group region domain
+group		nve_group region domain 
 
 # Create stopper wall 
 fix             stopper all wall/gran model hertz tangential history primitive type 2 zplane 0.056
@@ -98,7 +102,7 @@ unfix           ctg
 dump            dmp all custom 100000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
 
 # STL dump files
-dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
+# dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
 
 ### execution and further settings
 
@@ -112,6 +116,6 @@ unfix           stopper
 run             30000
 
 # fix magnetic
-fix	            mag all magnetic    0   0   6e-4
+# fix	            mag all magnetic    0   0   6e-4
 
 run             30000
