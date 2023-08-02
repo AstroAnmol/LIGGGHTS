@@ -1,0 +1,227 @@
+LIGGGHTS (Version LIGGGHTS-PUBLIC 3.8.0, compiled 2023-07-08-18:25:31 by anmol, git commit unknown)
+atom_style	granular
+atom_modify	map array
+boundary	m m m
+newton		off
+
+communicate	single vel yes
+processors	2 1 1
+
+units		si
+
+region		reg block -1 1 -1 1 -0.05 2.85 units box
+create_box	1 reg
+Created orthogonal box = (-1 -1 -0.05) to (1 1 2.85)
+  2 by 1 by 1 MPI processor grid
+
+neighbor	0.01 bin
+neigh_modify	delay 0
+
+
+#Material properties required for new pair styles
+
+fix 		m1 all property/global youngsModulus peratomtype 5.e6
+fix 		m2 all property/global poissonsRatio peratomtype 0.45
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.9
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.05
+fix 		m5 all property/global characteristicVelocity scalar 2.
+fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 500
+
+#New pair style
+pair_style gran model hertz tangential history #Hertzian without cohesion
+pair_coeff	* *
+
+timestep	0.00001
+
+fix		gravi all gravity 9.81 vector 0.0 0.0 -1.0
+
+#particle distributions
+fix		pts1 all particletemplate/sphere 15485863 atom_type 1 density constant 2500 radius constant 0.015
+fix		pts2 all particletemplate/sphere 15485867 atom_type 1 density constant 2500 radius constant 0.025
+fix		pdd1 all particledistribution/discrete 32452843 2 pts1 0.3 pts2 0.7
+
+#region and insertion
+fix		ins_mesh all mesh/surface file meshes/face.stl type 1 scale 0.005
+group	nve_group region reg
+0 atoms in group nve_group
+fix		ins nve_group insert/stream seed 32452867 distributiontemplate pdd1 nparticles 5000 		vel constant 0. -0.5 -2. particlerate 1000 		overlapcheck yes insertion_face ins_mesh extrude_length 0.6
+
+#apply nve integration to all particles that are inserted as single particles
+fix		integr nve_group nve/sphere
+
+#output settings, include total thermal energy
+compute		1 all erotate/sphere
+thermo_style	custom step atoms ke c_1 vol
+thermo		1000
+thermo_modify	lost ignore norm no
+
+#insert the first particles so that dump is not empty
+run		1
+Setting up run at Tue Aug  1 22:21:27 2023
+
+INFO: Particle insertion ins: 300.000000 particles every 30000 steps - particle rate 1000.000000, (mass rate 7.833093e+01)
+      5000 particles (mass 3.916547e+02) within 480000 steps
+Memory usage per processor = 5.32021 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+       0        0              0              0           11.6 
+INFO: Particle insertion ins: inserted 300 particle templates (mass 2.355933e+01) at step 1
+ - a total of 300 particle templates (mass 2.355933e+01) inserted so far.
+       1      300      47.118654              0           11.6 
+Loop time of 0.00741133 on 2 procs for 1 steps with 300 atoms, finish time Tue Aug  1 22:21:27 2023
+
+
+Pair  time (%) = 2.6155e-06 (0.0352905)
+Neigh time (%) = 0.000118359 (1.597)
+Comm  time (%) = 5.63915e-05 (0.760882)
+Outpt time (%) = 1.1585e-05 (0.156315)
+Other time (%) = 0.00722238 (97.4505)
+
+Nlocal:    150 ave 151 max 149 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    30 ave 35 max 25 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Neighs:    121 ave 126 max 116 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 242
+Ave neighs/atom = 0.806667
+Neighbor list builds = 1
+Dangerous builds = 0
+dump            dmp all custom 800 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
+
+#insert particles
+run		100000
+Setting up run at Tue Aug  1 22:21:27 2023
+
+Memory usage per processor = 9.36934 Mbytes
+    Step    Atoms         KinEng              1         Volume 
+       1      300      47.118654              0           11.6 
+    1000      300      47.123777              0           11.6 
+    2000      300      47.404326  3.1602755e-05           11.6 
+    3000      300      47.787421  4.2326981e-05           11.6 
+    4000      300      48.340647   8.138939e-05           11.6 
+    5000      300      49.042947    9.66521e-05           11.6 
+    6000      300      50.018641  0.00014889853           11.6 
+    7000      300      51.022412  0.00014889853           11.6 
+    8000      300      52.266907  0.00014985416           11.6 
+    9000      300      53.799338  0.00022178461           11.6 
+   10000      300      55.516153   0.0002217344           11.6 
+   11000      300      57.381154  0.00022796479           11.6 
+   12000      300      59.546499  0.00023689561           11.6 
+   13000      300      61.988636  0.00023689568           11.6 
+   14000      300      64.735856  0.00027471746           11.6 
+   15000      300        67.6549  0.00027387372           11.6 
+   16000      300      70.805622  0.00027380802           11.6 
+   17000      300      74.300702  0.00027380802           11.6 
+   18000      300      78.010804  0.00027380802           11.6 
+   19000      300      81.936646  0.00027380802           11.6 
+   20000      300      86.214382   0.0002959415           11.6 
+   21000      300      90.801185  0.00028855681           11.6 
+   22000      300      95.778718  0.00044878357           11.6 
+   23000      300      101.13246  0.00061474027           11.6 
+   24000      300      106.65592  0.00061983246           11.6 
+   25000      300      112.58199  0.00061983246           11.6 
+   26000      300      118.87881  0.00068972657           11.6 
+   27000      300      125.41061  0.00065014579           11.6 
+   28000      300      132.36298  0.00065014579           11.6 
+   29000      300      139.70782  0.00064680589           11.6 
+   30000      300      147.37484   0.0006439444           11.6 
+INFO: Particle insertion ins: inserted 300 particle templates (mass 2.343105e+01) at step 30001
+ - a total of 600 particle templates (mass 4.699037e+01) inserted so far.
+   31000      600      202.23886   0.0006439444           11.6 
+   32000      600      210.56912   0.0006439444           11.6 
+   33000      600      219.21456  0.00064949282           11.6 
+   34000      600      228.23345  0.00064949282           11.6 
+   35000      600      237.70259  0.00064949282           11.6 
+   36000      600      247.57608  0.00064949282           11.6 
+   37000      600      257.82255  0.00064949282           11.6 
+   38000      600      268.58419  0.00064730599           11.6 
+   39000      600      279.73898  0.00067018265           11.6 
+   40000      600      291.31287  0.00067059914           11.6 
+   41000      600      303.37134  0.00067059914           11.6 
+   42000      600      315.79741  0.00067059914           11.6 
+   43000      600      328.74361  0.00068441169           11.6 
+   44000      600      342.14455   0.0006973371           11.6 
+   45000      600      356.05861  0.00069740326           11.6 
+   46000      600      370.36685  0.00073573672           11.6 
+   47000      600      385.18667  0.00081703134           11.6 
+   48000      600      400.45985  0.00081703134           11.6 
+   49000      600      416.36741  0.00090501587      11.610284 
+   50000      600      432.79007  0.00096535137      11.912278 
+   51000      600      449.64646   0.0010197929      12.194148 
+   52000      600      467.12887   0.0010708717      12.496283 
+   53000      600      485.09718   0.0011659045       12.77861 
+   54000      600      503.63285   0.0011667549      13.081148 
+   55000      600      522.77069   0.0013895551       13.38334 
+   56000      600       542.4312   0.0014175107      13.705558 
+   57000      600      562.76213   0.0014081718      14.007766 
+   58000      600      583.59535   0.0014081718      14.330214 
+   59000      600      604.88187   0.0014080758      14.653166 
+   60000      600      626.99022   0.0016094722      14.975513 
+INFO: Particle insertion ins: inserted 300 particle templates (mass 2.355933e+01) at step 60001
+ - a total of 900 particle templates (mass 7.054970e+01) inserted so far.
+   61000      900      696.72229   0.0016513585      15.310655 
+   62000      900      719.88771   0.0016513585      15.633465 
+   63000      900      743.68654   0.0016577011      15.976899 
+   64000      900      768.10252   0.0016622246      16.318931 
+   65000      900      793.05568   0.0016622246      16.661801 
+   66000      900      818.65591   0.0016628807      17.005401 
+   67000      900      844.84081   0.0016667587      17.367699 
+   68000      900      871.70102   0.0016607615       17.71121 
+   69000      900      899.18639   0.0016731404      18.074299 
+   70000      900      927.41488   0.0016889017      18.436982 
+   71000      900      956.38599   0.0017825899      18.821693 
+   72000      900       986.0076   0.0018338249      19.183749 
+   73000      900      1016.3282   0.0018904309      19.568417 
+   74000      900       1047.348   0.0018920525      19.951079 
+   75000      900      1079.0873   0.0018920525      20.335405 
+   76000      900      1111.5788   0.0018920525      20.718596 
+   77000      900      1144.7485   0.0019338336      21.102467 
+   78000      900      1178.5433   0.0019338336       21.50601 
+   79000      900       1213.209   0.0019338336      21.910421 
+   80000      900      1248.5486   0.0019375418      22.313986 
+   81000      900      1284.6594   0.0020261468      22.718607 
+   82000      900      1321.4525   0.0020441825      23.121726 
+   83000      900      1359.0924   0.0020438933      23.547804 
+   84000      900      1397.5068    0.002091993      23.950215 
+   85000      900      1436.7562   0.0021034658      24.376638 
+   86000      900      1476.6902   0.0021037871      24.799327 
+   87000      900      1517.4328   0.0021257545      25.244909 
+   88000      900      1559.0984   0.0022033075      25.669345 
+   89000      900      1601.5766   0.0023888584      26.113385 
+   90000      900      1644.8523   0.0024431591      26.560553 
+INFO: Particle insertion ins: inserted 300 particle templates (mass 2.343105e+01) at step 90001
+ - a total of 1200 particle templates (mass 9.398074e+01) inserted so far.
+   91000     1200      1735.7835   0.0024431613      27.008136 
+   92000     1200      1780.6545    0.002452489      27.454227 
+   93000     1200      1826.4355    0.002664267      27.899143 
+   94000     1200      1873.0401   0.0026671553       28.36301 
+   95000     1200      1920.4812   0.0026455555      28.830896 
+   96000     1200      1968.8049   0.0026455826      29.293904 
+   97000     1200      2017.9449   0.0026498357      29.758892 
+   98000     1200      2068.0387   0.0027046081      30.248189 
+   99000     1200      2119.0385   0.0027081912      30.709981 
+  100000     1200      2170.9792   0.0029470685      31.195755 
+  100001     1200      2171.0314   0.0029473204      31.195755 
+Loop time of 1.33658 on 2 procs for 100000 steps with 1200 atoms, finish time Tue Aug  1 22:21:28 2023
+
+
+Pair  time (%) = 0.1641 (12.2776)
+Neigh time (%) = 0.19675 (14.7204)
+Comm  time (%) = 0.361615 (27.0553)
+Outpt time (%) = 0.0572769 (4.28534)
+Other time (%) = 0.556836 (41.6613)
+
+Nlocal:    600 ave 602 max 598 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Nghost:    123.5 ave 129 max 118 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+Neighs:    168.5 ave 172 max 165 min
+Histogram: 1 0 0 0 0 0 0 0 0 1
+
+Total # of neighbors = 337
+Ave neighs/atom = 0.280833
+Neighbor list builds = 1427
+Dangerous builds = 0
+write_restart post/liggghts.restart
+

@@ -18,7 +18,6 @@ communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
 processors      2 2 2
-
 # Declare domain
 region          domain block 0 .126 0 .018 0 .177 units box
 create_box      2 domain
@@ -26,10 +25,9 @@ Created orthogonal box = (0 0 0) to (0.126 0.018 0.177)
   2 by 2 by 2 MPI processor grid
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
-neighbor        0.003 bin
+neighbor        0.0001 bin
 # neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
 neigh_modify    delay 0
-
 ### Setup
 # Material and interaction properties required
 fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
@@ -115,8 +113,28 @@ WARNING:
  (../contact_models.h:364)
 pair_coeff	    * *  # the asterisks set force field coeefficients for all atom types, but then no other args? ASK TOM
 
-# Particle floor
+#vGeometry Regions
 
+# Particle floor
 region          floor block 0 .126 0 .018 0 .0011 units box
-create_atoms    1 region floor basis 1 1 1
-ERROR: Invalid basis setting in create_atoms command (../create_atoms.cpp:157)
+# lattice         fcc 0.002 origin 0 0 0
+# create_atoms    1 region floor
+# group           fl region floor
+# set             group fl density 2500 diameter 0.001
+# fix             floor_fix fl freeze
+
+# Particle incline
+region          incline_lp1 plane 0.0565 0.000 0.000 -1.00 0.00 0.00
+region          incline_lp2 plane 0.0565 0.000 0.056 -0.64 0.00 -0.76
+region          incline_lp3 plane 0.055 0.000 0.056 0.64 0.00 0.76
+region          incline_l intersect 3 incline_lp1 incline_lp2 incline_lp3
+# lattice         fcc 0.001
+# create_atoms    1 region incline_l
+# group           ic_l region incline_l
+# set             group ic_l density 2500 diameter 0.001
+# fix             icl_fix ic_l freeze
+
+# Particle incline
+region          incline_rp1 plane 0.0695 0.000 0.000 1.00 0.00 0.00
+region          incline_rp2 plane 0.0695 0.000 0.056 0.64 0.00 -0.76
+region          inc

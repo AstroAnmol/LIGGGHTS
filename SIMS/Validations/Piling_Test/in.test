@@ -17,16 +17,14 @@ communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
 processors      2 2 2
-
 # Declare domain
 region          domain block 0 .126 0 .018 0 .177 units box
 create_box      2 domain
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
-neighbor        0.003 bin
+neighbor        0.0001 bin
 # neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
-neigh_modify    delay 0
-
+neigh_modify    delay 0 
 ### Setup
 # Material and interaction properties required
 fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
@@ -58,29 +56,65 @@ fix             wall_x2 all wall/gran model hertz tangential history cohesion sj
 pair_style      gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
 pair_coeff	    * *  # the asterisks set force field coeefficients for all atom types, but then no other args? ASK TOM
 
+#vGeometry Regions
+
 # Particle floor
-
 region          floor block 0 .126 0 .018 0 .0011 units box
-create_atoms    1 region floor basis 1 1 1
+# lattice         fcc 0.002 origin 0 0 0
+# create_atoms    1 region floor 
+# group           fl region floor
+# set             group fl density 2500 diameter 0.001
+# fix             floor_fix fl freeze 
 
-# Particle insertion
-# fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 2500 &
-                # radius constant 0.0005
-# fix             pdd1 all particledistribution/discrete 15487517 1 particles 1.0
+# Particle incline
+region          incline_lp1 plane 0.0565 0.000 0.000 -1.00 0.00 0.00
+region          incline_lp2 plane 0.0565 0.000 0.056 -0.64 0.00 -0.76
+region          incline_lp3 plane 0.055 0.000 0.056 0.64 0.00 0.76
+region          incline_l intersect 3 incline_lp1 incline_lp2 incline_lp3
+# lattice         fcc 0.001
+# create_atoms    1 region incline_l
+# group           ic_l region incline_l
+# set             group ic_l density 2500 diameter 0.001
+# fix             icl_fix ic_l freeze 
 
-# region and insertion
-group		nve_group region domain 
+# Particle incline
+region          incline_rp1 plane 0.0695 0.000 0.000 1.00 0.00 0.00
+region          incline_rp2 plane 0.0695 0.000 0.056 0.64 0.00 -0.76
+region          incline_rp3 plane 0.071 0.000 0.056 -0.64 0.00 0.76
+region          incline_r intersect 3 incline_rp1 incline_rp2 incline_rp3
+# lattice         fcc 0.001
+# create_atoms    1 region incline_r
+# group           ic_r region incline_r
+# set             group ic_r density 2500 diameter 0.001
+# fix             icr_fix ic_r freeze 
+
+## Union region
+region          freeze_geometry union 3 floor incline_l incline_r
+lattice         fcc 0.001
+create_atoms    1 region freeze_geometry
+group           pts_walls region freeze_geometry
+set             group pts_walls density 2500 diameter 0.001
+fix             walls_freeze pts_walls freeze 
+
+# particles and their distribution
+fix	            pts1 all particletemplate/sphere 15485863 atom_type 2 density constant 2500 radius constant 0.001 
+fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
+
+# # region and insertion
+region          insertion_b block .050 .076 EDGE EDGE 0.140 0.170
+# fix             inface all mesh/surface file meshes/insertion_face.STL type 1 scale 0.001
+fix             ins all insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 1000 &
+                particlerate 5000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
 
 # Create stopper wall 
-fix             stopper all wall/gran model hertz tangential history primitive type 2 zplane 0.056
+fix             stopper all wall/gran model hertz tangential history primitive type 1 zplane 0.056
 
+# # Gravity
+fix             grav all gravity 9.81 vector 0.0 0.0 -1.0
 
 ### Detailed settings
 # apply nve integration to all particles that are inserted as single particles
-fix		integr nve_group nve/sphere
-
-# Gravity
-fix             grav all gravity 9.81 vector 0.0 0.0 -1.0
+# fix		        integr all nve/sphere
 
 # Time step
 timestep        .000001 #seconds (1 microsecond)
@@ -99,7 +133,7 @@ run             1
 unfix           ctg
 
 # Create imaging information
-dump            dmp all custom 100000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
+dump            dmp all custom 1000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
 
 # STL dump files
 # dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
@@ -107,15 +141,15 @@ dump            dmp all custom 100000 post/dump*.post id type x y z vx vy vz rad
 ### execution and further settings
 
 # Fill the hopper
-run             150000 upto
+run             15000 upto
 
 
 # pull the stopper
-unfix           stopper
+# unfix           stopper
 
-run             30000
+# run             30000
 
 # fix magnetic
 # fix	            mag all magnetic    0   0   6e-4
 
-run             30000
+# run             30000

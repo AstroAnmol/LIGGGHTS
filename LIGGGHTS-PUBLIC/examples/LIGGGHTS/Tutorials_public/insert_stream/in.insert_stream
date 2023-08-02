@@ -4,7 +4,7 @@ boundary	m m m
 newton		off
 
 communicate	single vel yes
-#processors	2 1 1
+processors	2 1 1
 
 units		si
 
@@ -55,7 +55,7 @@ thermo_modify	lost ignore norm no
 
 #insert the first particles so that dump is not empty
 run		1
-dump		dmp all custom/vtk 800 post/stream_*.vtk id type type x y z ix iy iz vx vy vz fx fy fz omegax omegay omegaz radius
+dump            dmp all custom 800 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
 
 #insert particles
 run		100000
