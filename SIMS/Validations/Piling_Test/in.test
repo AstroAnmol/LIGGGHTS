@@ -16,7 +16,7 @@ soft_particles yes
 communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
-processors      2 2 2
+processors      1 1 1
 # Declare domain
 region          domain block 0 .126 0 .018 0 .177 units box
 create_box      2 domain
@@ -94,16 +94,16 @@ lattice         fcc 0.001
 create_atoms    1 region freeze_geometry
 group           pts_walls region freeze_geometry
 set             group pts_walls density 2500 diameter 0.001
-fix             walls_freeze pts_walls freeze 
 
 # particles and their distribution
 fix	            pts1 all particletemplate/sphere 15485863 atom_type 2 density constant 2500 radius constant 0.001 
 fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
 
 # # region and insertion
-region          insertion_b block .050 .076 EDGE EDGE 0.140 0.170
 # fix             inface all mesh/surface file meshes/insertion_face.STL type 1 scale 0.001
-fix             ins all insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 1000 &
+region          insertion_b block .050 .076 EDGE EDGE 0.140 0.170
+group           prtcls region insertion_b
+fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 1000 &
                 particlerate 5000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
 
 # Create stopper wall 
@@ -114,7 +114,7 @@ fix             grav all gravity 9.81 vector 0.0 0.0 -1.0
 
 ### Detailed settings
 # apply nve integration to all particles that are inserted as single particles
-# fix		        integr all nve/sphere
+fix		        integr prtcls nve/sphere update dipole
 
 # Time step
 timestep        .000001 #seconds (1 microsecond)
@@ -140,8 +140,16 @@ dump            dmp all custom 1000 post/dump*.post id type x y z vx vy vz radiu
 
 ### execution and further settings
 
+# ensure particles are static 
+velocity       all set 0. 0. 0.
+
+
+## freeze the walls
+fix             walls_freeze pts_walls freeze 
+
+
 # Fill the hopper
-run             15000 upto
+run             150000 upto
 
 
 # pull the stopper
