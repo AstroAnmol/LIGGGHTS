@@ -16,9 +16,9 @@ soft_particles yes
 communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
-processors      1 1 1
+processors      4 1 4
 # Declare domain
-region          domain block 0 .126 0 .018 0 .177 units box
+region          domain block 0 .126 0 .018 0 .150 units box
 create_box      2 domain
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
@@ -101,9 +101,9 @@ fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
 
 # # region and insertion
 # fix             inface all mesh/surface file meshes/insertion_face.STL type 1 scale 0.001
-region          insertion_b block .050 .076 EDGE EDGE 0.140 0.170
+region          insertion_b block .050 .076 EDGE EDGE 0.115 0.145
 group           prtcls region insertion_b
-fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 1000 &
+fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 2000 &
                 particlerate 5000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
 
 # Create stopper wall 
@@ -148,8 +148,14 @@ velocity       all set 0. 0. 0.
 fix             walls_freeze pts_walls freeze 
 
 
-# Fill the hopper
-run             150000 upto
+# Fill the funnel
+run             250000 upto
+
+# write restart file to be used in settling or tapping
+write_restart   restart_filled.static
+
+
+undump		dmp
 
 
 # pull the stopper
