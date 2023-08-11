@@ -149,7 +149,16 @@ fix             walls_freeze pts_walls freeze
 
 
 # Fill the funnel
-run             250000 upto
+run             350000 upto
+
+
+# Stop insertion
+unfix           ins
+
+
+# Settle particles
+run             100000 
+
 
 # write restart file to be used in settling or tapping
 write_restart   restart_filled.static
