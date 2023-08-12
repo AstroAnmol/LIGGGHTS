@@ -157,7 +157,7 @@ unfix           ins
 
 
 # Settle particles
-run             100000 
+run             200000 
 
 
 # write restart file to be used in settling or tapping
