@@ -157,10 +157,10 @@ unfix           ins
 
 
 # Settle particles
-run             200000 
+run             350000 
 
 
-# write restart file to be used in settling or tapping
+# write restart file to be used for falling on particles
 write_restart   restart_filled.static
 
 
