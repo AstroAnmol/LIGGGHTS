@@ -16,7 +16,7 @@ soft_particles yes
 communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
-processors      2 2 2
+processors      6 1 6
 
 # Declare domain
 region          domain block 0 .126 0 .018 0 .160 units box
@@ -49,7 +49,7 @@ fix             wall_x1 all wall/gran model hertz tangential history cohesion sj
 fix             wall_x2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.126
 
 ## wall in centre which is removed to simulate mass wasting
-fix             wall_center all wall/gran model hertz tangnetial history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.063
+fix             wall_center all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.063
 
 ## Pair style
 pair_style      gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
@@ -58,7 +58,7 @@ pair_coeff	    * *  # the asterisks set force field coeefficients for all atom t
 
 ## Particle insertion
 # particles and their distribution
-fix	            pts1 all particletemplate/sphere 15485863 atom_type 2 density constant 2500 radius constant 0.0005 
+fix	            pts1 all particletemplate/sphere 15485863 atom_type 1 density constant 2500 radius constant 0.0005 
 fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
 
 # # region and insertion
