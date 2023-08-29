@@ -19,7 +19,7 @@ communicate     single vel yes
 processors      6 1 6
 
 # Declare domain
-region          domain block 0 .126 0 .018 0 .160 units box
+region          domain block 0 .126 0 .018 0 .177 units box
 create_box      2 domain
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
