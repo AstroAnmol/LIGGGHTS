@@ -23,7 +23,7 @@ region          domain block 0 .126 0 .018 0 .160 units box
 create_box      2 domain
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
-neighbor        0.003 bin
+neighbor        0.0001 bin
 # neigh_modify delay 0, this is the default, rebuild neighbor list every timestep
 neigh_modify    delay 0
 
@@ -31,10 +31,10 @@ neigh_modify    delay 0
 # Material and interaction properties required
 fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
 fix             m2 all property/global poissonsRatio peratomtype 0.24 0.24
-fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.2 0.2 0.2 0.2
-fix             m4 all property/global coefficientFriction peratomtypepair 2 0.6 0.6 0.6 0.6
-fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.4 0.4 0.4 0.4
-fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.4 0.4 0.4 0.4
+fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.97 0.82 0.82 0.82
+fix             m4 all property/global coefficientFriction peratomtypepair 2 0.16 0.45 0.45 0.45
+fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.1 0.1 0.1 0.1
+fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.1 0.1 0.1 0.1
 fix             m7 all property/global coeffRollingStiffness scalar 10
 fix             m8 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
 
@@ -49,28 +49,32 @@ fix             wall_x1 all wall/gran model hertz tangential history cohesion sj
 fix             wall_x2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.126
 
 ## wall in centre which is removed to simulate mass wasting
-fix             wall_rm all wall/gran model hertz tangnetial history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.063
+fix             wall_center all wall/gran model hertz tangnetial history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.063
 
 ## Pair style
 pair_style      gran model hertz tangential history cohesion sjkr rolling_friction epsd torsionTorque on
 pair_coeff	    * *  # the asterisks set force field coeefficients for all atom types, but then no other args? ASK TOM
 
 
-# Particle insertion
-fix             particles all particletemplate/sphere 123457 atom_type 1 density constant 2500 &
-                radius constant 0.0005
-fix             pdd1 all particledistribution/discrete 15487517 1 particles 1.0
+## Particle insertion
+# particles and their distribution
+fix	            pts1 all particletemplate/sphere 15485863 atom_type 2 density constant 2500 radius constant 0.0005 
+fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
+
+# # region and insertion
+# fix             inface all mesh/surface file meshes/insertion_face.STL type 1 scale 0.001
+region          insertion_b block EDGE 0.062 EDGE EDGE 0.135 0.175
+group           prtcls region insertion_b
+fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 58000 &
+                particlerate 100000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
+
 
 # region and insertion
-group		nve_group region domain
-
-# Create stopper wall 
-fix             stopper all wall/gran model hertz tangential history primitive type 2 zplane 0.056
-
+group		    nve_group region domain
 
 ### Detailed settings
 # apply nve integration to all particles that are inserted as single particles
-fix		integr nve_group nve/sphere
+fix		        integr prtcls nve/sphere update dipole
 
 # Gravity
 fix             grav all gravity 9.81 vector 0.0 0.0 -1.0
@@ -82,7 +86,7 @@ timestep        .000001 #seconds (1 microsecond)
 # thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
 thermo_style 	custom step atoms ke vol
 # thermo output every 1000 timesteps
-thermo		1000
+thermo		    1000
 # LIGGGHTS will ignore last particles and will not normalize against num atoms
 thermo_modify	lost ignore norm no
 
@@ -92,23 +96,34 @@ run             1
 unfix           ctg
 
 # Create imaging information
-dump            dmp all custom 100000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
+dump            dmp all custom 10000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
 
-# STL dump files
-dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
 
-### execution and further settings
+# ensure particles are static 
+velocity       all set 0. 0. 0.
 
-# Fill the hopper
-run             150000 upto
+# Fill the left half
+run             1000000 upto
 
+
+# Stop insertion
+unfix           ins
+
+
+# Settle particles
+run             1000000 
+
+
+# write restart file to be used for falling on particles
+write_restart   restart_filled.static
 
 # pull the stopper
-unfix           stopper
+unfix           wall_center
 
-run             30000
+run             3000000
 
 # fix magnetic
-fix	            mag all magnetic    0   0   6e-4
+# fix	            mag all magnetic    0   0   6e-4
 
-run             30000
+# run             30000
+undump		dmp
