@@ -111,7 +111,7 @@ unfix           ins
 
 
 # Settle particles
-run             1000000 
+run             500000 
 
 
 # write restart file to be used for falling on particles
@@ -120,7 +120,7 @@ write_restart   restart_filled.static
 # pull the stopper
 unfix           wall_center
 
-run             3000000
+run             1000000
 
 # fix magnetic
 # fix	            mag all magnetic    0   0   6e-4
