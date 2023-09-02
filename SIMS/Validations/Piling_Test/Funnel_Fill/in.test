@@ -31,8 +31,8 @@ fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
 fix             m2 all property/global poissonsRatio peratomtype 0.24 0.24
 fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.82 0.82 0.82 0.97
 fix             m4 all property/global coefficientFriction peratomtypepair 2 0.45 0.45 0.45 0.16
-fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.1 0.1 0.1 0.1
-fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.1 0.1 0.1 0.1
+fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.09 0.09 0.09 0.09
+fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.09 0.09 0.09 0.09
 fix             m7 all property/global coeffRollingStiffness scalar 10
 fix             m8 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
 # fix             m9 all property/global magneticSusceptibility peratomtype 1 1
@@ -136,7 +136,7 @@ timestep        .000001 #seconds (1 microsecond)
 
 ## Thermo settings
 # thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
-thermo_style 	custom step atoms ke vol
+thermo_style 	custom step atoms ke vol cpu
 # thermo output every 10000 timesteps
 thermo		    10000
 # LIGGGHTS will ignore last particles and will not normalize against num atoms
@@ -175,8 +175,8 @@ unfix           ins
 run             1000000 
 
 
-# # write restart file to be used for falling on particles
-# write_restart   restart_filled.static
+# write restart file to be used for falling on particles
+write_restart   restart_filled.static
 
 
 
