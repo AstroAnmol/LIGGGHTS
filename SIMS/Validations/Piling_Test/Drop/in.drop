@@ -15,11 +15,13 @@ newton          off
 soft_particles yes
 communicate     single vel yes
 
+read_restart    Results/Sept_1/read_filled.static
+
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
 processors      6 1 6
 # Declare domain
-region          domain block 0 .126 0 .018 0 .177 units box
-create_box      2 domain
+# region          domain block 0 .126 0 .018 0 .177 units box
+# create_box      2 domain
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
 neighbor        0.0001 bin
