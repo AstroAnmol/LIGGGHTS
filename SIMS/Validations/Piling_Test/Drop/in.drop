@@ -122,7 +122,7 @@ group           pts_walls region freeze_geometry
 region          incline_gl plane 0.0565 0.000 0.056 0.64 0.00 0.76
 region          incline_gr plane 0.0695 0.000 0.056 -0.64 0.00 0.76
 region          stopper_g plane 0.00 0.00 0.056 0.00 0.00 1.00
-region          prtcls_reg intersect incline_gl incline_gr stopper_g
+region          prtcls_reg intersect 3 incline_gl incline_gr stopper_g
 group           prtcls region prtcls_reg
 # fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 58000 &
                 # particlerate 100000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
