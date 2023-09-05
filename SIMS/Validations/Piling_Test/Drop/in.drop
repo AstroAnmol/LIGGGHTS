@@ -1,4 +1,4 @@
-### Drop particles by removing the wall
+### Angle of repose experiment in uniform magnetic field
 
 
 ### Initialization
@@ -16,14 +16,9 @@ soft_particles yes
 communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
-processors      4 1 4
-
-# load prepared granular assembly
-# change the last field to point to the desired assembly
-read_restart    restart_filled.static
-
+processors      6 1 6
 # Declare domain
-region          domain block 0 .126 0 .018 0 .150 units box
+region          domain block 0 .126 0 .018 0 .177 units box
 create_box      2 domain
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
@@ -34,22 +29,21 @@ neigh_modify    delay 0
 # Material and interaction properties required
 fix             m1 all property/global youngsModulus peratomtype 70e6 70e6
 fix             m2 all property/global poissonsRatio peratomtype 0.24 0.24
-fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.97 0.82 0.82 0.82
-fix             m4 all property/global coefficientFriction peratomtypepair 2 0.16 0.45 0.45 0.45
-fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.1 0.1 0.1 0.1
-fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.1 0.1 0.1 0.1
+fix             m3 all property/global coefficientRestitution peratomtypepair 2 0.82 0.82 0.82 0.97
+fix             m4 all property/global coefficientFriction peratomtypepair 2 0.45 0.45 0.45 0.16
+fix             m5 all property/global coefficientRollingFriction peratomtypepair  2 0.09 0.09 0.09 0.09
+fix             m6 all property/global coefficientRollingViscousDamping peratomtypepair  2 0.09 0.09 0.09 0.09
 fix             m7 all property/global coeffRollingStiffness scalar 10
 fix             m8 all property/global cohesionEnergyDensity peratomtypepair 2 10 10 10 10
-
-# fix             m9 all property/global magneticSusceptibility peratomtype 1 1
+fix             m9 all property/global magneticSusceptibility peratomtype 1 1
 
 ## box walls - define simulation
 
-fix		        wall_y1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 yplane 0.0 	
-fix		        wall_y2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 yplane 0.018  	
-fix		        wall_z1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 zplane 0.0        #floor
-fix             wall_x1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.0            
-fix             wall_x2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 2 xplane 0.126
+fix		        wall_y1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 yplane 0.0 	
+fix		        wall_y2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 yplane 0.018  	
+fix		        wall_z1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 zplane 0.0        #floor
+fix             wall_x1 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 xplane 0.0            
+fix             wall_x2 all wall/gran model hertz tangential history cohesion sjkr rolling_friction epsd primitive type 1 xplane 0.126
 
 
 # Mesh for incline
@@ -64,17 +58,33 @@ pair_coeff	    * *  # the asterisks set force field coeefficients for all atom t
 #vGeometry Regions
 
 # Particle floor
-region          floor block 0 .126 0 .018 0 .0011 units box
+region          floor block 0 .126 0 .018 0 .0022 units box
 # lattice         fcc 0.002 origin 0 0 0
 # create_atoms    1 region floor 
 # group           fl region floor
 # set             group fl density 2500 diameter 0.001
 # fix             floor_fix fl freeze 
 
+# # Wall incline
+# region          incline_wlp1 plane 0.0565 0.000 0.000 -1.00 0.00 0.00
+# region          incline_wlp2 plane 0.0565 0.000 0.05 -0.64 0.00 -0.76
+# region          incline_wlp3 plane 0.055 0.000 0.05 0.64 0.00 0.76
+# region          incline_wl intersect 3 incline_wlp1 incline_wlp2 incline_wlp3
+# # Wall incline
+# region          incline_wrp1 plane 0.0695 0.000 0.000 1.00 0.00 0.00
+# region          incline_wrp2 plane 0.0695 0.000 0.05 0.64 0.00 -0.76
+# region          incline_wrp3 plane 0.071 0.000 0.05 -0.64 0.00 0.76
+# region          incline_wr intersect 3 incline_wrp1 incline_wrp2 incline_wrp3
+
+# region          funnel_wall union 2 incline_wl incline_wr
+# fix             wall_fx all wall/region funnel_wall lj93 1.0 1.0 2.5
+
+
+## EMBED PARTICLES ON INCLINES AND FLOOR
 # Particle incline
 region          incline_lp1 plane 0.0565 0.000 0.000 -1.00 0.00 0.00
 region          incline_lp2 plane 0.0565 0.000 0.056 -0.64 0.00 -0.76
-region          incline_lp3 plane 0.055 0.000 0.056 0.64 0.00 0.76
+region          incline_lp3 plane 0.054 0.000 0.056 0.64 0.00 0.76
 region          incline_l intersect 3 incline_lp1 incline_lp2 incline_lp3
 # lattice         fcc 0.001
 # create_atoms    1 region incline_l
@@ -85,7 +95,7 @@ region          incline_l intersect 3 incline_lp1 incline_lp2 incline_lp3
 # Particle incline
 region          incline_rp1 plane 0.0695 0.000 0.000 1.00 0.00 0.00
 region          incline_rp2 plane 0.0695 0.000 0.056 0.64 0.00 -0.76
-region          incline_rp3 plane 0.071 0.000 0.056 -0.64 0.00 0.76
+region          incline_rp3 plane 0.072 0.000 0.056 -0.64 0.00 0.76
 region          incline_r intersect 3 incline_rp1 incline_rp2 incline_rp3
 # lattice         fcc 0.001
 # create_atoms    1 region incline_r
@@ -95,21 +105,22 @@ region          incline_r intersect 3 incline_rp1 incline_rp2 incline_rp3
 
 ## Union region
 region          freeze_geometry union 3 floor incline_l incline_r
-# lattice         fcc 0.001
+# lattice         fcc 0.0015
 # create_atoms    1 region freeze_geometry
 group           pts_walls region freeze_geometry
 # set             group pts_walls density 2500 diameter 0.001
 
 # particles and their distribution
-fix	            pts1 all particletemplate/sphere 15485863 atom_type 2 density constant 2500 radius constant 0.001 
-fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
+# fix	            pts1 all particletemplate/sphere 15485863 atom_type 2 density constant 2500 radius constant 0.0005 
+# fix             pdd1 all particledistribution/discrete 15487517 1 pts1 1.0
 
 # # region and insertion
 # fix             inface all mesh/surface file meshes/insertion_face.STL type 1 scale 0.001
-region          insertion_b block .050 .076 EDGE EDGE 0.115 0.145
-group           prtcls region insertion_b
-fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 2000 &
-                particlerate 5000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
+# region          insertion_b block EDGE EDGE EDGE EDGE 0.135 0.175
+region          prtcls_reg block EDGE EDGE EDGE EDGE 0.0022 0.055 
+group           prtcls region prtcls_reg
+# fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 58000 &
+                # particlerate 100000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
 
 # Create stopper wall 
 fix             stopper all wall/gran model hertz tangential history primitive type 1 zplane 0.056
@@ -126,9 +137,9 @@ timestep        .000001 #seconds (1 microsecond)
 
 ## Thermo settings
 # thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
-thermo_style 	custom step atoms ke vol
-# thermo output every 1000 timesteps
-thermo		1000
+thermo_style 	custom step atoms ke vol cpu
+# thermo output every 10000 timesteps
+thermo		    10000
 # LIGGGHTS will ignore last particles and will not normalize against num atoms
 thermo_modify	lost ignore norm no
 
@@ -138,7 +149,7 @@ run             1
 unfix           ctg
 
 # Create imaging information
-dump            dmp all custom 1000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
+dump            dmp all custom 10000 post/dump*.post id type x y z vx vy vz radius fx fy fz mass
 
 # STL dump files
 # dump		    dumpstl1 all mesh/stl 1000 post_stl/dumpcad*.stl
@@ -153,31 +164,72 @@ velocity       all set 0. 0. 0.
 fix             walls_freeze pts_walls freeze 
 
 
-# Fill the funnel
-run             350000 upto
+# # Fill the funnel
+# run             1000000 upto
 
 
-# Stop insertion
-unfix           ins
+# # Stop insertion
+# unfix           ins
 
 
 # Settle particles
-run             350000 
-
-
-# write restart file to be used for falling on particles
-write_restart   restart_filled.static
-
-
-undump		dmp
+run             1000000 
 
 
 # pull the stopper
-# unfix           stopper
+unfix           stopper
 
-# run             30000
 
 # fix magnetic
-# fix	            mag all magnetic    0   0   6e-4
+fix	            mag prtcls magnetic    0   0   6e-4
 
-# run             30000
+#01 0250000
+run             250000
+write_restart   continuedrop.static
+
+#02 0500000
+run             250000
+write_restart   continuedrop.static
+
+#03 0750000
+run             250000
+write_restart   continuedrop.static
+
+#04 1000000
+run             250000
+write_restart   continuedrop.static
+
+#05 1250000
+run             250000
+write_restart   continuedrop.static
+
+#06 1500000
+run             250000
+write_restart   continuedrop.static
+
+#07 1750000
+run             250000
+write_restart   continuedrop.static
+
+#08 2000000
+run             250000
+write_restart   continuedrop.static
+
+#09 2250000
+run             250000
+write_restart   continuedrop.static
+
+#10 2500000
+run             250000
+write_restart   continuedrop.static
+
+#11 2750000
+run             250000
+write_restart   continuedrop.static
+
+#12 3000000
+run             250000
+write_restart   continuedrop.static
+
+
+undump		dmp
