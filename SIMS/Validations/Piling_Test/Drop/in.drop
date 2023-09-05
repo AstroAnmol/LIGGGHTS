@@ -15,13 +15,13 @@ newton          off
 soft_particles yes
 communicate     single vel yes
 
-read_restart    Results/Sept_1/read_filled.static
-
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
 processors      6 1 6
 # Declare domain
 # region          domain block 0 .126 0 .018 0 .177 units box
 # create_box      2 domain
+
+read_restart    /home/dustiest/Sikka_Workspace/LIGGGHTS/SIMS/Validations/Piling_Test/Results/Sept_1/restart_filled.static
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
 neighbor        0.0001 bin
@@ -119,8 +119,10 @@ group           pts_walls region freeze_geometry
 # # region and insertion
 # fix             inface all mesh/surface file meshes/insertion_face.STL type 1 scale 0.001
 # region          insertion_b block EDGE EDGE EDGE EDGE 0.135 0.175
-region          prtcls_reg block EDGE EDGE EDGE EDGE 0.0022 0.055 
-group           prtcls region prtcls_reg
+region          incline_gl plane 0.0565 0.000 0.056 0.64 0.00 0.76
+region          incline_gr plane 0.0695 0.000 0.056 -0.64 0.00 0.76
+region          stopper_g plane 0.00 0.00 0.056 0.00 0.00 1.00
+group           prtcls region prtcls_reg intersect incline_gl incline_gr stopper_g
 # fix             ins prtcls insert/rate/region seed 123457 distributiontemplate pdd1 nparticles 58000 &
                 # particlerate 100000 insert_every 1000 overlapcheck yes region insertion_b ntry_mc 10000
 
