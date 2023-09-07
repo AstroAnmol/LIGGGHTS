@@ -16,12 +16,13 @@ soft_particles yes
 communicate     single vel yes
 
 # the product of the processors must equal P, the number of processors used when running the file: mpirun -np 4 ...
-processors      6 1 6
+processors      1 1 1
 # Declare domain
 # region          domain block 0 .126 0 .018 0 .177 units box
 # create_box      2 domain
 
-read_restart    /home/dustiest/Sikka_Workspace/LIGGGHTS/SIMS/Validations/Piling_Test/Results/Sept_1/restart_filled.static
+# read_restart    /home/dustiest/Sikka_Workspace/LIGGGHTS/SIMS/Validations/Piling_Test/Results/Sept_1/restart_filled.static
+read_restart    /home/anmol/Research/Code/LIGGGHTS/SIMS/Validations/Piling_Test/Results/Sept_1/restart_filled.static
 
 # Neighbor skin style - atom pairs within a neighbor cutoff distance = force cutoff + skin distance, styele = bin
 neighbor        0.0001 bin
@@ -144,7 +145,7 @@ timestep        .000001 #seconds (1 microsecond)
 # thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
 thermo_style 	custom step atoms ke vol cpu
 # thermo output every 10000 timesteps
-thermo		    10000
+thermo		    1
 # LIGGGHTS will ignore last particles and will not normalize against num atoms
 thermo_modify	lost ignore norm no
 
@@ -176,6 +177,8 @@ fix             walls_freeze pts_walls freeze
 # # Stop insertion
 # unfix           ins
 
+# fix magnetic
+fix	            mag prtcls magnetic    0   0   6e-4
 
 # Settle particles
 run             1000000 
@@ -183,10 +186,6 @@ run             1000000
 
 # pull the stopper
 unfix           stopper
-
-
-# fix magnetic
-fix	            mag prtcls magnetic    0   0   6e-4
 
 #01 0250000
 run             250000
