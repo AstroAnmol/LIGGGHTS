@@ -1,0 +1,76 @@
+atom_style	hybrid granular dipole
+boundary	f f f
+newton		off
+atom_modify	sort 10000 0
+
+communicate	single vel yes
+units		si
+processors	2 2 2
+
+variable reg_dim equal 5 #meters
+
+region		reg block -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} -${reg_dim} ${reg_dim} units box
+create_box	1 reg
+neighbor	0.001 bin
+neigh_modify	delay 0
+
+hard_particles	yes
+
+
+fix 		m1 all property/global youngsModulus peratomtype 6e6
+fix 		m2 all property/global poissonsRatio peratomtype 0.278
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.4
+fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
+
+fix m7 all property/global magneticSusceptibility peratomtype 4
+
+
+pair_style gran model hertz tangential history #cohesion sjkr
+pair_coeff	* *
+
+timestep	1e-6 # seconds
+
+# #radius of atoms
+# variable atom_rad equal 1.0 #meters
+# #diameter of atoms
+# variable atom_dia equal 2*${atom_rad}
+
+# variable half_l equal 2.5
+
+# create_atoms	1 single -${half_l}  ${half_l} 0
+# create_atoms	1 single  ${half_l}  ${half_l} 0
+# create_atoms	1 single -${half_l} -${half_l} 0
+# create_atoms	1 single  ${half_l} -${half_l} 0
+
+# set		atom 1 diameter ${atom_dia}
+# set     atom 2 diameter ${atom_dia}
+# set		atom 3 diameter ${atom_dia}
+# set     atom 4 diameter ${atom_dia}
+
+lattice         fcc 1
+create_atoms    1 region reg
+set             group all density 2500 diameter 1
+
+
+# Magnetic force is gauss (B mag field)
+#                       x   y   z
+fix	    mag all magnetic    0   0   1
+
+
+dump    dmp all custom 1 dump/dump_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp atom_j custom 1 perpendicular/susc4/post_par3_MDM/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+
+## Thermo settings
+# thermo style custom says what thermo data we want printed at each thermo timestep - timestep, num atoms, kinetic energy, volume
+thermo_style 	custom step atoms ke vol cpu
+# thermo output every 10000 timesteps
+thermo		    1
+# LIGGGHTS will ignore last particles and will not normalize against num atoms
+thermo_modify	lost ignore norm no
+
+### Detailed settings
+# apply nve integration to all particles that are inserted as single particles
+fix		        integr all nve/sphere update dipole
+
+run             10
