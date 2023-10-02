@@ -5,7 +5,7 @@ atom_modify	sort 10000 0
 
 communicate	single vel yes
 units		si
-processors	2 2 2
+processors	3 2 2
 
 variable reg_dim equal 5 #meters
 

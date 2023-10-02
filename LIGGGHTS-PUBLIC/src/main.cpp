@@ -59,11 +59,13 @@
 #include <string.h>
 #include <signal.h>
 #include "signal_handling.h"
+#include <eigen-3.4.0/Eigen/Core>
 
 #ifdef LIGGGHTS_DEBUG
 #include "fenv.h"
 #endif
 
+#define EIGEN_DONT_PARALLELIZE
 using namespace LAMMPS_NS;
 
 /* ----------------------------------------------------------------------
@@ -90,7 +92,8 @@ int main(int argc, char **argv)
   signal(SIGTERM, SignalHandler::int_handler);
   // no SIGUSR1 treatment because Windows
   #endif // _WINDOWS
-
+  
+  Eigen::initParallel();
   MPI_Init(&argc,&argv);
   #ifdef LIGGGHTS_DEBUG
   feenableexcept(FE_INVALID | FE_OVERFLOW | FE_DIVBYZERO);
