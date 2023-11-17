@@ -1,0 +1,77 @@
+atom_style	hybrid granular dipole
+boundary	f f f
+newton		off
+atom_modify	sort 10000 0
+
+communicate	single vel yes
+units		si
+processors	1 1 4
+
+variable reg_dim equal 12 #meters
+
+region		reg block -2 2 -2 2 -2 ${reg_dim} units box
+create_box	1 reg
+neighbor	2 bin
+neigh_modify	delay 0 every 1
+
+hard_particles	yes
+
+
+fix 		m1 all property/global youngsModulus peratomtype 6e6
+fix 		m2 all property/global poissonsRatio peratomtype 0.278
+fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
+fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.4
+fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
+
+fix         m7 all property/global magneticSusceptibility peratomtype 4
+
+
+pair_style gran model hertz tangential history #cohesion sjkr
+pair_coeff	* *
+
+timestep	1e-10 # seconds
+
+#index of simulations
+# variable a loop 10
+#radius of atoms
+variable atom_rad equal 1.0 #meters
+#diameter of atoms
+variable atom_dia equal 2*${atom_rad}
+
+create_atoms	1 single 0 0 0
+set		atom 1 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 ${atom_dia}
+set		atom 2 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 2*${atom_dia}
+set		atom 3 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 3*${atom_dia}
+set		atom 4 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 4*${atom_dia}
+set		atom 5 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 5*${atom_dia}
+set		atom 6 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 6*${atom_dia}
+set		atom 7 diameter ${atom_dia}
+
+create_atoms	1 single 0 0 7*${atom_dia}
+set		atom 8 diameter ${atom_dia}
+
+
+#                       x   y   z
+fix	mag all magnetic    0   0   1
+
+
+
+dump  dmp all custom 1 parallel/susc4/post_par2_MDM/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+# dump  dmp all custom 1 perpendicular/susc4/post_par2_MDM/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+
+
+#fix	1 nve_group nve/sphere
+
+run	2
