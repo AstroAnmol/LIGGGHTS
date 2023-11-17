@@ -23,13 +23,13 @@ fix 		m3 all property/global coefficientRestitution peratomtypepair 1 0.06
 fix 		m4 all property/global coefficientFriction peratomtypepair 1 0.4
 fix 		m6 all property/global cohesionEnergyDensity peratomtypepair 1 0.01
 
-fix         m7 all property/global magneticSusceptibility peratomtype 4
+fix         m7 all property/global magneticSusceptibility peratomtype 1
 
 
 pair_style gran model hertz tangential history #cohesion sjkr
 pair_coeff	* *
 
-timestep	1e-10 # seconds
+timestep	1e-6 # seconds
 
 #index of simulations
 # variable a loop 10
@@ -38,28 +38,37 @@ variable atom_rad equal 1.0 #meters
 #diameter of atoms
 variable atom_dia equal 2*${atom_rad}
 
+
+variable pos_three equal 2*${atom_dia}
+variable pos_four equal 3*${atom_dia}
+variable pos_five equal 4*${atom_dia}
+variable pos_six equal 5*${atom_dia}
+variable pos_seven equal 6*${atom_dia}
+variable pos_eight equal 7*${atom_dia}
+
+
 create_atoms	1 single 0 0 0
 set		atom 1 diameter ${atom_dia}
 
 create_atoms	1 single 0 0 ${atom_dia}
 set		atom 2 diameter ${atom_dia}
 
-create_atoms	1 single 0 0 2*${atom_dia}
+create_atoms	1 single 0 0 ${pos_three}
 set		atom 3 diameter ${atom_dia}
 
-create_atoms	1 single 0 0 3*${atom_dia}
+create_atoms	1 single 0 0 ${pos_four}
 set		atom 4 diameter ${atom_dia}
 
-create_atoms	1 single 0 0 4*${atom_dia}
+create_atoms	1 single 0 0 ${pos_five}
 set		atom 5 diameter ${atom_dia}
 
-create_atoms	1 single 0 0 5*${atom_dia}
+create_atoms	1 single 0 0 ${pos_six}
 set		atom 6 diameter ${atom_dia}
 
-create_atoms	1 single 0 0 6*${atom_dia}
+create_atoms	1 single 0 0 ${pos_seven}
 set		atom 7 diameter ${atom_dia}
 
-create_atoms	1 single 0 0 7*${atom_dia}
+create_atoms	1 single 0 0 ${pos_eight}
 set		atom 8 diameter ${atom_dia}
 
 
@@ -68,10 +77,10 @@ fix	mag all magnetic    0   0   1
 
 
 
-dump  dmp all custom 1 parallel/susc4/post_par2_MDM/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
+dump  dmp all custom 1 post/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 # dump  dmp all custom 1 perpendicular/susc4/post_par2_MDM/dump_$c_*.liggghts id type fx fy fz x y z radius mux muy muz
 
 
 #fix	1 nve_group nve/sphere
 
-run	2
+run	5
